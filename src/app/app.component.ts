@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <h1>AppComponent Works</h1>
+  `,
 })
-export class AppComponent {
-  title = 'contax-angular-front';
-}
+export class AppComponent {}
