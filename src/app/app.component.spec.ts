@@ -17,9 +17,13 @@ describe('#AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  beforeEach(() => {
     appComponentFixture = TestBed.createComponent(AppComponent);
     appComponent = appComponentFixture.componentInstance;
+  })
+
+  it('should create the app', () => {
+    appComponentFixture.detectChanges();
     expect(appComponent).toBeTruthy();
   });
 });
