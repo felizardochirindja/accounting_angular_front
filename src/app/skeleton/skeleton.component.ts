@@ -1,11 +1,12 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-skeleton',
+  imports: [RouterModule],
   template: `
-    <h1>
-      skeleton works!
-    </h1>
+    <router-outlet></router-outlet>
   `,
 })
 export class SkeletonComponent implements OnInit {
