@@ -6,7 +6,23 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-skeleton',
   imports: [RouterModule],
   template: `
-    <router-outlet></router-outlet>
+    <div>
+      <nav>
+        <ul>
+          <li>contabilidade</li>
+          <ul>
+            <li><a [routerLink]="['/inicio/contabilidade/plano-de-contas']">plano de contas</a></li>
+            <li><a [routerLink]="['/inicio/contabilidade/classes']">classes</a></li>
+          </ul>
+          
+          <li><a [routerLink]="['/inicio/contabilidade/productos-servicos']">productos e servicos</a></li>
+        </ul>
+      </nav>
+
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </div>
   `,
 })
 export class SkeletonComponent implements OnInit {
