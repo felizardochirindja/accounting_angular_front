@@ -4,7 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { 
-    path: '', component: SkeletonComponent
+    path: '', component: SkeletonComponent,
+    children: [
+      { path: 'contabilidade', loadChildren: () => import('./modules/accouting/accouting.module').then(m => m.AccoutingModule) }
+    ]
   }
 ];
 
