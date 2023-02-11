@@ -11,11 +11,11 @@ import { Component, OnInit } from '@angular/core';
         <ul>
           <li>contabilidade</li>
           <ul>
-            <li><a [routerLink]="['/inicio/contabilidade/plano-de-contas']">plano de contas</a></li>
             <li><a [routerLink]="['/inicio/contabilidade/classes']">classes</a></li>
+            <li><a [routerLink]="['/inicio/contabilidade/plano-de-contas']">plano de contas</a></li>
           </ul>
           
-          <li><a [routerLink]="['/inicio/contabilidade/productos-servicos']">productos e servicos</a></li>
+          <li><a [routerLink]="['/inicio/productos-servicos']">productos e servicos</a></li>
         </ul>
       </nav>
 
