@@ -9,7 +9,8 @@ const routes: Routes = [
   {
     path: 'inicio', component: SkeletonComponent,
     children: [
-      { path: 'contabilidade', loadChildren: () => import('./modules/accouting/accouting.module').then(m => m.AccoutingModule) }
+      { path: 'contabilidade', loadChildren: () => import('./modules/accouting/accouting.module').then(m => m.AccoutingModule) },
+      { path: 'productos-servicos', loadChildren: () => import('./modules/product-service/product-service.module').then(m => m.ProductServiceModule) }
     ]
   },
 
