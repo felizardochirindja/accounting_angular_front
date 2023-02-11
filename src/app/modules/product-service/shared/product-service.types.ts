@@ -1,12 +1,12 @@
-import { Fee } from '../accouting/accouting.types';
-import { Account } from './../accouting/account/account.types';
+import { Fee } from '../../accouting/shared/accouting.types';
+import { Account } from '../../accouting/account/account.types';
 
 interface Item {
     id?: string;
     name?: string;
     price?: number;
     account?: {
-        mainAccount: Account;
+        mainAccount?: Account;
         mainFee?: Fee;
     }
 }
@@ -31,6 +31,7 @@ export interface ProductWithStock extends ProductWithoutStock {
 export interface Service extends Item {}
 
 type Products = ProductWithoutStock[] | ProductWithStock[];
+export type ProductService = Service | ProductWithStock | ProductWithStock;
 
 export interface Items {
     products?: Products;
