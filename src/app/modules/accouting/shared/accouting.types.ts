@@ -1,4 +1,4 @@
-import { Account } from './account/account.types';
+import { Account } from '../account/account.types';
 
 export interface Fee {
     id?: string;
