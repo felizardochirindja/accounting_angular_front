@@ -3,7 +3,7 @@ export interface Category {
     type?: CategoryType;
 }
 
-enum CategoryType {
+export enum CategoryType {
     Activo = 'Activo',
     Passivo = 'Passivo',
     Capital = 'Capital',
