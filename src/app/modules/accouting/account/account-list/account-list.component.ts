@@ -1,3 +1,6 @@
+import { AccountingService } from './../../shared/accounting.service';
+import { Category, CategoryType } from './../../category/category.types';
+import { Account } from './../account.types';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './account-list.component.html',
 })
 export class AccountListComponent implements OnInit {
+  public categories: Category[] = [];
+  public accounts: Account[] = [];
 
-  constructor() { }
+  constructor(
+    private accountingService: AccountingService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.accountingService.categories$.subscribe((categories) => {
+      this.categories = categories;
+    });
+
+    this.accountingService.accounts$.subscribe((accounts) => {
+      this.accounts = accounts;
+    });
   }
-
 }
