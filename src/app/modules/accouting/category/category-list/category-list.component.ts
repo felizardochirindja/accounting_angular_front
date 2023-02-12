@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Category } from './../category.types';
+import { AccountingService } from './../../shared/accounting.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-category-list',
@@ -6,6 +8,16 @@ import { Component } from '@angular/core';
   styles: [
   ]
 })
-export class CategoryListComponent {
+export class CategoryListComponent implements OnInit {
+  public categories: Category[] = [];
 
+  constructor(
+    private accountingService: AccountingService,
+  ) {}
+
+  ngOnInit(): void {
+    this.accountingService.categories$.subscribe((categories) => {
+      this.categories = categories;
+    });
+  }
 }
