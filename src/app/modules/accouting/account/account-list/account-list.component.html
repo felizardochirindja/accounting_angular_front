@@ -4,3 +4,12 @@
 
 <button type="button">nova conta</button>
 <button type="button">nova classe</button>
+
+<br>
+<br>
+
+<button type="button" *ngFor="let category of categories">{{ category.type }}</button>
+
+<ul>
+  <li *ngFor="let account of accounts">{{ account.name }}<a href="#">editar</a></li>
+</ul>
