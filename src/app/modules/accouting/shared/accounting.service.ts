@@ -1,35 +1,35 @@
 import { Account } from './../account/account.types';
-import { Category } from './../category/category.types';
+import { Category, CategoryType } from './../category/category.types';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountingService {
-  private category: BehaviorSubject<Category | any> = new BehaviorSubject(null);
-  private categories: BehaviorSubject<Category[] | any> = new BehaviorSubject(null);
-  private account: BehaviorSubject<Account | any> = new BehaviorSubject(null);
-  private accounts: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
+  private categorySubject: BehaviorSubject<Category | any> = new BehaviorSubject(null);
+  private categoriesSubject: BehaviorSubject<Category[] | any> = new BehaviorSubject(null);
+  private accountSubject: BehaviorSubject<Account | any> = new BehaviorSubject(null);
+  private accountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
 
-  constructor(
-    private httpClient: HttpClient
-  ) {}
+  constructor() {}
 
   get category$(): Observable<Category> {
-    return this.category.asObservable();
+    return this.categorySubject.asObservable();
   }
 
   get categories$(): Observable<Category[]> {
-    return this.categories.asObservable();
+    return this.categoriesSubject.asObservable();
   }
 
   get account$(): Observable<Account> {
-    return this.account.asObservable();
+    return this.accountSubject.asObservable();
   }
 
   get accounts$(): Observable<Account[]> {
+    return this.accountsSubject.asObservable();
+  }
+
   getCategories(): Observable<Category[]> {
     const categories: Category[] = [
       { id: '1', type: CategoryType.Activo },
