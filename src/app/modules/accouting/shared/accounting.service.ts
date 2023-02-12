@@ -40,4 +40,29 @@ export class AccountingService {
     this.categoriesSubject.next(categories);
     return of(categories);
   }
+
+  getAccounts(): Observable<Account[]> {
+    const accounts: Account[] = [
+      { name: 'conta mae 1', id: '1', categoryId: '1' },
+      { name: 'conta filha 1.1', parentId: '1', categoryId: '1' },
+      { name: 'conta filha 1.2', parentId: '1', categoryId: '1' },
+      { name: 'conta filha 1.3', parentId: '1', categoryId: '1' },
+  
+      { name: 'conta mae 2', id: '2', categoryId: '3' },
+      { name: 'conta filha 2.1', parentId: '3', categoryId: '3' },
+      { name: 'conta filha 2.2', parentId: '3', categoryId: '3' },
+  
+      { name: 'conta mae 3', id: '3', categoryId: '2' },
+      { name: 'conta filha 3.1', parentId: '3', categoryId: '2' },
+      { name: 'conta filha 3.2', parentId: '3', categoryId: '2' },
+      { name: 'conta filha 3.3', parentId: '3', categoryId: '2' },
+      { name: 'conta filha 3.3', parentId: '3', categoryId: '2' },
+  
+      { name: 'conta mae 4', id: '4', categoryId: '1' },
+      { name: 'conta filha 4.1', parentId: '4', categoryId: '1' },
+    ];
+
+    this.accountsSubject.next(accounts);
+    return of(accounts);
+  }
 }
