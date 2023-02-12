@@ -30,6 +30,14 @@ export class AccountingService {
   }
 
   get accounts$(): Observable<Account[]> {
-    return this.accounts.asObservable();
+  getCategories(): Observable<Category[]> {
+    const categories: Category[] = [
+      { id: '1', type: CategoryType.Activo },
+      { id: '2', type: CategoryType.Gastos },
+      { id: '3', type: CategoryType.Capital },
+    ]
+
+    this.categoriesSubject.next(categories);
+    return of(categories);
   }
 }
