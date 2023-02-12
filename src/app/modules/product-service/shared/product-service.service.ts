@@ -9,8 +9,6 @@ export class ProductServiceService {
   private itemSubject: BehaviorSubject<Items | any> = new BehaviorSubject(null);
   private itemsSubject: BehaviorSubject<Items[] | any> = new BehaviorSubject(null);
 
-  constructor() { }
-
   get item$(): Observable<Items> {
     return this.itemSubject.asObservable();
   }
