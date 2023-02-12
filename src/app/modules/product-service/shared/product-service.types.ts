@@ -30,10 +30,4 @@ export interface ProductWithStock extends ProductWithoutStock {
 
 export interface Service extends Item {}
 
-type Products = ProductWithoutStock[] | ProductWithStock[];
-export type ProductService = Service | ProductWithStock | ProductWithStock;
-
-export interface Items {
-    products?: Products;
-    services?: Service[];
-}
+export type Items = Service | ProductWithStock | ProductWithStock;
