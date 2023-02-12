@@ -1,3 +1,4 @@
+import { Account } from './../account/account.types';
 import { AccountingService } from './accounting.service';
 import { Category } from './../category/category.types';
 import { Injectable } from '@angular/core';
@@ -14,5 +15,18 @@ export class AccoutingCategoriesResolver implements Resolve<Category[]> {
 
   resolve(): Observable<Category[]> {
     return this.accountingService.getCategories();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AcountingAccoutingsResolver implements Resolve<Account[]> {
+  constructor(
+    private accountingService: AccountingService,
+  ) {}
+
+  resolve(): Observable<Account[]> {
+    return this.accountingService.getAccounts();
   }
 }
