@@ -3,6 +3,7 @@ import { AccountListComponent } from './account/account-list/account-list.compon
 import { AccoutingRoutingModule } from './accouting-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AccountNestedListComponent } from './ui/account-nested-list/account-nested-list.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AccountListComponent,
     CategoryListComponent,
+    AccountNestedListComponent,
   ]
 })
 export class AccoutingModule {}
