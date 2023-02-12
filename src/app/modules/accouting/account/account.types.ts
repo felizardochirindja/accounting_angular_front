@@ -4,4 +4,5 @@ export interface Account {
     name?: string;
     parentId?: string;
     categoryId?: string;
+    children?: Account[];
 }
