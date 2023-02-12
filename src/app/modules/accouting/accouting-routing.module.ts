@@ -1,4 +1,4 @@
-import { AccoutingCategoriesResolver } from './shared/accouting.resolvers';
+import { AccoutingCategoriesResolver, AcountingAccoutingsResolver } from './shared/accouting.resolvers';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { AccountListComponent } from './account/account-list/account-list.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +10,7 @@ const routes: Routes = [
     path: 'plano-de-contas', component: AccountListComponent,
     resolve: {
       categories: AccoutingCategoriesResolver,
+      accounts: AcountingAccoutingsResolver,
     }
   },
   {
