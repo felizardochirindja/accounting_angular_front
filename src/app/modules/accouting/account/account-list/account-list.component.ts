@@ -1,5 +1,5 @@
 import { AccountingService } from './../../shared/accounting.service';
-import { Category, CategoryType } from './../../category/category.types';
+import { Category } from './../../category/category.types';
 import { Account } from './../account.types';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './account-list.component.html',
 })
 export class AccountListComponent implements OnInit {
+  public activeCategory!: Category;
   public categories: Category[] = [];
   public accounts: Account[] = [];
 
@@ -18,10 +19,19 @@ export class AccountListComponent implements OnInit {
   ngOnInit(): void {
     this.accountingService.categories$.subscribe((categories) => {
       this.categories = categories;
+      this.activeCategory = categories[0];
     });
 
     this.accountingService.accounts$.subscribe((accounts) => {
       this.accounts = accounts;
     });
+  }
+
+  getAccountsByCategory(category: Category): Account[] {
+    return this.accounts.filter(account => account.categoryId === category.id);
+  }
+
+  setActiveCategory(category: Category): void {
+    this.activeCategory = category;
   }
 }

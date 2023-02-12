@@ -8,6 +8,6 @@
 <br>
 <br>
 
-<button type="button" *ngFor="let category of categories">{{ category.type }}</button>
+<button type="button" *ngFor="let category of categories" (click)="setActiveCategory(category)">{{ category.type }}</button>
 
-<app-account-nested-list [accounts]="accounts"></app-account-nested-list>
+<app-account-nested-list [accounts]="getAccountsByCategory(activeCategory)"></app-account-nested-list>
