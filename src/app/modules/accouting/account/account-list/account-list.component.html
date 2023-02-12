@@ -10,6 +10,4 @@
 
 <button type="button" *ngFor="let category of categories">{{ category.type }}</button>
 
-<ul>
-  <li *ngFor="let account of accounts">{{ account.name }}<a href="#">editar</a></li>
-</ul>
+<app-account-nested-list [accounts]="accounts"></app-account-nested-list>
