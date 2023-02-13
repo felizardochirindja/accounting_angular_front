@@ -1,3 +1,4 @@
+import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 import { AccoutingCategoriesResolver, AcountingAccoutingsResolver } from './shared/accouting.resolvers';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { AccountListComponent } from './account/account-list/account-list.component';
@@ -17,7 +18,10 @@ const routes: Routes = [
     path: 'classes', component: CategoryListComponent,
     resolve: {
       catefories: AccoutingCategoriesResolver
-    }
+    },
+    children: [
+      { path: 'criar', component: CategoryEditComponent }
+    ]
   },
 ];
 
