@@ -38,4 +38,17 @@ export class AuthenticationService {
     this.isAuthenticated = false;
     return of(true);
   }
+
+  isValid(): Observable<boolean> {
+    if (!this.accessToken) {
+      return of(false);
+    }
+
+    if (this.isAuthenticated) {
+      return of(true);
+    }
+
+    return this.refreshToken();
+  }
+
 }
