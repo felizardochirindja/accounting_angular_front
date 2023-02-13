@@ -2,6 +2,8 @@
 
 <button type="button" routerLink="./criar">nova classe</button>
 
+<router-outlet></router-outlet>
+
 <ul>
     <li *ngFor="let category of categories">{{ category.type }} <a href="#">editar</a></li>
 </ul>
