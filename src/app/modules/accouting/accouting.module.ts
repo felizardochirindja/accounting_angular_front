@@ -16,6 +16,7 @@ import { AccountNestedListComponent } from './ui/account-nested-list/account-nes
     AccountListComponent,
     CategoryListComponent,
     AccountNestedListComponent,
+    CategoryEditComponent,
   ]
 })
 export class AccoutingModule {}
