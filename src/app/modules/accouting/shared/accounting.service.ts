@@ -1,7 +1,7 @@
 import { Account } from './../account/account.types';
 import { Category, CategoryType } from './../category/category.types';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -82,5 +82,18 @@ export class AccountingService {
 
     this.accountsSubject.next(accounts);
     return of(accounts);
+  }
+
+  createCategory(category: Category): Observable<Category> {
+    // create category logic
+    return this.categories$.pipe(
+      take(1),
+      switchMap((categories) => {
+
+        this.categoriesSubject.next([category, ...categories]);
+
+        return of(category);
+      })
+    );
   }
 }
