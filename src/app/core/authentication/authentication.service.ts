@@ -51,4 +51,18 @@ export class AuthenticationService {
     return this.refreshToken();
   }
 
+  refreshToken(): Observable<boolean> {
+    return this.httpClient.post<AuthenticationApiResponse>('', { accessToken: this.accessToken }).pipe(
+      switchMap((response) => {
+        this.accessToken = response.accessToken;
+        this.isAuthenticated = true;
+        this.clientService.client = response.client;
+
+        return of(true);
+      }),
+      catchError(() => {
+        return of(false);
+      })
+    );
+  }
 }
