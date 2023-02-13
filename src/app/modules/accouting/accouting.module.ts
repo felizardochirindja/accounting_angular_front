@@ -8,6 +8,8 @@ import { AccountNestedListComponent } from './ui/account-nested-list/account-nes
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AccoutingRoutingModule,
   ],
   declarations: [
