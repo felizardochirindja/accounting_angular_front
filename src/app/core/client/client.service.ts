@@ -23,8 +23,8 @@ export class ClientService {
 
   update(client: Client): Observable<any> {
     return this.httpClient.patch<Client>('api/common/user', { client }).pipe(
-      map((response) => {
-        this.clientSubject.next(response);
+      map((user) => {
+        this.clientSubject.next(user);
       })
     );
   }
