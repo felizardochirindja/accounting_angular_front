@@ -23,7 +23,6 @@ export class CategoryEditComponent {
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private accountingService: AccountingService,
   ) { }
 
@@ -31,6 +30,6 @@ export class CategoryEditComponent {
     // create category
 
     const category: Category = this.editCategoryForm.value;
-    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['./inicio/contabilidade/classes']);
   }
 }
