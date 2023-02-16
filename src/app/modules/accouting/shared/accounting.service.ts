@@ -32,9 +32,9 @@ export class AccountingService {
 
   getCategories(): Observable<Category[]> {
     const categories: Category[] = [
-      { id: '1', type: CategoryType.Activo },
-      { id: '2', type: CategoryType.Gastos },
-      { id: '3', type: CategoryType.Capital },
+      { id: '1', name: 'categoria1', type: CategoryType.Activo },
+      { id: '2', name: 'categoria2', type: CategoryType.Gastos },
+      { id: '3', name: 'categoria3', type: CategoryType.Capital },
     ]
 
     this.categoriesSubject.next(categories);
