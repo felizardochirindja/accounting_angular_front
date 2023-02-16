@@ -20,7 +20,8 @@ const routes: Routes = [
       catefories: AccoutingCategoriesResolver
     },
     children: [
-      { path: 'criar', component: CategoryEditComponent }
+      { path: 'criar', component: CategoryEditComponent },
+      { path: 'editar/:categoryId', component: CategoryEditComponent },
     ]
   },
 ];
