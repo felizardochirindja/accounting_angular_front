@@ -1,4 +1,7 @@
 <form #editCategoryForm="ngForm" (ngSubmit)="submitCategory()">
+    <label for="name">nome</label>
+    <input type="text" ngModel name="name" id="name">
+
     <label for="type">natureza</label>
     <select ngModel id="type" name="type">
         <option *ngFor="let categoryType of categoryTypes" [value]="categoryType">
