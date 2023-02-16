@@ -5,5 +5,5 @@
 <router-outlet></router-outlet>
 
 <ul>
-    <li *ngFor="let category of categories">{{ category.type }} <a href="#">editar</a></li>
+    <li *ngFor="let category of categories">{{ category.name }} <a [routerLink]="['./editar', category.id]">editar</a></li>
 </ul>
