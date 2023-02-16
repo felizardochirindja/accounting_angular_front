@@ -1,21 +1,18 @@
-import { Fee } from '../../accouting/shared/accouting.types';
-import { Account } from '../../accouting/account/account.types';
+import { Tax } from '../../accouting/shared/accouting.types';
 
 interface Item {
     id?: string;
     name?: string;
     price?: number;
     account?: {
-        mainAccount?: Account;
-        mainFee?: Fee;
+        mainTax?: Tax;
     }
 }
 
 export interface ProductWithoutStock extends Item {
     purchase?: {
         purchasePrice?: number;
-        purchaseAccount?: Account;
-        purchaseFee?: Fee
+        purchaseTax?: Tax
     }
 }
 
@@ -23,9 +20,8 @@ export interface ProductWithStock extends ProductWithoutStock {
     warehouse?: {
         warehouseName?: string;
         quantity?: string;
-        warehouseAccount?: Account;
-        warehouseFee?: Fee;
-    }
+        warehouseTax?: Tax;
+    }[]
 }
 
 export interface Service extends Item {}
