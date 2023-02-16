@@ -1,7 +1,9 @@
+import { AuthenticationApiResponse } from './authentication.types';
+import { ClientService } from './../client/client.service';
 import { Client } from './../client/client.types';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError, Observable, of } from 'rxjs';
+import { throwError, Observable, of, switchMap, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,8 @@ export class AuthenticationService {
   public isAuthenticated: boolean = false;
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private clientService: ClientService,
   ) {}
 
   set accessToken(token: string) {
@@ -25,11 +28,13 @@ export class AuthenticationService {
     return this.httpClient.post('api/auth/sign-up', client);
   }
 
-  signIn() {
+  signIn(): Observable<never> | void {
     if (this.isAuthenticated) {
       return throwError(() => new Error('company is already logged in.'));
     }
 
+    console.log('login');
+    
     // implement login logic
   }
 
