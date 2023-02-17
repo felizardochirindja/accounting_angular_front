@@ -11,8 +11,15 @@ const routes: Routes = [
     path: 'plano-de-contas', component: AccountListComponent,
     resolve: {
       categories: AccoutingCategoriesResolver,
-      accounts: AcountingAccoutingsResolver,
-    }
+    },
+    children: [
+      {
+        path: 'criar', component: AccountEditComponent,
+        resolve: {
+          accoutings: AcountingAccoutingsResolver
+        }
+      }
+    ]
   },
   {
     path: 'classes', component: CategoryListComponent,
