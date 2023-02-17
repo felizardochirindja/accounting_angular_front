@@ -22,7 +22,7 @@ export class AccountListComponent implements OnInit {
       this.activeCategory = categories[0];
     });
 
-    this.accountingService.accounts$.subscribe((accounts) => {
+    this.accountingService.nestedAccounts$.subscribe((accounts) => {
       this.accounts = accounts;
     });
   }
