@@ -11,6 +11,7 @@ export class AccountingService {
   private categoriesSubject: BehaviorSubject<Category[] | any> = new BehaviorSubject(null);
   private accountSubject: BehaviorSubject<Account | any> = new BehaviorSubject(null);
   private accountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
+  private nestedAccountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
 
   constructor() {}
 
@@ -30,6 +31,10 @@ export class AccountingService {
     return this.accountsSubject.asObservable();
   }
 
+  get nestedAccounts$(): Observable<Account[]> {
+    return this.nestedAccountsSubject.asObservable();
+  }
+
   getCategories(): Observable<Category[]> {
     const categories: Category[] = [
       { id: '1', name: 'categoria1', type: CategoryType.Activo },
@@ -42,6 +47,42 @@ export class AccountingService {
   }
 
   getAccounts(): Observable<Account[]> {
+    const accounts: Account[] = [
+      {
+        name: 'conta mae 1', id: '1', categoryId: '1',
+      },
+      { name: 'conta filha 1.1', parentId: '1', categoryId: '1' },
+      {
+        name: 'conta filha 1.2', parentId: '1', categoryId: '1',
+        children: [
+          { name: 'conta filha 1.2.1', parentId: '1', categoryId: '1' },
+        ],
+      },
+      { name: 'conta filha 1.3', parentId: '1', categoryId: '1' },
+      {
+        name: 'conta mae 2', id: '2', categoryId: '3',
+      },
+      { name: 'conta filha 2.1', parentId: '3', categoryId: '3' },
+      { name: 'conta filha 2.2', parentId: '3', categoryId: '3' },
+      {
+        name: 'conta mae 3', id: '3', categoryId: '2',
+      },
+      { name: 'conta filha 3.1', parentId: '3', categoryId: '2' },
+      { name: 'conta filha 3.2', parentId: '3', categoryId: '2' },
+      { name: 'conta filha 3.3', parentId: '3', categoryId: '2' },
+      { name: 'conta filha 3.3', parentId: '3', categoryId: '2' },
+      {
+        name: 'conta mae 4', id: '4', categoryId: '1',
+      },
+      { name: 'conta filha 4.1', parentId: '4', categoryId: '1' },
+    ];
+
+    this.accountsSubject.next(accounts);
+    return of(accounts);
+  }
+
+
+  getNestedAccounts(): Observable<Account[]> {
     const accounts: Account[] = [
       {
         name: 'conta mae 1', id: '1', categoryId: '1',
@@ -80,7 +121,7 @@ export class AccountingService {
       },
     ];
 
-    this.accountsSubject.next(accounts);
+    this.nestedAccountsSubject.next(accounts);
     return of(accounts);
   }
 
