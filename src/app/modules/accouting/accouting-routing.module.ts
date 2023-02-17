@@ -20,13 +20,16 @@ const routes: Routes = [
         resolve: {
           accoutings: AcountingAccoutingsResolver
         }
+      },
+      {
+        path: 'editar/:accoutingId', component: AccountEditComponent,
       }
     ]
   },
   {
     path: 'classes', component: CategoryListComponent,
     resolve: {
-      catefories: AccoutingCategoriesResolver
+      categories: AccoutingCategoriesResolver
     },
     children: [
       { path: 'criar', component: CategoryEditComponent },
