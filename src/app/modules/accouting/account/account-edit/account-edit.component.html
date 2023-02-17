@@ -1,1 +1,35 @@
-<p>account-edit works!</p>
+<form (ngSubmit)="submitAccount()">
+    <div>
+        <label for="category">classe</label>
+        <select name="category" id="category">
+            <option value="">test</option>
+        </select>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="code">código</label>
+        <input type="text" id="code">
+    </div>
+
+    <br>
+
+    <div>
+        <label for="name">nome</label>
+        <input type="text" id="name">
+    </div>
+
+    <br>
+
+    <div>
+        <label for="parentAccount">conta mãe</label>
+        <select name="parentAccount" id="parentAccount">
+            <option [value]="account.id" *ngFor="let account of accounts">{{ account.name }}</option>
+        </select>
+    </div>
+
+    <br>
+
+    <button type="submit">criar</button>
+</form>
