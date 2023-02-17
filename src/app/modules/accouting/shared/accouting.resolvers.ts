@@ -21,12 +21,29 @@ export class AccoutingCategoriesResolver implements Resolve<Category[]> {
 @Injectable({
   providedIn: 'root'
 })
+export class AcountingNestedAccoutingsResolver implements Resolve<Account[]> {
+  constructor(
+    private accountingService: AccountingService,
+  ) {}
+
+  resolve(): Observable<Account[]> {
+    console.log('nested');
+    
+    return this.accountingService.getNestedAccounts();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AcountingAccoutingsResolver implements Resolve<Account[]> {
   constructor(
     private accountingService: AccountingService,
   ) {}
 
   resolve(): Observable<Account[]> {
+    console.log('normal');
+    
     return this.accountingService.getAccounts();
   }
 }
