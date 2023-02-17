@@ -1,13 +1,21 @@
 <form #editCategoryForm="ngForm" (ngSubmit)="submitCategory()">
-    <label for="name">nome</label>
-    <input type="text" ngModel name="name" id="name">
+    <div>
+        <label for="name">nome</label>
+        <input type="text" ngModel name="name" id="name">
+    </div>
 
-    <label for="type">natureza</label>
-    <select ngModel id="type" name="type">
-        <option *ngFor="let categoryType of categoryTypes" [value]="categoryType">
-            {{ categoryType }}
-        </option>
-    </select>
+    <br>
+
+    <div>
+        <label for="type">natureza</label>
+        <select ngModel id="type" name="type">
+            <option *ngFor="let categoryType of categoryTypes" [value]="categoryType">
+                {{ categoryType }}
+            </option>
+        </select>
+    </div>
+
+    <br>
 
     <button type="submit">submeter</button>
 </form>
