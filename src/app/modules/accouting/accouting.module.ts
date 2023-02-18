@@ -1,3 +1,4 @@
+import { AccoutingComponent } from './accouting.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { AccountListComponent } from './account/account-list/account-list.component';
 import { AccoutingRoutingModule } from './accouting-routing.module';
@@ -21,6 +22,7 @@ import { AccountEditComponent } from './account/account-edit/account-edit.compon
     AccountNestedListComponent,
     CategoryEditComponent,
     AccountEditComponent,
+    AccoutingComponent,
   ]
 })
 export class AccoutingModule {}
