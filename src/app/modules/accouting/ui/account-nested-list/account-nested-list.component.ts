@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <ul *ngFor="let account of accounts">
       <li>
-        {{ account.name }} <a [routerLink]="['./editar', account.id]">editar</a>
+        {{ account.name }} <a [routerLink]="['/inicio/contabilidade/editar-conta', account.id]">editar</a>
 
         <app-account-nested-list *ngIf="account.children" [accounts]="account.children"></app-account-nested-list>
       </li>
