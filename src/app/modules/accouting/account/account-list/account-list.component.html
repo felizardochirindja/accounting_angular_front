@@ -1,16 +1,4 @@
-<h1>
-  Plano de contas
-</h1>
-
-<button type="button" routerLink="./criar">nova conta</button>
-<button type="button">nova classe</button>
-
-<br>
-<br>
-
-<router-outlet></router-outlet>
-
-<br>
+<h1>Plano de contas</h1>
 
 <button type="button" *ngFor="let category of categories" (click)="setActiveCategory(category)">{{ category.name }}</button>
 
