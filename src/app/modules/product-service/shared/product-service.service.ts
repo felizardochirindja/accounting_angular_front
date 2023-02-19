@@ -19,16 +19,16 @@ export class ProductServiceService {
 
   getItems(): Observable<Items[]> {
     const productsWithoutStock: ProductWithoutStock[] = [
-      { name: 'producto 1', price: 100 },
-      { name: 'producto 2', price: 200 },
+      { name: 'producto 1', price: 100, id: '1' },
+      { name: 'producto 2', price: 200, id: '2' },
     ];
   
     const productsWithStock: ProductWithStock[] = [
-      { name: 'producto 3', price: 300 },
+      { name: 'producto 3', price: 300, id: '3' },
     ];
 
     const services: Service[] = [
-      { name: 'servico 1', price: 400 },
+      { name: 'servico 1', price: 400, id: '4' },
     ];
 
     const items: Items[] = [
