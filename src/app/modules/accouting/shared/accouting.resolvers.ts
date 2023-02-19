@@ -49,6 +49,9 @@ export class AcountingAccoutingsResolver implements Resolve<Account[]> {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AccountingTaxesResolver implements Resolve<Tax[]> {
   constructor(
     private accountingService: AccountingService
