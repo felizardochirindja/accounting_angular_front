@@ -1,3 +1,4 @@
+import { TaxEditComponent } from './tax/tax-edit/tax-edit.component';
 import { AccoutingComponent } from './accouting.component';
 import {
   AccoutingCategoriesResolver,
@@ -32,6 +33,12 @@ const routes: Routes = [
           accountings: AcountingAccoutingsResolver,
         },
       },
+      {
+        path: 'criar-taxa', component: TaxEditComponent,
+        resolve: {
+          accounts: AcountingAccoutingsResolver
+        },
+      }
     ]
   },
 ];
