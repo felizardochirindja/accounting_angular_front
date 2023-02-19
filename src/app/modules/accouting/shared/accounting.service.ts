@@ -37,6 +37,10 @@ export class AccountingService {
     return this.nestedAccountsSubject.asObservable();
   }
 
+  get taxes$(): Observable<Tax[]> {
+    return this.taxesSubject.asObservable();
+  }
+
   getCategories(): Observable<Category[]> {
     const categories: Category[] = [
       { id: '1', name: 'categoria1', type: CategoryType.Activo },
