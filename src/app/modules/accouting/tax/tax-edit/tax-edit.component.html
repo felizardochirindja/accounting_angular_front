@@ -1,1 +1,28 @@
-<p>tax-create works!</p>
+<h1>Criar taxa</h1>
+
+<form>
+    <div>
+        <label for="name">nome</label>
+        <input type="text" id="name">
+    </div>
+
+    <br>
+
+    <div>
+        <label for="tax">taxa</label>
+        <input type="number" id="tax">
+    </div>
+
+    <br>
+
+    <div>
+        <label for="conta">conta</label>
+        <select id="conta">
+            <option *ngFor="let account of accounts">{{ account.name }}</option>
+        </select>
+    </div>
+
+    <br>
+
+    <button type="submit">criar</button>
+</form>
