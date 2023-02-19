@@ -1,3 +1,4 @@
+import { Tax } from './accouting.types';
 import { Account } from './../account/account.types';
 import { Category, CategoryType } from './../category/category.types';
 import { Injectable } from '@angular/core';
@@ -12,6 +13,7 @@ export class AccountingService {
   private accountSubject: BehaviorSubject<Account | any> = new BehaviorSubject(null);
   private accountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
   private nestedAccountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
+  private taxesSubject: BehaviorSubject<Tax[] | any> = new BehaviorSubject(null);
 
   constructor() {}
 
@@ -134,5 +136,16 @@ export class AccountingService {
         return of(category);
       })
     );
+  }
+
+  getTaxes(): Observable<Tax[]> {
+    const taxes: Tax[] = [
+      { id: '1', name: 'taxa1', value: 0.17 },
+      { id: '1', name: 'taxa2', value: 0.18 },
+    ];
+
+    this.taxesSubject.next(taxes);
+    
+    return of(taxes);
   }
 }
