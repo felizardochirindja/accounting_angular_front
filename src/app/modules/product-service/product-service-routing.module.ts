@@ -16,7 +16,13 @@ const routes: Routes = [
         }
       },
       {
-        path: 'criar-producto', component: ProductServiceEditComponent,
+        path: 'criar', component: ProductServiceEditComponent,
+        resolve: {
+          items: ProductServiceItemsResolver
+        }
+      },
+      {
+        path: 'editar/:itemId', component: ProductServiceEditComponent,
         resolve: {
           items: ProductServiceItemsResolver
         }
