@@ -2,6 +2,6 @@
 
 <ul>
     <li *ngFor="let item of items">
-        {{ item.name }} <a href="#">editar</a>
+        {{ item.name }} <a [routerLink]="['../editar', item.id]">editar</a>
     </li>
 </ul>
