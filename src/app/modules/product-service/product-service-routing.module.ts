@@ -1,3 +1,4 @@
+import { AccountingTaxesResolver } from './../accouting/shared/accouting.resolvers';
 import { ProductServiceComponent } from './product-service.component';
 import { ProductServiceEditComponent } from './product-service-edit/product-service-edit.component';
 import { ProductServiceItemsResolver } from './shared/product-service.resolver';
@@ -18,13 +19,15 @@ const routes: Routes = [
       {
         path: 'criar', component: ProductServiceEditComponent,
         resolve: {
-          items: ProductServiceItemsResolver
+          items: ProductServiceItemsResolver,
+          taxes: AccountingTaxesResolver,
         }
       },
       {
         path: 'editar/:itemId', component: ProductServiceEditComponent,
         resolve: {
-          items: ProductServiceItemsResolver
+          items: ProductServiceItemsResolver,
+          taxes: AccountingTaxesResolver,
         }
       },
     ],
