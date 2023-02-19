@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Tax } from './../../accouting/shared/accouting.types';
+import { AccountingService } from './../../accouting/shared/accounting.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-service-edit',
@@ -6,6 +8,16 @@ import { Component } from '@angular/core';
   styles: [
   ]
 })
-export class ProductServiceEditComponent {
+export class ProductServiceEditComponent implements OnInit {
+  public taxes: Tax[] = [];
 
+  constructor(
+    private accountingService: AccountingService,
+  ) {}
+
+  ngOnInit(): void {
+    this.accountingService.taxes$.subscribe((taxes) => {
+      this.taxes = taxes;
+    });
+  }
 }
