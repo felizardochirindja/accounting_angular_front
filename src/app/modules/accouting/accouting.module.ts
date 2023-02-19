@@ -8,7 +8,7 @@ import { AccountNestedListComponent } from './ui/account-nested-list/account-nes
 import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
-import { TaxCreateComponent } from './tax/tax-create/tax-create.component';
+import { TaxEditComponent } from './tax/tax-edit/tax-edit.component';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import { TaxCreateComponent } from './tax/tax-create/tax-create.component';
     CategoryEditComponent,
     AccountEditComponent,
     AccoutingComponent,
-    TaxCreateComponent,
+    TaxEditComponent,
   ]
 })
 export class AccoutingModule {}
