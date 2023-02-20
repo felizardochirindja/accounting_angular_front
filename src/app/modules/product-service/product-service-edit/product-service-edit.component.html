@@ -1,35 +1,41 @@
 <h1>Criar producto</h1>
 
-<button type="button">geral</button>
-<button type="button">compra</button>
-<button type="button">armazem</button>
+<mat-tab-group animationDuration="0ms">
+    <mat-tab label="Geral">
+        <app-product-service-edit-form></app-product-service-edit-form>
+    </mat-tab>
 
-<br>
-<br>
+    <mat-tab label="Compra">
+        <app-product-service-edit-form></app-product-service-edit-form>
+    </mat-tab>
 
-<form>
-    <div>
-        <label for="name">nome</label>
-        <input type="text" id="name">
-    </div>
+    <mat-tab label="Armazém">
+        <form class="p-5">
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Nome</mat-label>
+                <input matInput type="text">
+            </mat-form-field>
 
-    <br>
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Quantidade</mat-label>
+                <input matInput type="number">
+            </mat-form-field>
 
-    <div>
-        <label for="price">preco</label>
-        <input type="number" id="price">
-    </div>
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Conta</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let account of accounts">{{ account.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-    <br>
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Taxa</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let tax of taxes">{{ tax.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-    <div>
-        <label for="tax">taxa</label>
-        <select id="tax">
-            <option *ngFor="let tax of taxes">{{ tax.name }}</option>
-        </select>
-    </div>
-
-    <br>
-
-    <button type="submit">criar</button>
-</form>
+            <button mat-raised-button color="primary" type="submit">criar</button>
+        </form>
+    </mat-tab>
+</mat-tab-group>

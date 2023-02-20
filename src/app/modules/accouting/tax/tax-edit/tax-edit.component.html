@@ -1,28 +1,22 @@
 <h1>Criar taxa</h1>
 
-<form>
-    <div>
-        <label for="name">nome</label>
-        <input type="text" id="name">
-    </div>
+<form class="p-5">
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
 
-    <br>
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Taxa</mat-label>
+        <input matInput type="number">
+    </mat-form-field>
 
-    <div>
-        <label for="tax">taxa</label>
-        <input type="number" id="tax">
-    </div>
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>conta</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let account of accounts">{{ account.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <br>
-
-    <div>
-        <label for="conta">conta</label>
-        <select id="conta">
-            <option *ngFor="let account of accounts">{{ account.name }}</option>
-        </select>
-    </div>
-
-    <br>
-
-    <button type="submit">criar</button>
+    <button mat-raised-button color="primary" type="submit">criar</button>
 </form>

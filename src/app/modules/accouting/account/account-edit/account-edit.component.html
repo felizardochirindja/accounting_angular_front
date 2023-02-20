@@ -1,37 +1,29 @@
 <h1>criar conta</h1>
 
-<form (ngSubmit)="submitAccount()">
-    <div>
-        <label for="category">classe</label>
-        <select name="category" id="category">
-            <option value="">test</option>
-        </select>
-    </div>
+<form (ngSubmit)="submitAccount()" class="p-5">
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>classe</mat-label>
+        <mat-select name="category">
+            <mat-option value="">test</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <br>
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>código</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
 
-    <div>
-        <label for="code">código</label>
-        <input type="text" id="code">
-    </div>
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
 
-    <br>
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Conta mãe</mat-label>
+        <mat-select name="parentAccount">
+            <mat-option [value]="account.id" *ngFor="let account of accounts">{{ account.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <div>
-        <label for="name">nome</label>
-        <input type="text" id="name">
-    </div>
-
-    <br>
-
-    <div>
-        <label for="parentAccount">conta mãe</label>
-        <select name="parentAccount" id="parentAccount">
-            <option [value]="account.id" *ngFor="let account of accounts">{{ account.name }}</option>
-        </select>
-    </div>
-
-    <br>
-
-    <button type="submit">criar</button>
+    <button mat-raised-button type="submit">criar</button>
 </form>
