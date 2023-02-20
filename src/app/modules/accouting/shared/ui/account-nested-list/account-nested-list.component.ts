@@ -1,4 +1,4 @@
-import { Account } from './../../account/account.types';
+import { Account } from '../../../account/account.types';
 import { Component, Input } from '@angular/core';
 
 @Component({
