@@ -1,36 +1,21 @@
+import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatIconModule } from "@angular/material/icon";
+import { MatMenuModule } from "@angular/material/menu";
 
 @Component({
   standalone: true,
   selector: 'app-skeleton',
-  imports: [RouterModule],
-  template: `
-    <div>
-      <nav>
-        <ul>
-          <li>contabilidade</li>
-          <ul>
-            <li><a routerLink="./contabilidade/plano-de-contas">plano de contas</a></li>
-            <li><a routerLink="./contabilidade/criar-conta">criar conta</a></li>
-            <li><a routerLink="./contabilidade/criar-taxa">criar taxa</a></li>
-          </ul>
-          
-          <li>
-            <a routerLink="./productos-servicos/listar">productos e servicos</a>
-            <ul>
-              <li><a routerLink="./productos-servicos">criar servico</a></li>
-                <li><a routerLink="./productos-servicos/criar">criar producto</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-
-      <main>
-        <router-outlet></router-outlet>
-      </main>
-    </div>
-  `,
+  imports: [
+    RouterModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+  ],
+  templateUrl: './skeleton.component.html',
 })
 export class SkeletonComponent implements OnInit {
 

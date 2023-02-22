@@ -1,0 +1,23 @@
+<main class="pb-14">
+    <router-outlet></router-outlet>
+</main>
+
+<footer>
+    <mat-toolbar class="fixed bottom-0" color="primary">
+        <mat-toolbar-row class="flex justify-center">
+            <button mat-icon-button><mat-icon>circle</mat-icon></button>
+            <button mat-icon-button><mat-icon>contacts</mat-icon></button>
+            <div>
+                <button mat-icon-button [mat-menu-trigger-for]="addMenu"><mat-icon>add</mat-icon></button>
+
+                <mat-menu #addMenu="matMenu">
+                    <button mat-menu-item routerLink="./productos-servicos/criar">Criar Producto</button>
+                    <button mat-menu-item routerLink="./contabilidade/criar-taxa">Criar Taxa</button>
+                    <button mat-menu-item routerLink="./contabilidade/criar-conta">Criar Conta</button>
+                </mat-menu>
+            </div>
+            <button mat-icon-button><mat-icon>insert_drive_file</mat-icon></button>
+            <button mat-icon-button><mat-icon>bar_chart</mat-icon></button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</footer>
