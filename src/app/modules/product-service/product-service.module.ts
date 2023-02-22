@@ -4,16 +4,26 @@ import { CommonModule } from '@angular/common';
 import { ProductServiceListComponent } from './product-service-list/product-service-list.component';
 import { ProductServiceEditComponent } from './product-service-edit/product-service-edit.component';
 import { ProductServiceComponent } from './product-service.component';
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from "@angular/material/button";
+import { ProductServiceEditFormComponent } from './shared/ui/product-service-edit-form/product-service-edit-form.component';
 
 @NgModule({
   declarations: [
     ProductServiceListComponent,
     ProductServiceEditComponent,
-    ProductServiceComponent
+    ProductServiceComponent,
+    ProductServiceEditFormComponent,
   ],
   imports: [
     CommonModule,
     ProductServiceRoutingModule,
+    MatTabsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
   ]
 })
 export class ProductServiceModule { }
