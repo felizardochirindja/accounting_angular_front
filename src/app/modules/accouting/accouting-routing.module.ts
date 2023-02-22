@@ -38,6 +38,10 @@ const routes: Routes = [
         resolve: {
           accounts: AcountingAccoutingsResolver
         },
+      },
+
+      {
+        path: '', redirectTo: '/error/page-not-found', pathMatch: 'full'
       }
     ]
   },

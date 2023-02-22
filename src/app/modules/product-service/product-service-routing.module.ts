@@ -7,19 +7,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
+
   {
     path: '', component: ProductServiceComponent,
+    resolve: {
+      items: ProductServiceItemsResolver,
+    },
     children: [
       {
         path: 'listar', component: ProductServiceListComponent,
-        resolve: {
-          items: ProductServiceItemsResolver
-        }
       },
       {
         path: 'criar', component: ProductServiceEditComponent,
         resolve: {
-          items: ProductServiceItemsResolver,
           taxes: AccountingTaxesResolver,
           accounts: AcountingAccoutingsResolver,
         }
@@ -27,10 +27,13 @@ const routes: Routes = [
       {
         path: 'editar/:itemId', component: ProductServiceEditComponent,
         resolve: {
-          items: ProductServiceItemsResolver,
           taxes: AccountingTaxesResolver,
           accounts: AcountingAccoutingsResolver,
         }
+      },
+      
+      {
+        path: '', redirectTo: '/error/page-not-found', pathMatch: 'full'
       },
     ],
   },
