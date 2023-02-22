@@ -1,0 +1,29 @@
+<form class="p-5">
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Preço</mat-label>
+        <input matInput type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Conta</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let account of accounts">{{ account.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Taxa</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let tax of taxes">{{ tax.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button color="primary" type="submit">criar</button>
+</form>
