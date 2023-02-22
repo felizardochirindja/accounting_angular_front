@@ -27,9 +27,7 @@ export class AcountingNestedAccoutingsResolver implements Resolve<Account[]> {
     private accountingService: AccountingService,
   ) {}
 
-  resolve(): Observable<Account[]> {
-    console.log('nested');
-    
+  resolve(): Observable<Account[]> {    
     return this.accountingService.getNestedAccounts();
   }
 }
@@ -42,9 +40,7 @@ export class AcountingAccoutingsResolver implements Resolve<Account[]> {
     private accountingService: AccountingService,
   ) {}
 
-  resolve(): Observable<Account[]> {
-    console.log('normal');
-    
+  resolve(): Observable<Account[]> {    
     return this.accountingService.getAccounts();
   }
 }
