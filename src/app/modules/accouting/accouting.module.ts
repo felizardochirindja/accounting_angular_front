@@ -1,3 +1,4 @@
+import { HeaderComponent } from './../../ui/header/header.component';
 import { AccoutingComponent } from './accouting.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { AccountListComponent } from './account/account-list/account-list.component';
@@ -22,6 +23,7 @@ import { MatButtonModule } from "@angular/material/button";
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    HeaderComponent,
   ],
   declarations: [
     AccountListComponent,
