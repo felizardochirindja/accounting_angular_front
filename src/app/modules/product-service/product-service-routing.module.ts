@@ -1,4 +1,4 @@
-import { AccountingTaxesResolver } from './../accouting/shared/accouting.resolvers';
+import { AccountingTaxesResolver, AcountingAccoutingsResolver } from './../accouting/shared/accouting.resolvers';
 import { ProductServiceComponent } from './product-service.component';
 import { ProductServiceEditComponent } from './product-service-edit/product-service-edit.component';
 import { ProductServiceItemsResolver } from './shared/product-service.resolver';
@@ -21,6 +21,7 @@ const routes: Routes = [
         resolve: {
           items: ProductServiceItemsResolver,
           taxes: AccountingTaxesResolver,
+          accounts: AcountingAccoutingsResolver,
         }
       },
       {
@@ -28,6 +29,7 @@ const routes: Routes = [
         resolve: {
           items: ProductServiceItemsResolver,
           taxes: AccountingTaxesResolver,
+          accounts: AcountingAccoutingsResolver,
         }
       },
     ],
