@@ -1,14 +1,17 @@
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { SkeletonComponent } from './skeleton/skeleton.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/landing/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'bem-vindo', component: HomeComponent },
+  { path: '', redirectTo: '/bem-vindo', pathMatch: 'full' },
 
   {
-    path: 'inicio', component: SkeletonComponent,
+    path: '', component: SkeletonComponent,
     children: [
+      { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'contabilidade', loadChildren: () => import('./modules/accouting/accouting.module').then(m => m.AccoutingModule) },
       { path: 'productos-servicos', loadChildren: () => import('./modules/product-service/product-service.module').then(m => m.ProductServiceModule) }
     ]
