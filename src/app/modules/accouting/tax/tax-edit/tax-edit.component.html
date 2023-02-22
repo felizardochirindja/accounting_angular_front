@@ -1,22 +1,25 @@
 <h1>Criar taxa</h1>
 
-<form class="p-5">
+<form class="p-5" #editTaxForm="ngForm" (ngSubmit)="submitTax()">
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>Nome</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" name="name" ngModel #nameControl="ngModel" required>
+        <mat-error *ngIf="(nameControl.errors ?? {})['required']">O nome é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>Taxa</mat-label>
-        <input matInput type="number">
+        <input matInput type="number" name="tax" ngModel #taxControl="ngModel" required>
+        <mat-error *ngIf="taxControl.invalid">{{ getTaxControlErrorMessage(taxControl) }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>conta</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let account of accounts">{{ account.name }}</mat-option>
+        <mat-select name="accountId" ngModel #accountControl="ngModel" required>
+            <mat-option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="(accountControl.errors ?? {})['required']">A conta é obrigatória!</mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">criar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="editTaxForm.invalid">criar</button>
 </form>
