@@ -1,3 +1,4 @@
+import { Account } from './../../accouting/account/account.types';
 import { Tax } from './../../accouting/shared/accouting.types';
 import { AccountingService } from './../../accouting/shared/accounting.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductServiceEditComponent implements OnInit {
   public taxes: Tax[] = [];
+  public accounts: Account[] = [];
 
   constructor(
     private accountingService: AccountingService,
@@ -19,5 +21,9 @@ export class ProductServiceEditComponent implements OnInit {
     this.accountingService.taxes$.subscribe((taxes) => {
       this.taxes = taxes;
     });
+
+    this.accountingService.accounts$.subscribe((accounts) => {
+      this.accounts = accounts;
+    })
   }
 }
