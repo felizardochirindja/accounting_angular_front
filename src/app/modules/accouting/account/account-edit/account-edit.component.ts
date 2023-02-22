@@ -1,3 +1,4 @@
+import { NgModel } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Account } from './../account.types';
 import { Component, OnInit } from '@angular/core';
@@ -24,7 +25,15 @@ export class AccountEditComponent implements OnInit {
     })
   }
 
-  submitAccount() {
+  getCodeControlErrorMessage(codeControl: NgModel): string {
+    if (codeControl.hasError('required')) {
+      return 'O código é obrigatótio';
+    }
+
+    return '';
+  }
+
+  submitAccount(): void {
     this.router.navigate(['/inicio/contabilidade/plano-de-contas']);
   }
 }
