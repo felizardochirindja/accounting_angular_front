@@ -10,6 +10,7 @@ import { AccountListComponent } from './account/account-list/account-list.compon
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
+import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,9 @@ const routes: Routes = [
         resolve: {
           accounts: AcountingAccountsResolver
         },
+      },
+      {
+        path: 'comprar', component: PurchaseEditComponent,
       },
 
       {
