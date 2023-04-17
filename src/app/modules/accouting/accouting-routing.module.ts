@@ -2,8 +2,9 @@ import { TaxEditComponent } from './tax/tax-edit/tax-edit.component';
 import { AccoutingComponent } from './accouting.component';
 import {
   AccoutingCategoriesResolver,
-  AcountingNestedAccoutingsResolver,
-  AcountingAccoutingsResolver
+  AcountingNestedAccountsResolver,
+  AcountingAccountsResolver,
+  AccountngAccountResolver
 } from './shared/accouting.resolvers';
 import { AccountListComponent } from './account/account-list/account-list.component';
 import { NgModule } from '@angular/core';
@@ -18,25 +19,26 @@ const routes: Routes = [
         path: 'plano-de-contas', component: AccountListComponent,
         resolve: {
           categories: AccoutingCategoriesResolver,
-          accounts: AcountingNestedAccoutingsResolver,
+          nestedAccounts: AcountingNestedAccountsResolver,
         },
       },
       {
         path: 'criar-conta', component: AccountEditComponent,
         resolve: {
-          accoutings: AcountingAccoutingsResolver,
+          accounts: AcountingAccountsResolver,
         }
       },
       {
-        path: 'editar-conta/:accoutingId', component: AccountEditComponent,
+        path: 'editar-conta/:accountId', component: AccountEditComponent,
         resolve: {
-          accountings: AcountingAccoutingsResolver,
+          accounts: AcountingAccountsResolver,
+          account: AccountngAccountResolver,
         },
       },
       {
         path: 'criar-taxa', component: TaxEditComponent,
         resolve: {
-          accounts: AcountingAccoutingsResolver
+          accounts: AcountingAccountsResolver
         },
       },
 
