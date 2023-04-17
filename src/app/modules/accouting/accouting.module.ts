@@ -13,6 +13,7 @@ import { TaxEditComponent } from './tax/tax-edit/tax-edit.component';
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
+import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { MatButtonModule } from "@angular/material/button";
     AccountEditComponent,
     AccoutingComponent,
     TaxEditComponent,
+    PurchaseEditComponent,
   ]
 })
 export class AccoutingModule {}
