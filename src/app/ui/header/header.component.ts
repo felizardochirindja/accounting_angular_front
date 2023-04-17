@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -12,12 +13,13 @@ import { CommonModule } from '@angular/common';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    RouterModule,
   ],
   template: `
     <header class="mb-16">
       <mat-toolbar class="fixed top-0" color="primary">
         <mat-toolbar-row>
-            <button mat-icon-button><mat-icon>arrow_back</mat-icon></button>
+            <button mat-icon-button routerLink="/dashboard"><mat-icon>arrow_back</mat-icon></button>
             <span>{{ title }}</span>
         </mat-toolbar-row>
       </mat-toolbar>
