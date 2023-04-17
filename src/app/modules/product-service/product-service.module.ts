@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './../../ui/header/header.component';
 import { ProductServiceRoutingModule } from './product-service-routing.module';
 import { NgModule } from '@angular/core';
@@ -26,6 +27,7 @@ import { ProductServiceEditFormComponent } from './shared/ui/product-service-edi
     MatSelectModule,
     MatButtonModule,
     HeaderComponent,
+    FormsModule,
   ]
 })
 export class ProductServiceModule { }
