@@ -15,6 +15,21 @@ export class ExpenseEditComponent {
     state: new FormControl<string | null>(null),
   });
 
+  proofPreviewImage!: string;
+
+  selectProofImage(event: any): void {
+    const file = event.target.files[0];
+    this.setProofPreviewImage(file, new FileReader);
+  }
+
+  setProofPreviewImage(file: File, fileReader: FileReader): void {
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      this.proofPreviewImage = fileReader.result as string;
+    };
+  }
+
   submitExpense(): void {
     console.log(this.expenseFormGroup.value);
   }
