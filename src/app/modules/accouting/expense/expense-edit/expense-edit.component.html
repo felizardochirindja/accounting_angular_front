@@ -29,6 +29,10 @@
         </mat-select>
     </mat-form-field>
 
+    <div class="mb-5">
+        <input type="file" (change)="selectProofImage($event)">
+        <img [src]="proofPreviewImage" *ngIf="proofPreviewImage" class="mt-5" width="350px">
+    </div>
+
     <button type="submit" mat-raised-button color="primary" (click)="submitExpense()">criar</button>
 </form>
-
