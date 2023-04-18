@@ -23,19 +23,22 @@
 
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>categoria</mat-label>
-        <mat-select formControlName="category">
-            <mat-option>ultima categoria</mat-option>
-            <mat-option><button mat-raised-button>criar</button></mat-option>
-        </mat-select>
+        <input type="text" matInput [matAutocomplete]="categoryAutocomplete" formControlName="category">
+        <mat-autocomplete #categoryAutocomplete="matAutocomplete" autoActiveFirstOption>
+            <mat-option>última categoria</mat-option>
+            <mat-option><button mat-raised-button>Criar</button></mat-option>
+        </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>fornecedor</mat-label>
-        <mat-select formControlName="supplier">
+        <input type="text" matInput [matAutocomplete]="supplierAutoComplete" formControlName="supplier">
+        <mat-autocomplete #supplierAutoComplete="matAutocomplete" autoActiveFirstOption>
             <mat-option>fornecedor 1</mat-option>
             <mat-option>fornecedor 2</mat-option>
             <mat-option>fornecedor 3</mat-option>
-        </mat-select>
+            <mat-option><button mat-raised-button>Criar</button></mat-option>
+        </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
