@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
+import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,9 @@ const routes: Routes = [
       },
       {
         path: 'comprar', component: PurchaseEditComponent,
+      },
+      {
+        path: 'despesa', component: ExpenseEditComponent,
       },
 
       {
