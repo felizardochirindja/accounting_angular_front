@@ -7,18 +7,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountNestedListComponent } from './shared/ui/account-nested-list/account-nested-list.component';
 import { CategoryEditComponent } from './category/category-edit/category-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { TaxEditComponent } from './tax/tax-edit/tax-edit.component';
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
+import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     AccoutingRoutingModule,
     MatInputModule,
     MatSelectModule,
@@ -34,6 +36,7 @@ import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.co
     AccoutingComponent,
     TaxEditComponent,
     PurchaseEditComponent,
+    ExpenseEditComponent,
   ]
 })
 export class AccoutingModule {}
