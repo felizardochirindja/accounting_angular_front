@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Tax } from '../../shared/accouting.types';
 
 @Component({
   selector: 'app-expense-edit',
@@ -21,6 +22,12 @@ export class ExpenseEditComponent {
     'fornecedor 1',
     'fornecedor 2',
     'fornecedor 3',
+  ];
+
+  taxes: Tax[] = [
+    { name: 'taxa 1', value: 1 },
+    { name: 'taxa 2', value: 2 },
+    { name: 'taxa 3', value: 3 },
   ];
 
   selectProofImage(event: any): void {

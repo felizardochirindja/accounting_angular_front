@@ -21,9 +21,7 @@
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>estado</mat-label>
         <mat-select formControlName="state">
-            <mat-option>iva</mat-option>
-            <mat-option>irpc</mat-option>
-            <mat-option>selo</mat-option>
+            <mat-option *ngFor="let tax of taxes" [value]="tax">{{ tax.name }}</mat-option>
         </mat-select>
     </mat-form-field>
 
