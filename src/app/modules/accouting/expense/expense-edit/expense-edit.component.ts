@@ -17,6 +17,12 @@ export class ExpenseEditComponent {
 
   proofPreviewImage!: string;
 
+  suppliers: string[] = [
+    'fornecedor 1',
+    'fornecedor 2',
+    'fornecedor 3',
+  ];
+
   selectProofImage(event: any): void {
     const file = event.target.files[0];
     this.setProofPreviewImage(file, new FileReader);
