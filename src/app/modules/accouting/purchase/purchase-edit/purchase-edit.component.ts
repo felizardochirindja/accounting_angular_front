@@ -18,6 +18,17 @@ export class PurchaseEditComponent {
     storage: new FormControl<string | null>(null),
   });
 
+  supliers: string[] = [
+    'fornecedor 1',
+    'fornecedor 2',
+    'fornecedor 3',
+  ];
+
+  storages: string[] = [
+    'armazem 1',
+    'armazem 2',
+  ];
+
   purchase(): void {
     console.log(this.purchaseFormGroup.value);
   }
