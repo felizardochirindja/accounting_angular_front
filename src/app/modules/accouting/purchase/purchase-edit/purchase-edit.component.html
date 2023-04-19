@@ -4,11 +4,13 @@
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>Nome</mat-label>
         <input matInput type="text" formControlName="name">
+        <mat-error *ngIf="(purchaseFormGroup.controls.name.errors ?? {})['required']">o nome é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>preço de compra</mat-label>
         <input matInput type="number" formControlName="purchasePrice">
+        <mat-error *ngIf="(purchaseFormGroup.controls.purchasePrice.errors ?? {})['required']">o preco de compra é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
@@ -19,6 +21,7 @@
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>quantidade</mat-label>
         <input matInput type="number" formControlName="quantity">
+        <mat-error *ngIf="(purchaseFormGroup.controls.quantity.errors ?? {})['required']">a quantidade é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
@@ -28,6 +31,7 @@
             <mat-option>última categoria</mat-option>
             <mat-option><button mat-raised-button>Criar</button></mat-option>
         </mat-autocomplete>
+        <mat-error *ngIf="(purchaseFormGroup.controls.category.errors ?? {})['required']">a categoria é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
@@ -37,6 +41,7 @@
             <mat-option *ngFor="let supplier of supliers" [value]="supplier">{{ supplier }}</mat-option>
             <mat-option><button mat-raised-button>Criar</button></mat-option>
         </mat-autocomplete>
+        <mat-error *ngIf="(purchaseFormGroup.controls.supplier.errors ?? {})['required']">o fornecedor é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
@@ -44,6 +49,7 @@
         <mat-select formControlName="storage">
             <mat-option *ngFor="let storage of storages" [value]="storage">{{ storage }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="(purchaseFormGroup.controls.storage.errors ?? {})['required']">o armazém é obrigatório</mat-error>
     </mat-form-field>
 
     <button type="submit" mat-raised-button color="primary" (click)="purchase()">comprar</button>
