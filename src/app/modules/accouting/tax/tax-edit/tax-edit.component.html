@@ -10,15 +10,7 @@
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>Taxa</mat-label>
         <input matInput type="number" name="tax" ngModel #taxControl="ngModel" required>
-        <mat-error *ngIf="taxControl.invalid">{{ getTaxControlErrorMessage(taxControl) }}</mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="w-full">
-        <mat-label>conta</mat-label>
-        <mat-select name="accountId" ngModel #accountControl="ngModel" required>
-            <mat-option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="(accountControl.errors ?? {})['required']">A conta é obrigatória!</mat-error>
+        <mat-error *ngIf="(taxControl.errors ?? {})['required']">A taxa é obrigatória!</mat-error>
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="editTaxForm.invalid">criar</button>

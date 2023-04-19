@@ -1,6 +1,4 @@
-import { NgForm, NgModel } from '@angular/forms';
-import { Account } from './../../account/account.types';
-import { AccountingService } from './../../shared/accounting.service';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -9,29 +7,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styles: [
   ]
 })
-export class TaxEditComponent implements OnInit {
+export class TaxEditComponent {
   @ViewChild('editTaxForm') private editTaxForm!: NgForm;
-  public accounts: Account[] = [];
-
-  constructor(
-    private accountingService: AccountingService
-  ) {}
-
-  ngOnInit(): void {
-    this.accountingService.accounts$.subscribe((accounts) => {
-      this.accounts = accounts;
-    })
-  }
-
-  getTaxControlErrorMessage(nameControl: NgModel): string {
-    if (nameControl.hasError('required')) {
-      return 'A taxa é obrigatória!';
-    }
-
-    return '';
-  }
 
   submitTax() {
-    console.log(this.editTaxForm);
+    console.log(this.editTaxForm.value);
   }
 }
