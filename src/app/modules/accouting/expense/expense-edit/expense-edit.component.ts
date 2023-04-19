@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tax } from '../../shared/accouting.types';
 
 @Component({
@@ -10,10 +10,10 @@ import { Tax } from '../../shared/accouting.types';
 })
 export class ExpenseEditComponent {
   expenseFormGroup = new FormGroup({
-    name: new FormControl<string | null>(null),
-    supplier: new FormControl<string | null>(null),
-    price: new FormControl<number | null>(null),
-    state: new FormControl<string | null>(null),
+    name: new FormControl<string | null>(null, Validators.required),
+    supplier: new FormControl<string | null>(null, Validators.required),
+    price: new FormControl<number | null>(null, Validators.required),
+    state: new FormControl<string | null>(null, Validators.required),
   });
 
   proofPreviewImage!: string;
