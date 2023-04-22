@@ -7,8 +7,12 @@ export const environment = {
     },
 
     redirect: {
-      login: 'http://localhost:4200/inicio',
+      login: 'http://localhost:4200/dashboard',
       logout: 'http://localhost:4200',
     }
   },
+  apiURL: {
+    root: "https://contaxapi.up.railway.app/api",
+    responseFormat: "json",
+  }
 };
