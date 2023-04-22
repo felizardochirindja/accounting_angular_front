@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { AccountingService } from './../../shared/accounting.service';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Supplier } from '../../shared/accouting.types';
 
 @Component({
   selector: 'app-purchase-edit',
@@ -7,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styles: [
   ]
 })
-export class PurchaseEditComponent {
+export class PurchaseEditComponent implements OnInit {
   purchaseFormGroup = new FormGroup({
     name: new FormControl<string | null>(null, Validators.required),
     purchasePrice: new FormControl<number | null>(null, Validators.required),
@@ -18,16 +20,22 @@ export class PurchaseEditComponent {
     storage: new FormControl<string | null>(null, Validators.required),
   });
 
-  supliers: string[] = [
-    'fornecedor 1',
-    'fornecedor 2',
-    'fornecedor 3',
-  ];
+  supliers: Supplier[] = [];
 
   storages: string[] = [
     'armazem 1',
     'armazem 2',
   ];
+
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
+  public ngOnInit(): void {
+    this.accountingService.suppliers$.subscribe(suppliers => {
+      this.supliers = suppliers;
+    })
+  }
 
   purchase(): void {
     console.log(this.purchaseFormGroup.value);

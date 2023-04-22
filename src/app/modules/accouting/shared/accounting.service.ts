@@ -1,8 +1,10 @@
-import { Tax } from './accouting.types';
+import { HttpClient } from '@angular/common/http';
+import { Supplier, Tax } from './accouting.types';
 import { Account } from './../account/account.types';
 import { Category, CategoryType } from './../category/category.types';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, switchMap, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, of, switchMap, take } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,17 @@ export class AccountingService {
   private accountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
   private nestedAccountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
   private taxesSubject: BehaviorSubject<Tax[] | any> = new BehaviorSubject(null);
+  private suppliersSubject: BehaviorSubject<Supplier[] | any> = new BehaviorSubject(null);
 
-  constructor() {}
+  private readonly baseUrlPath = 'accounts';
+
+  constructor(
+    private httpClient: HttpClient
+  ) {}
+
+  get suppliers$(): Observable<Supplier[]> {
+    return this.suppliersSubject.asObservable();
+  }
 
   get category$(): Observable<Category> {
     return this.categorySubject.asObservable();
@@ -142,6 +153,7 @@ export class AccountingService {
     );
   }
 
+  //
   getTaxes(): Observable<Tax[]> {
     const taxes: Tax[] = [
       { id: '1', name: 'taxa1', value: 0.17 },
@@ -151,5 +163,25 @@ export class AccountingService {
     this.taxesSubject.next(taxes);
     
     return of(taxes);
+  }
+
+  getSuppliers(): Observable<Supplier[]> {
+    return this.httpClient.get<Supplier[]>(
+      `${environment.apiURL.root}/${this.baseUrlPath}/supplier`, { params: { format:  environment.apiURL.responseFormat } }
+    ).pipe(
+      map(suppliersFromHttpResponse => {
+        const suppliers: Supplier[] = suppliersFromHttpResponse.map(supplier => ({
+          id: supplier.id,
+          name: supplier.name,
+          address: supplier.address,
+          contact: supplier.contact,
+          nuit: supplier.nuit
+        }));
+
+        this.suppliersSubject.next(suppliers);
+        
+        return suppliers;
+      }),
+    );
   }
 }
