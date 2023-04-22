@@ -1,9 +1,9 @@
-import { Tax } from './accouting.types';
+import { Supplier, Tax } from './accouting.types';
 import { Account } from './../account/account.types';
 import { AccountingService } from './accounting.service';
 import { Category } from './../category/category.types';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class AccoutingCategoriesResolver implements Resolve<Category[]> {
 @Injectable({
   providedIn: 'root'
 })
-export class AcountingNestedAccoutingsResolver implements Resolve<Account[]> {
+export class AcountingNestedAccountsResolver implements Resolve<Account[]> {
   constructor(
     private accountingService: AccountingService,
   ) {}
@@ -35,13 +35,24 @@ export class AcountingNestedAccoutingsResolver implements Resolve<Account[]> {
 @Injectable({
   providedIn: 'root'
 })
-export class AcountingAccoutingsResolver implements Resolve<Account[]> {
+export class AcountingAccountsResolver implements Resolve<Account[]> {
   constructor(
     private accountingService: AccountingService,
   ) {}
 
   resolve(): Observable<Account[]> {    
     return this.accountingService.getAccounts();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountngAccountResolver implements Resolve<Account | boolean> {
+  resolve(route: ActivatedRouteSnapshot): Observable<Account> | boolean {
+    console.log(route);
+
+    return false
   }
 }
 
@@ -55,5 +66,18 @@ export class AccountingTaxesResolver implements Resolve<Tax[]> {
 
   resolve(): Observable<Tax[]> {
     return this.accountingService.getTaxes();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountingSuppliersResolver implements Resolve<Supplier[]> {
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
+  resolve(): Observable<Supplier[]> {
+    return this.accountingService.getSuppliers();
   }
 }

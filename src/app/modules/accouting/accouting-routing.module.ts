@@ -4,7 +4,8 @@ import {
   AccoutingCategoriesResolver,
   AcountingNestedAccountsResolver,
   AcountingAccountsResolver,
-  AccountngAccountResolver
+  AccountngAccountResolver,
+  AccountingSuppliersResolver
 } from './shared/accouting.resolvers';
 import { AccountListComponent } from './account/account-list/account-list.component';
 import { NgModule } from '@angular/core';
@@ -45,6 +46,9 @@ const routes: Routes = [
       },
       {
         path: 'comprar', component: PurchaseEditComponent,
+        resolve: {
+          suppliers: AccountingSuppliersResolver,
+        }
       },
       {
         path: 'despesa', component: ExpenseEditComponent,
