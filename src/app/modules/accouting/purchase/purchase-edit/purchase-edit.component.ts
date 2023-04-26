@@ -110,6 +110,16 @@ export class PurchaseEditComponent implements OnInit {
   }
 
   purchase(): void {
-    console.log(this.purchaseFormGroup.value);
+    const product: Product = {
+      name: this.purchaseFormGroup.value.name as string,
+      category: this.purchaseFormGroup.value.category as Category,
+      quantity: this.purchaseFormGroup.value.quantity as number,
+      price: this.purchaseFormGroup.value.purchasePrice as number,
+      sellingPrice: this.purchaseFormGroup.value.salePrice as number,
+      supplier: this.purchaseFormGroup.value.supplier as Supplier,
+      storage: this.purchaseFormGroup.value.storage as Storage,
+    };
+
+    this.accountingService.createProduct(product).subscribe(console.log);
   }
 }
