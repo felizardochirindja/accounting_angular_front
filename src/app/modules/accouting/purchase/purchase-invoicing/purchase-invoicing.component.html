@@ -1,0 +1,35 @@
+<app-header [title]="'faturar'"></app-header>
+
+<mat-tab-group animationDuration="0ms">
+    <mat-tab label="productos">
+        <div class="p-5">
+            <ng-template #noProductsAlert>
+                <p class="text-center">nao ha produtos</p>
+            </ng-template>
+    
+            <table class="table" *ngIf="products.length > 0; else noProductsAlert">
+                <thead>
+                    <tr>
+                        <th>nome</th>
+                        <th>fornecedor</th>
+                        <th>preco</th>
+                        <th>categoria</th>
+                        <th>quantidade</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr *ngFor="let product of products">
+                        <td data-label="nome">{{ product.name }}</td>
+                        <td data-label="fornecedor">{{ product.supplier?.name }}</td>
+                        <td data-label="preco">{{ product.price }}</td>
+                        <td data-label="categoria">{{ product.category?.name }}</td>
+                        <td data-label="quantidade">{{ product.quantity }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="fornecedores">Content 2</mat-tab>
+</mat-tab-group>
