@@ -1,9 +1,9 @@
 import { TaxEditComponent } from './tax/tax-edit/tax-edit.component';
 import { AccoutingComponent } from './accouting.component';
 import {
-  AccoutingCategoriesResolver,
+  AccountingSuppliersResolver,
   AcountingNestedAccountsResolver,
-  AcountingAccountsResolver,
+  AccountingTaxesResolver,
   AccountngAccountResolver,
   AccountingSuppliersResolver
 } from './shared/accouting.resolvers';
@@ -52,6 +52,10 @@ const routes: Routes = [
       },
       {
         path: 'despesa', component: ExpenseEditComponent,
+        resolve: {
+          suppliers: AccountingSuppliersResolver,
+          taxes: AccountingTaxesResolver,
+        }
       },
 
       {
