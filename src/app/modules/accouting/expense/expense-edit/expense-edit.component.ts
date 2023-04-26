@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tax } from '../../shared/accouting.types';
 
@@ -8,7 +8,7 @@ import { Tax } from '../../shared/accouting.types';
   styles: [
   ]
 })
-export class ExpenseEditComponent {
+export class ExpenseEditComponent implements OnInit {
   expenseFormGroup = new FormGroup({
     name: new FormControl<string | null>(null, Validators.required),
     supplier: new FormControl<string | null>(null, Validators.required),
@@ -22,12 +22,9 @@ export class ExpenseEditComponent {
     private accountingService: AccountingService
   ) {}
 
+  public ngOnInit(): void {
 
-  taxes: Tax[] = [
-    { name: 'taxa 1', value: 1 },
-    { name: 'taxa 2', value: 2 },
-    { name: 'taxa 3', value: 3 },
-  ];
+  }
 
   selectProofImage(event: any): void {
     const file = event.target.files[0];
