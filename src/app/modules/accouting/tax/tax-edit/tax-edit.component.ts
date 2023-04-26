@@ -1,4 +1,5 @@
 import { NgForm } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
 import { AccountingService } from '../../shared/accounting.service';
 
 @Component({
