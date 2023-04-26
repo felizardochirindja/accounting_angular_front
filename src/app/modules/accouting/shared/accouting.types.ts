@@ -27,4 +27,13 @@ export interface Expense {
     tax?: Tax;
 }
 
+export interface Product {
+    id?: string;
+    name?: string;
+    price?: number;
+    sellingPrice?: number;
+    quantity?: number;
+    category?: Category;
+    supplier?: Supplier;
+    storage?: Storage;
 }
