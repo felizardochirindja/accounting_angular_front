@@ -48,6 +48,10 @@ const routes: Routes = [
         path: 'comprar', component: PurchaseEditComponent,
         resolve: {
           suppliers: AccountingSuppliersResolver,
+          storages: AccountingStoragesResolver,
+          lastCreatedCategory: AccountingLastCreatedCategoryResolver,
+        }
+      },
         }
       },
       {
