@@ -23,6 +23,7 @@ export class PurchaseEditComponent implements OnInit {
 
   private supliers: Supplier[] = [];
   filteredSuppliers: Supplier[] = [];
+  storages: Storage[] = [];
   lastCreatedCategory!: Category;
 
   canDisplaylastCreatedCategory: boolean = false;
