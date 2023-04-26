@@ -21,29 +21,15 @@ const routes: Routes = [
     children: [
       {
         path: 'plano-de-contas', component: AccountListComponent,
-        resolve: {
-          categories: AccoutingCategoriesResolver,
-          nestedAccounts: AcountingNestedAccountsResolver,
-        },
       },
       {
         path: 'criar-conta', component: AccountEditComponent,
-        resolve: {
-          accounts: AcountingAccountsResolver,
-        }
       },
       {
         path: 'editar-conta/:accountId', component: AccountEditComponent,
-        resolve: {
-          accounts: AcountingAccountsResolver,
-          account: AccountngAccountResolver,
-        },
       },
       {
         path: 'criar-taxa', component: TaxEditComponent,
-        resolve: {
-          accounts: AcountingAccountsResolver
-        },
       },
       {
         path: 'comprar', component: PurchaseEditComponent,
