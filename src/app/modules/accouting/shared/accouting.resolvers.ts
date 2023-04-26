@@ -1,60 +1,9 @@
-import { Supplier, Tax } from './accouting.types';
-import { Account } from './../account/account.types';
+import { Product, Storage, Supplier, Tax } from './accouting.types';
 import { AccountingService } from './accounting.service';
 import { Category } from './../category/category.types';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AccoutingCategoriesResolver implements Resolve<Category[]> {
-  constructor(
-    private accountingService: AccountingService,
-  ) {}
-
-  resolve(): Observable<Category[]> {
-    return this.accountingService.getCategories();
-  }
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AcountingNestedAccountsResolver implements Resolve<Account[]> {
-  constructor(
-    private accountingService: AccountingService,
-  ) {}
-
-  resolve(): Observable<Account[]> {    
-    return this.accountingService.getNestedAccounts();
-  }
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AcountingAccountsResolver implements Resolve<Account[]> {
-  constructor(
-    private accountingService: AccountingService,
-  ) {}
-
-  resolve(): Observable<Account[]> {    
-    return this.accountingService.getAccounts();
-  }
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AccountngAccountResolver implements Resolve<Account | boolean> {
-  resolve(route: ActivatedRouteSnapshot): Observable<Account> | boolean {
-    console.log(route);
-
-    return false
-  }
-}
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +28,44 @@ export class AccountingSuppliersResolver implements Resolve<Supplier[]> {
 
   resolve(): Observable<Supplier[]> {
     return this.accountingService.getSuppliers();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountingLastCreatedCategoryResolver implements Resolve<Category> {
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
+  resolve(): Observable<Category> {
+    return this.accountingService.getLastCreatedCategory();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountingStoragesResolver implements Resolve<Storage[]> {
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
+  resolve(): Observable<Storage[]> {
+    return this.accountingService.getStorages();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountingProductsResolver implements Resolve<Product[]> {
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
+  resolve(): Observable<Product[]> {
+    return this.accountingService.getProducts();
   }
 }
