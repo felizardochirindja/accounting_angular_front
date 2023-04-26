@@ -13,6 +13,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
+import { PurchaseInvoicingComponent } from './purchase/purchase-invoicing/purchase-invoicing.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
           lastCreatedCategory: AccountingLastCreatedCategoryResolver,
         }
       },
+      {
+        path: 'faturar', component: PurchaseInvoicingComponent,
+        resolve: {
+          products: AccountingProductsResolver,
         }
       },
       {
