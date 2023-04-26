@@ -37,9 +37,11 @@
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>fornecedor</mat-label>
         <input type="text" matInput [matAutocomplete]="supplierAutoComplete" formControlName="supplier">
-        <mat-autocomplete #supplierAutoComplete="matAutocomplete">
-            <mat-option *ngFor="let supplier of supliers" [value]="supplier">{{ supplier }}</mat-option>
-            <mat-option><button mat-raised-button>Criar</button></mat-option>
+        <mat-autocomplete #supplierAutoComplete="matAutocomplete" [displayWith]="displaySupplierName">
+            <mat-option *ngFor="let supplier of filteredSuppliers" [value]="supplier">{{ supplier.name }}</mat-option>
+            <mat-option *ngIf="filteredSuppliers.length === 0 || canDisplayCreateSupplierButton">
+                <button mat-raised-button (click)="createSupplier()">Criar</button>
+            </mat-option>
         </mat-autocomplete>
         <mat-error *ngIf="(purchaseFormGroup.controls.supplier.errors ?? {})['required']">o fornecedor é obrigatório</mat-error>
     </mat-form-field>
