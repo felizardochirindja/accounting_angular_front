@@ -11,7 +11,7 @@ import { Tax } from '../../shared/accouting.types';
 export class ExpenseEditComponent implements OnInit {
   expenseFormGroup = new FormGroup({
     name: new FormControl<string | null>(null, Validators.required),
-    supplier: new FormControl<string | null>(null, Validators.required),
+    supplier: new FormControl<Supplier | null>(null, Validators.required),
     price: new FormControl<number | null>(null, Validators.required),
     state: new FormControl<string | null>(null, Validators.required),
   });
