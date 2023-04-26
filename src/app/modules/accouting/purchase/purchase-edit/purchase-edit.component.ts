@@ -1,7 +1,7 @@
 import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Supplier } from '../../shared/accouting.types';
+import { Storage, Supplier, Category, Product } from '../../shared/accouting.types';
 
 @Component({
   selector: 'app-purchase-edit',
@@ -15,9 +15,9 @@ export class PurchaseEditComponent implements OnInit {
     purchasePrice: new FormControl<number | null>(null, Validators.required),
     salePrice: new FormControl<number | null>(null),
     quantity: new FormControl<number | null>(null, Validators.required),
-    category: new FormControl<string | null>(null, Validators.required),
-    supplier: new FormControl<string | null>(null, Validators.required),
-    storage: new FormControl<string | null>(null, Validators.required),
+    category: new FormControl<Category | null>(null, Validators.required),
+    supplier: new FormControl<Supplier | null>(null, Validators.required),
+    storage: new FormControl<Storage | null>(null, Validators.required),
   });
 
   supliers: Supplier[] = [];
