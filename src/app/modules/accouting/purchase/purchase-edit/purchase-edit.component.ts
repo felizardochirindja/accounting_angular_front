@@ -83,6 +83,10 @@ export class PurchaseEditComponent implements OnInit {
     })
   }
 
+  displaySupplierName(supplier: Supplier): string {
+    return supplier ? supplier.name as string : '';
+  }
+
   purchase(): void {
     console.log(this.purchaseFormGroup.value);
   }
