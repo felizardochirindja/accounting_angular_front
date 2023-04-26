@@ -97,6 +97,18 @@ export class PurchaseEditComponent implements OnInit {
     return supplier ? supplier.name as string : '';
   }
 
+  public createSupplier(): void {
+    const supplier: Supplier = {
+      name: this.purchaseFormGroup.value.supplier as string
+    };
+
+    this.accountingService.createSupplier(supplier).subscribe((supplier) => {
+      this.purchaseFormGroup.patchValue({
+        supplier: supplier
+      });
+    });
+  }
+
   purchase(): void {
     console.log(this.purchaseFormGroup.value);
   }
