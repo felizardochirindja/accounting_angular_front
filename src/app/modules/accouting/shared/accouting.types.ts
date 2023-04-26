@@ -19,4 +19,12 @@ export interface Category {
     name?: string;
 }
 
+export interface Expense {
+    id?: string;
+    name?: string;
+    supplier?: Supplier;
+    price?: number;
+    tax?: Tax;
+}
+
 }
