@@ -37,6 +37,8 @@ export class PurchaseEditComponent implements OnInit {
   public ngOnInit(): void {
     this.accountingService.suppliers$.subscribe(suppliers => {
       this.supliers = suppliers;
+    });
+
     this.purchaseFormGroup.controls.supplier.valueChanges.pipe(
       startWith(''),
       map(supplier => typeof supplier === 'string' ? supplier : supplier?.name),
