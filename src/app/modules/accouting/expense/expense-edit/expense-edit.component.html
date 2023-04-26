@@ -9,10 +9,12 @@
 
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>fornecedor</mat-label>
-        <mat-select formControlName="supplier">
-            <mat-option *ngFor="let supplier of suppliers" [value]="supplier">{{ supplier }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="(expenseFormGroup.controls.supplier.errors ?? {})['required']">o nome é obrigatório</mat-error>
+        <input type="text" matInput [matAutocomplete]="supplierAutoComplete" formControlName="supplier">
+        <mat-autocomplete #supplierAutoComplete="matAutocomplete" [displayWith]="displaySupplierName">
+            <mat-option *ngFor="let supplier of filteredSuppliers" [value]="supplier">{{ supplier.name }}</mat-option>
+            <mat-option *ngIf="filteredSuppliers.length === 0 || canDisplayCreateSupplierButton"><button mat-raised-button (click)="createSupplier()">Criar</button></mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="(expenseFormGroup.controls.supplier.errors ?? {})['required']">o fornecedor é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
