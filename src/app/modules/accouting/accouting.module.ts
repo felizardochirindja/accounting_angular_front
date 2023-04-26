@@ -16,6 +16,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     MatButtonModule,
     HeaderComponent,
     MatAutocompleteModule,
+    MatTabsModule
   ],
   declarations: [
     AccountListComponent,
