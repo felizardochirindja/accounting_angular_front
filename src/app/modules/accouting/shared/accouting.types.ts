@@ -9,9 +9,9 @@ export interface Tax {
 }
 
 export interface Supplier {
-    id: number;
-    name: string;
-    address: string;
-    contact: string;
-    nuit: Nuit;
+export interface Storage {
+    id?: string;
+    name?: string;
+}
+
 }
