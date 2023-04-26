@@ -14,4 +14,9 @@ export interface Storage {
     name?: string;
 }
 
+export interface Category {
+    id?: string;
+    name?: string;
+}
+
 }
