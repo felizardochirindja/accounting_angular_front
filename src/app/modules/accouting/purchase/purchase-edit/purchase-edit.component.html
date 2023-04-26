@@ -47,7 +47,7 @@
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>armazém</mat-label>
         <mat-select formControlName="storage">
-            <mat-option *ngFor="let storage of storages" [value]="storage">{{ storage }}</mat-option>
+            <mat-option *ngFor="let storage of storages" [value]="storage">{{ storage.name }}</mat-option>
         </mat-select>
         <mat-error *ngIf="(purchaseFormGroup.controls.storage.errors ?? {})['required']">o armazém é obrigatório</mat-error>
     </mat-form-field>
