@@ -18,6 +18,8 @@ export class ExpenseEditComponent implements OnInit {
 
   proofPreviewImage!: string;
 
+  suppliers: Supplier[] = [];
+  taxes: Tax[] = [];
   constructor(
     private accountingService: AccountingService
   ) {}
