@@ -1,5 +1,5 @@
 import { NgForm } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AccountingService } from '../../shared/accounting.service';
 
 @Component({
   selector: 'app-tax-edit',
@@ -9,6 +9,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class TaxEditComponent {
   @ViewChild('editTaxForm') private editTaxForm!: NgForm;
+
+  constructor(
+    private accountingService: AccountingService
+  ) {}
 
   submitTax() {
     console.log(this.editTaxForm.value);
