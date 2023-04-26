@@ -20,7 +20,7 @@ export class PurchaseEditComponent implements OnInit {
     storage: new FormControl<Storage | null>(null, Validators.required),
   });
 
-  supliers: Supplier[] = [];
+  private supliers: Supplier[] = [];
 
   storages: string[] = [
     'armazem 1',
