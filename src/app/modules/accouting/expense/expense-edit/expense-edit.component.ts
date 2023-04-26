@@ -42,6 +42,10 @@ export class ExpenseEditComponent {
     };
   }
 
+  public displaySupplierName(supplier: Supplier): string|any {
+    return supplier ? supplier.name as string : '';
+  }
+
   public createSupplier(): void {
     const supplier: Supplier = {
       name: this.expenseFormGroup.value.supplier as string
