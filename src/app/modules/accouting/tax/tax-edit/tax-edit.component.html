@@ -8,6 +8,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Valor</mat-label>
+        <input matInput type="number" name="value" ngModel #valueControl="ngModel" required>
+        <mat-error *ngIf="(valueControl.errors ?? {})['required']">A taxa é obrigatória!</mat-error>
+    </mat-form-field>
+
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>descricao</mat-label>
         <input matInput type="text" name="description" ngModel #descriptionControl="ngModel" required>
