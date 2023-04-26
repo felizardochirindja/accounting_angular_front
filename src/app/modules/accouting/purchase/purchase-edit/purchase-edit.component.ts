@@ -21,11 +21,10 @@ export class PurchaseEditComponent implements OnInit {
   });
 
   private supliers: Supplier[] = [];
+  lastCreatedCategory!: Category;
 
-  storages: string[] = [
-    'armazem 1',
-    'armazem 2',
-  ];
+  canDisplaylastCreatedCategory: boolean = false;
+  canDisplayCreateCategoryButton: boolean = false;
 
   constructor(
     private accountingService: AccountingService
@@ -37,6 +36,24 @@ export class PurchaseEditComponent implements OnInit {
     this.accountingService.category$.subscribe(category => {
       this.lastCreatedCategory = category;
     });
+
+    this.purchaseFormGroup.controls.category.valueChanges.pipe(
+      startWith(''),
+      map(category => typeof category === 'string' ? category : category?.name),
+      tap((categoryName) => {
+        if (this.lastCreatedCategory) {
+          this.canDisplayCreateCategoryButton = this.lastCreatedCategory.name !== categoryName &&  categoryName !== '';
+  
+          this.canDisplaylastCreatedCategory = 
+            this.lastCreatedCategory.name?.toLocaleLowerCase()
+            .includes(categoryName?.toLocaleLowerCase() as string) as boolean;
+          
+        } else {
+          this.canDisplayCreateCategoryButton = categoryName != '';
+        }
+      }),
+    ).subscribe();
+
     this.accountingService.storages$.subscribe(storages => {
       this.storages = storages;
     });
