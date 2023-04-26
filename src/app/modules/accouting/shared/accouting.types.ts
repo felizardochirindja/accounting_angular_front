@@ -31,6 +31,7 @@ export interface Expense {
     supplier?: Supplier;
     price?: number;
     tax?: Tax;
+    taxValue?: number;
 }
 
 export interface Product {
