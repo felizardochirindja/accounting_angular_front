@@ -16,6 +16,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { PurchaseInvoicingComponent } from './purchase/purchase-invoicing/purchase-invoicing.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     TaxEditComponent,
     PurchaseEditComponent,
     ExpenseEditComponent,
+    PurchaseInvoicingComponent,
   ]
 })
 export class AccoutingModule {}
