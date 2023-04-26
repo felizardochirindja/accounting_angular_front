@@ -16,6 +16,12 @@ export class TaxEditComponent {
   ) {}
 
   submitTax() {
-    console.log(this.editTaxForm.value);
+    const tax: Tax = {
+      name: this.editTaxForm.value.name,
+      value: this.editTaxForm.value.value,
+      description: this.editTaxForm.value.description,
+    }
+
+    this.accountingService.createTax(tax).subscribe(console.log);
   }
 }
