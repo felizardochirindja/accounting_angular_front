@@ -27,9 +27,11 @@
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>categoria</mat-label>
         <input type="text" matInput [matAutocomplete]="categoryAutocomplete" formControlName="category">
-        <mat-autocomplete #categoryAutocomplete="matAutocomplete" autoActiveFirstOption>
-            <mat-option [value]="'categoria'">categoria</mat-option>
-            <mat-option><button mat-raised-button>Criar</button></mat-option>
+        <mat-autocomplete #categoryAutocomplete="matAutocomplete" autoActiveFirstOption [displayWith]="displayCategoryName">
+            <mat-option [value]="lastCreatedCategory" *ngIf="canDisplaylastCreatedCategory">{{ lastCreatedCategory.name }}</mat-option>
+            <mat-option *ngIf="canDisplayCreateCategoryButton">
+                <button mat-raised-button (click)="createCategory()">Criar</button>
+            </mat-option>
         </mat-autocomplete>
         <mat-error *ngIf="(purchaseFormGroup.controls.category.errors ?? {})['required']">a categoria é obrigatório</mat-error>
     </mat-form-field>
