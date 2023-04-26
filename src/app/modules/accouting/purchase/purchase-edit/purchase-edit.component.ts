@@ -80,6 +80,16 @@ export class PurchaseEditComponent implements OnInit {
   displayCategoryName(category: Category): string {
     return category ? category.name as string : '';
   }
+
+  public createCategory(): void {
+    const category: Category = {
+      name: this.purchaseFormGroup.value.category as string
+    };
+
+    this.accountingService.createCategory(category).subscribe((category) => {
+      this.purchaseFormGroup.patchValue({
+        category: category
+      });
     })
   }
 
