@@ -59,6 +59,13 @@ export class ExpenseEditComponent {
   }
 
   submitExpense(): void {
-    console.log(this.expenseFormGroup.value);
+    const expense: Expense = {
+      name: this.expenseFormGroup.value.name as string,
+      price: this.expenseFormGroup.value.price as number,
+      supplier: this.expenseFormGroup.value.supplier as Supplier,
+      tax: this.expenseFormGroup.value.name as Tax,
+    }
+
+    this.accountingService.createExpense(expense).subscribe(console.log);
   }
 }
