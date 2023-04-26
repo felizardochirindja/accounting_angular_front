@@ -34,6 +34,12 @@ export class PurchaseEditComponent implements OnInit {
   public ngOnInit(): void {
     this.accountingService.suppliers$.subscribe(suppliers => {
       this.supliers = suppliers;
+    this.accountingService.category$.subscribe(category => {
+      this.lastCreatedCategory = category;
+    });
+    this.accountingService.storages$.subscribe(storages => {
+      this.storages = storages;
+    });
     })
   }
 
