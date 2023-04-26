@@ -20,6 +20,9 @@ export class ExpenseEditComponent implements OnInit {
 
   suppliers: Supplier[] = [];
   taxes: Tax[] = [];
+  canDisplayCreateSupplierButton: boolean = false;
+  filteredSuppliers: Supplier[] = [];
+  
   constructor(
     private accountingService: AccountingService
   ) {}
@@ -33,6 +36,21 @@ export class ExpenseEditComponent implements OnInit {
       this.suppliers = suppliers;
     });
 
+    this.expenseFormGroup.controls.supplier.valueChanges.pipe(
+      startWith(''),
+      map(supplier => typeof supplier === 'string' ? supplier : supplier?.name),
+      map((supplierName) => {
+        const filteredSuppliers: Supplier[] = this.suppliers.filter(
+          supplier => supplier.name?.toLocaleLowerCase().includes(supplierName?.toLocaleLowerCase() as string)
+        );
+
+        this.canDisplayCreateSupplierButton = filteredSuppliers.some(supplier => supplier.name !== supplierName) && supplierName !== '';
+
+        return filteredSuppliers;
+      }),
+    ).subscribe(filteredSuppliers => {
+      this.filteredSuppliers = filteredSuppliers;
+    });
   }
 
   selectProofImage(event: any): void {
