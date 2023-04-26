@@ -2,10 +2,10 @@ import { TaxEditComponent } from './tax/tax-edit/tax-edit.component';
 import { AccoutingComponent } from './accouting.component';
 import {
   AccountingSuppliersResolver,
-  AcountingNestedAccountsResolver,
+  AccountingStoragesResolver,
   AccountingTaxesResolver,
-  AccountngAccountResolver,
-  AccountingSuppliersResolver
+  AccountingLastCreatedCategoryResolver,
+  AccountingProductsResolver
 } from './shared/accouting.resolvers';
 import { AccountListComponent } from './account/account-list/account-list.component';
 import { NgModule } from '@angular/core';
