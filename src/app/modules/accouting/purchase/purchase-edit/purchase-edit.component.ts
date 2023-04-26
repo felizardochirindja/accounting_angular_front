@@ -2,6 +2,7 @@ import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage, Supplier, Category, Product } from '../../shared/accouting.types';
+import { map, startWith, tap } from 'rxjs';
 
 @Component({
   selector: 'app-purchase-edit',
