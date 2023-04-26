@@ -21,9 +21,11 @@ export class PurchaseEditComponent implements OnInit {
   });
 
   private supliers: Supplier[] = [];
+  filteredSuppliers: Supplier[] = [];
   lastCreatedCategory!: Category;
 
   canDisplaylastCreatedCategory: boolean = false;
+  canDisplayCreateSupplierButton: boolean = false;
   canDisplayCreateCategoryButton: boolean = false;
 
   constructor(
@@ -33,6 +35,22 @@ export class PurchaseEditComponent implements OnInit {
   public ngOnInit(): void {
     this.accountingService.suppliers$.subscribe(suppliers => {
       this.supliers = suppliers;
+    this.purchaseFormGroup.controls.supplier.valueChanges.pipe(
+      startWith(''),
+      map(supplier => typeof supplier === 'string' ? supplier : supplier?.name),
+      map((supplierName) => {
+        const filteredSuppliers: Supplier[] = this.supliers.filter(
+          supplier => supplier.name?.toLocaleLowerCase().includes(supplierName?.toLocaleLowerCase() as string)
+        );
+
+        this.canDisplayCreateSupplierButton = filteredSuppliers.some(supplier => supplier.name !== supplierName) && supplierName !== '';
+
+        return filteredSuppliers;
+      }),
+    ).subscribe(filteredSuppliers => {
+      this.filteredSuppliers = filteredSuppliers;
+    });
+
     this.accountingService.category$.subscribe(category => {
       this.lastCreatedCategory = category;
     });
