@@ -75,6 +75,11 @@ export class PurchaseEditComponent implements OnInit {
     this.accountingService.storages$.subscribe(storages => {
       this.storages = storages;
     });
+  }
+
+  displayCategoryName(category: Category): string {
+    return category ? category.name as string : '';
+  }
     })
   }
 
