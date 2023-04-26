@@ -23,6 +23,13 @@ export class ExpenseEditComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.accountingService.taxes$.subscribe(taxes => {
+      this.taxes = taxes;
+    });
+
+    this.accountingService.suppliers$.subscribe(suppliers => {
+      this.suppliers = suppliers;
+    });
 
   }
 
