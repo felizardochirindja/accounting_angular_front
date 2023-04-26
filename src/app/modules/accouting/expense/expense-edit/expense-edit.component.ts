@@ -18,11 +18,10 @@ export class ExpenseEditComponent {
 
   proofPreviewImage!: string;
 
-  suppliers: string[] = [
-    'fornecedor 1',
-    'fornecedor 2',
-    'fornecedor 3',
-  ];
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
 
   taxes: Tax[] = [
     { name: 'taxa 1', value: 1 },
@@ -41,6 +40,18 @@ export class ExpenseEditComponent {
     fileReader.onload = () => {
       this.proofPreviewImage = fileReader.result as string;
     };
+  }
+
+  public createSupplier(): void {
+    const supplier: Supplier = {
+      name: this.expenseFormGroup.value.supplier as string
+    };    
+
+    this.accountingService.createSupplier(supplier).subscribe((supplier) => {
+      this.expenseFormGroup.patchValue({
+        supplier: supplier
+      });
+    })
   }
 
   submitExpense(): void {
