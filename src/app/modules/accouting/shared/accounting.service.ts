@@ -28,6 +28,14 @@ export class AccountingService {
     return this.suppliersSubject.asObservable();
   }
 
+  get invoices$(): Observable<Invoice[]> {
+    return this.invoicesSubject.asObservable();
+  }
+
+  get storages$(): Observable<Storage[]> {
+    return this.storagesSubject.asObservable();
+  }
+
   get category$(): Observable<Category> {
     return this.categorySubject.asObservable();
   }
