@@ -34,6 +34,19 @@ export class AccountingSuppliersResolver implements Resolve<Supplier[]> {
 @Injectable({
   providedIn: 'root'
 })
+export class AccountingOpenInvoices implements Resolve<Invoice[]> {
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
+  resolve(): Observable<Invoice[]> {
+    return this.accountingService.getOpenInvoices();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AccountingOpenCategories implements Resolve<Category[]> {
   constructor(
     private accountingService: AccountingService
