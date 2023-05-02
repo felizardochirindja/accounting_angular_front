@@ -16,6 +16,8 @@ import { AccountEditComponent } from './account/account-edit/account-edit.compon
 import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
 import { PurchaseInvoicingComponent } from './purchase/purchase-invoicing/purchase-invoicing.component';
+import { SaleComponent } from './sale/sale.component';
+import { SaleInvoicingComponent } from './sale/sale-invoicing/sale-invoicing.component';
 
 const routes: Routes = [
   {
@@ -40,6 +42,12 @@ const routes: Routes = [
           storages: AccountingStoragesResolver,
           lastCreatedCategory: AccountingLastCreatedCategoryResolver,
         }
+      },
+      {
+        path: 'venda', component: SaleComponent,
+        children: [
+          { path: 'fatura', component: SaleInvoicingComponent }
+        ]
       },
       {
         path: 'faturar', component: PurchaseInvoicingComponent,
