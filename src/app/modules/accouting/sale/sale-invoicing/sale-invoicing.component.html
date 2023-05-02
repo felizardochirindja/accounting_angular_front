@@ -1,1 +1,87 @@
-<p>sale-invoicing works!</p>
+<mat-tab-group animationDuration="0ms">
+    <mat-tab label="productos">
+        <div class="p-5">
+            <ng-template #noProductsAlert>
+                <p class="text-center">nao ha produtos</p>
+            </ng-template>
+
+            <div *ngIf="true; else noProductsAlert">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>pesquisar</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>nome</th>
+                            <th>preco de venda</th>
+                            <th>quantidade disponivel</th>
+                            <th>accoes</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td data-label="nome">ff</td>
+                            <td data-label="preco de venda">gg</td>
+                            <td data-label="quantidade disponivel">gg</td>
+                            <td data-label="accoes">adicionar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="factura">
+        <div class="p-5">
+            <ng-template #noInvoiceAlert>
+                <p class="text-center">nao ha facturas</p>
+            </ng-template>
+            
+            <mat-accordion *ngIf="true; else noInvoiceAlert">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            gasd
+                        </mat-panel-title>
+
+                        <mat-panel-description>
+                            ggd
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="pt-5">
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>codigo da fatura</mat-label>
+                            <input matInput type="text">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>valor a pagar</mat-label>
+                            <input matInput type="number">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>valor pago</mat-label>
+                            <input matInput type="number">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>valor em divida</mat-label>
+                            <input matInput type="number">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>custos adicionais</mat-label>
+                            <input matInput type="number">
+                        </mat-form-field>
+
+                        <button mat-raised-button color="primary">pagar</button>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </mat-tab>
+</mat-tab-group>
