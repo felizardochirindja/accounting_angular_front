@@ -4,7 +4,14 @@ export interface Purchase {
     purchasePrice?: number;
     salePrice?: number;
     quantity?: number;
-    category?: string;
-    supplier?: string;
-    storage?: string;
+export interface Invoice {
+    id?: string
+    code?: string
+    toPay?: number
+    totalPaid?: number
+    remaining?: number
+    additionalCost?: number
+    complete?: boolean,
+    supplier?: Supplier,
+    category?: Category,
 }
