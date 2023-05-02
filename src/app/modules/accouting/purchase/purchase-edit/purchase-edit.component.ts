@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage, Supplier, Category, Product } from '../../shared/accouting.types';
 import { map, startWith, tap } from 'rxjs';
+import { Purchase } from '../purchase.type';
 
 @Component({
   selector: 'app-purchase-edit',
@@ -114,7 +115,7 @@ export class PurchaseEditComponent implements OnInit {
   }
 
   purchase(): void {
-    const product: Product = {
+    const purchase: Purchase = {
       name: this.purchaseFormGroup.value.name as string,
       category: this.purchaseFormGroup.value.category as Category,
       quantity: this.purchaseFormGroup.value.quantity as number,
@@ -124,6 +125,6 @@ export class PurchaseEditComponent implements OnInit {
       storage: this.purchaseFormGroup.value.storage as Storage,
     };
 
-    this.accountingService.createProduct(product).subscribe(console.log);
+    this.accountingService.createPurchase(purchase).subscribe(console.log);
   }
 }
