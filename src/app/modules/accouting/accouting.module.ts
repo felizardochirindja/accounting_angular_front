@@ -18,6 +18,7 @@ import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.compon
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { PurchaseInvoicingComponent } from './purchase/purchase-invoicing/purchase-invoicing.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatButtonModule,
     HeaderComponent,
     MatAutocompleteModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule,
   ],
   declarations: [
     AccountListComponent,
