@@ -10,13 +10,25 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AccountingService {
-  private categorySubject: BehaviorSubject<Category | any> = new BehaviorSubject(null);
-  private categoriesSubject: BehaviorSubject<Category[] | any> = new BehaviorSubject(null);
-  private accountSubject: BehaviorSubject<Account | any> = new BehaviorSubject(null);
-  private accountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
-  private nestedAccountsSubject: BehaviorSubject<Account[] | any> = new BehaviorSubject(null);
-  private taxesSubject: BehaviorSubject<Tax[] | any> = new BehaviorSubject(null);
-  private suppliersSubject: BehaviorSubject<Supplier[] | any> = new BehaviorSubject(null);
+  private taxesSubject: BehaviorSubject<Tax[]> = new BehaviorSubject<Tax[]>([]);
+  private suppliersSubject: BehaviorSubject<Supplier[]> = new BehaviorSubject<Supplier[]>([]);
+  private invoicesSubject: BehaviorSubject<Invoice[]> = new BehaviorSubject<Invoice[]>([]);
+  
+  private storagesSubject: BehaviorSubject<Storage[]> = new BehaviorSubject<Storage[]>([
+    {
+      id: uuid(),
+      name: "storage 1",
+    },
+    {
+      id: uuid(),
+      name: "storage 2",
+    },
+  ]);
+
+  private categorySubject: BehaviorSubject<Category | any> = new BehaviorSubject<Category | null>(null);
+  private categoriesSubject: BehaviorSubject<Category[] | any> = new BehaviorSubject([]);
+  private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  private expensesSubject: BehaviorSubject<Expense[]> = new BehaviorSubject<Expense[]>([]);
 
   private readonly baseUrlPath = 'accounts';
 
