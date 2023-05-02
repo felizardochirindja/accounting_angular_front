@@ -9,10 +9,8 @@ import {
   AccountingOpenInvoices,
   AccountingOpenCategories
 } from './shared/accouting.resolvers';
-import { AccountListComponent } from './account/account-list/account-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
 import { PurchaseInvoicingComponent } from './purchase/purchase-invoicing/purchase-invoicing.component';
@@ -23,15 +21,6 @@ const routes: Routes = [
   {
     path: '', component: AccoutingComponent,
     children: [
-      {
-        path: 'plano-de-contas', component: AccountListComponent,
-      },
-      {
-        path: 'criar-conta', component: AccountEditComponent,
-      },
-      {
-        path: 'editar-conta/:accountId', component: AccountEditComponent,
-      },
       {
         path: 'criar-taxa', component: TaxEditComponent,
       },

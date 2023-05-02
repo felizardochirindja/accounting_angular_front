@@ -13,7 +13,6 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'contabilidade', loadChildren: () => import('./modules/accouting/accouting.module').then(m => m.AccoutingModule) },
-      { path: 'productos-servicos', loadChildren: () => import('./modules/product-service/product-service.module').then(m => m.ProductServiceModule) }
     ]
   },
 
