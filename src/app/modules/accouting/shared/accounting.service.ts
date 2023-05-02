@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Supplier, Tax } from './accouting.types';
-import { Account } from './../account/account.types';
-import { Category, CategoryType } from './../category/category.types';
+import { Category, Expense, Product, Storage, Supplier, Tax } from './accouting.types';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, switchMap, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { v4 as uuid } from 'uuid';
+import { Invoice, Purchase } from '../purchase/purchase.type';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class AccountingService {
 
   constructor(
     private httpClient: HttpClient
-  ) {}
+  ) { }
 
   get suppliers$(): Observable<Supplier[]> {
     return this.suppliersSubject.asObservable();
@@ -68,100 +68,53 @@ export class AccountingService {
     return this.expensesSubject.asObservable();
   }
 
-  get taxes$(): Observable<Tax[]> {
-    return this.taxesSubject.asObservable();
+  getLastCreatedCategory(): Observable<Category> {
+    return this.category$;
   }
 
-  getCategories(): Observable<Category[]> {
-    const categories: Category[] = [
-      { id: '1', name: 'categoria1', type: CategoryType.Activo },
-      { id: '2', name: 'categoria2', type: CategoryType.Gastos },
-      { id: '3', name: 'categoria3', type: CategoryType.Capital },
-    ]
-
-    this.categoriesSubject.next(categories);
-    return of(categories);
+  getTaxes(): Observable<Tax[]> {
+    return this.taxes$;
   }
 
-  getAccounts(): Observable<Account[]> {
-    const accounts: Account[] = [
-      {
-        name: 'conta mae 1', id: '1', categoryId: '1',
-      },
-      { name: 'conta filha 1.1', parentId: '1', categoryId: '1', id: '6' },
-      {
-        name: 'conta filha 1.2', parentId: '1', categoryId: '1', id: '3',
-      },
-      { name: 'conta filha 1.2.1', parentId: '1', categoryId: '1', id: '4' },
-      { name: 'conta filha 1.3', parentId: '1', categoryId: '1', id: '5' },
-      {
-        name: 'conta mae 2', id: '2', categoryId: '3',
-      },
-      { name: 'conta filha 2.1', parentId: '3', categoryId: '3', id: '7' },
-      { name: 'conta filha 2.2', parentId: '3', categoryId: '3', id: '8' },
-      {
-        name: 'conta mae 3', id: '3', categoryId: '2',
-      },
-      { name: 'conta filha 3.1', parentId: '3', categoryId: '2', id: '9' },
-      { name: 'conta filha 3.2', parentId: '3', categoryId: '2', id: '10' },
-      { name: 'conta filha 3.3', parentId: '3', categoryId: '2', id: '11' },
-      { name: 'conta filha 3.3', parentId: '3', categoryId: '2', id: '12' },
-      {
-        name: 'conta mae 4', id: '4', categoryId: '1',
-      },
-      { name: 'conta filha 4.1', parentId: '4', categoryId: '1', id: '13' },
-    ];
+  getSuppliers(): Observable<Supplier[]> {
+    // return this.httpClient.get<Supplier[]>(
+    //   `${environment.apiURL.root}/${this.baseUrlPath}/supplier`, { params: { format:  environment.apiURL.responseFormat } }
+    // ).pipe(
+    //   map(suppliersFromHttpResponse => {
+    //     const suppliers: Supplier[] = suppliersFromHttpResponse.map(supplier => ({
+    //       id: supplier.id,
+    //       name: supplier.name,
+    //       address: supplier.address,
+    //       contact: supplier.contact,
+    //       nuit: supplier.nuit
+    //     }));
 
-    this.accountsSubject.next(accounts);
-    return of(accounts);
+    //     this.suppliersSubject.next(suppliers);
+
+    //     return suppliers;
+    //   }),
+    // );
+    
+    return this.suppliers$;
   }
 
+  getOpenCategories(): Observable<Category[]> {
+    return this.categories$;
+  }
 
-  getNestedAccounts(): Observable<Account[]> {
-    const accounts: Account[] = [
-      {
-        name: 'conta mae 1', id: '1', categoryId: '1',
-        children: [
-          { name: 'conta filha 1.1', parentId: '1', categoryId: '1', id: '6' },
-          {
-            name: 'conta filha 1.2', parentId: '1', categoryId: '1', id: '3',
-            children: [
-              { name: 'conta filha 1.2.1', parentId: '1', categoryId: '1', id: '4' },
-            ],
-          },
-          { name: 'conta filha 1.3', parentId: '1', categoryId: '1', id: '5' },
-        ],
-      },
-      {
-        name: 'conta mae 2', id: '2', categoryId: '3',
-        children: [
-          { name: 'conta filha 2.1', parentId: '3', categoryId: '3', id: '7' },
-          { name: 'conta filha 2.2', parentId: '3', categoryId: '3', id: '8' },
-        ],
-      },
-      {
-        name: 'conta mae 3', id: '3', categoryId: '2',
-        children: [
-          { name: 'conta filha 3.1', parentId: '3', categoryId: '2', id: '9' },
-          { name: 'conta filha 3.2', parentId: '3', categoryId: '2', id: '10' },
-          { name: 'conta filha 3.3', parentId: '3', categoryId: '2', id: '11' },
-          { name: 'conta filha 3.3', parentId: '3', categoryId: '2', id: '12' },
-        ],
-      },
-      {
-        name: 'conta mae 4', id: '4', categoryId: '1',
-        children: [
-          { name: 'conta filha 4.1', parentId: '4', categoryId: '1', id: '12' },
-        ],
-      },
-    ];
+  getOpenInvoices(): Observable<Invoice[]> {    
+    return this.invoices$;
+  }
 
-    this.nestedAccountsSubject.next(accounts);
-    return of(accounts);
+  getStorages(): Observable<Storage[]> {
+    return this.storages$;
+  }
+
+  getProducts(): Observable<Product[]> {
+    return this.products$;
   }
 
   createCategory(category: Category): Observable<Category> {
-    // create category logic
     return this.categories$.pipe(
       take(1),
       map(categories => {
