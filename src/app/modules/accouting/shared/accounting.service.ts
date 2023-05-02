@@ -154,9 +154,14 @@ export class AccountingService {
       take(1),
       switchMap((categories) => {
 
-        this.categoriesSubject.next([category, ...categories]);
+  createExpense(expense: Expense): Observable<Expense> {
+    return this.expenses$.pipe(
+      take(1),
+      map(expenses => {
+        expense.id = uuid();
 
-        return of(category);
+        this.expensesSubject.next([...expenses, expense]);
+        return expense;
       })
     );
   }
