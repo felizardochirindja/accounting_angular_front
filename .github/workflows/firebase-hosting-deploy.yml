@@ -15,6 +15,7 @@ jobs:
       - name: install angular cli
         run: npm install -g @angular/cli@15.1.5
 
+      - run: npm install
       - run: ng build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
