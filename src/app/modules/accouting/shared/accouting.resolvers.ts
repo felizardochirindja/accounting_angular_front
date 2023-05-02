@@ -1,9 +1,9 @@
-import { Product, Storage, Supplier, Tax } from './accouting.types';
+import { Category, Product, Storage, Supplier, Tax } from './accouting.types';
 import { AccountingService } from './accounting.service';
-import { Category } from './../category/category.types';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Invoice } from '../purchase/purchase.type';
 
 @Injectable({
   providedIn: 'root'
