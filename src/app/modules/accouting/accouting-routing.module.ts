@@ -5,7 +5,9 @@ import {
   AccountingStoragesResolver,
   AccountingTaxesResolver,
   AccountingLastCreatedCategoryResolver,
-  AccountingProductsResolver
+  AccountingProductsResolver,
+  AccountingOpenInvoices,
+  AccountingOpenCategories
 } from './shared/accouting.resolvers';
 import { AccountListComponent } from './account/account-list/account-list.component';
 import { NgModule } from '@angular/core';
@@ -43,6 +45,9 @@ const routes: Routes = [
         path: 'faturar', component: PurchaseInvoicingComponent,
         resolve: {
           products: AccountingProductsResolver,
+          openInvoices: AccountingOpenInvoices,
+          openCategories: AccountingOpenCategories,
+          lastUsedCategory: AccountingLastCreatedCategoryResolver
         }
       },
       {
