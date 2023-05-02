@@ -1,9 +1,15 @@
+import { Category, Storage, Supplier } from "../shared/accouting.types";
+
 export interface Purchase {
-    id?: string;
     name?: string;
-    purchasePrice?: number;
-    salePrice?: number;
+    price?: number;
+    sellingPrice?: number;
     quantity?: number;
+    category?: Category;
+    supplier?: Supplier;
+    storage?: Storage;
+}
+
 export interface Invoice {
     id?: string
     code?: string
