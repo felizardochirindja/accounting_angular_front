@@ -152,6 +152,17 @@ export class AccountingService {
     // create category logic
     return this.categories$.pipe(
       take(1),
+      map(categories => {
+        category.id = uuid();
+        
+        this.categoriesSubject.next([...categories, category]);
+        this.categorySubject.next(category);
+        
+        return category;
+      }),
+    );
+  }
+
   createSupplier(supplier: Supplier): Observable<Supplier> {
     return this.suppliers$.pipe(
       take(1),
