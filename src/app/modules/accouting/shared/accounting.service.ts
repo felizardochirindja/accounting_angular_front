@@ -44,16 +44,16 @@ export class AccountingService {
     return this.categoriesSubject.asObservable();
   }
 
-  get account$(): Observable<Account> {
-    return this.accountSubject.asObservable();
+  get taxes$(): Observable<Tax[]> {
+    return this.taxesSubject.asObservable();
   }
 
-  get accounts$(): Observable<Account[]> {
-    return this.accountsSubject.asObservable();
+  get products$(): Observable<Product[]> {
+    return this.productsSubject.asObservable();
   }
 
-  get nestedAccounts$(): Observable<Account[]> {
-    return this.nestedAccountsSubject.asObservable();
+  get expenses$(): Observable<Expense[]> {
+    return this.expensesSubject.asObservable();
   }
 
   get taxes$(): Observable<Tax[]> {
