@@ -161,34 +161,37 @@ export class AccountingService {
     );
   }
 
-  //
-  getTaxes(): Observable<Tax[]> {
-    const taxes: Tax[] = [
-      { id: '1', name: 'taxa1', value: 0.17 },
-      { id: '1', name: 'taxa2', value: 0.18 },
-    ];
-
-    this.taxesSubject.next(taxes);
-    
-    return of(taxes);
-  }
-
-  getSuppliers(): Observable<Supplier[]> {
-    return this.httpClient.get<Supplier[]>(
-      `${environment.apiURL.root}/${this.baseUrlPath}/supplier`, { params: { format:  environment.apiURL.responseFormat } }
-    ).pipe(
-      map(suppliersFromHttpResponse => {
-        const suppliers: Supplier[] = suppliersFromHttpResponse.map(supplier => ({
-          id: supplier.id,
-          name: supplier.name,
-          address: supplier.address,
-          contact: supplier.contact,
-          nuit: supplier.nuit
-        }));
-
-        this.suppliersSubject.next(suppliers);
+  createPurchase(purchase: Purchase): Observable<Purchase> {
+    return this.products$.pipe(
+      take(1),
+      map(products => {
+        const product: Product = {
+          id: uuid(),
+          name: purchase.name,
+          quantity: purchase.quantity,
+          category: purchase.category,
+          price: purchase.price,
+          sellingPrice: purchase.sellingPrice,
+          storage: purchase.storage,
+          supplier: purchase.supplier
+        }
         
-        return suppliers;
+        this.productsSubject.next([...products, product]);
+
+        const supplierExists =  this.invoicesSubject.value.some(invoice => invoice.supplier?.name === product.supplier?.name);
+        
+        if (!supplierExists) {
+          const invoice: Invoice = {
+            id: uuid(),
+            complete: false,
+            category: product.category,
+            supplier: product.supplier,
+          }
+
+          this.invoicesSubject.next([...this.invoicesSubject.value, invoice]);
+        }
+
+        return purchase;
       }),
     );
   }
