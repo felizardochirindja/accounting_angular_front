@@ -20,6 +20,7 @@ import { PurchaseInvoicingComponent } from './purchase/purchase-invoicing/purcha
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SaleInvoicingComponent } from './sale/sale-invoicing/sale-invoicing.component';
+import { SaleComponent } from './sale/sale.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { SaleInvoicingComponent } from './sale/sale-invoicing/sale-invoicing.com
     ExpenseEditComponent,
     PurchaseInvoicingComponent,
     SaleInvoicingComponent,
+    SaleComponent
   ]
 })
 export class AccoutingModule {}
