@@ -11,7 +11,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: npm run build
+
+      - name: install angular cli
+        run: npm install -g @angular/cli@15.1.5
+
+      - run: ng build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
