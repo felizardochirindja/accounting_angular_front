@@ -6,30 +6,101 @@
             <ng-template #noProductsAlert>
                 <p class="text-center">nao ha produtos</p>
             </ng-template>
-    
-            <table class="table" *ngIf="products.length > 0; else noProductsAlert">
-                <thead>
-                    <tr>
-                        <th>nome</th>
-                        <th>fornecedor</th>
-                        <th>preco</th>
-                        <th>categoria</th>
-                        <th>quantidade</th>
-                    </tr>
-                </thead>
-    
-                <tbody>
-                    <tr *ngFor="let product of products">
-                        <td data-label="nome">{{ product.name }}</td>
-                        <td data-label="fornecedor">{{ product.supplier?.name }}</td>
-                        <td data-label="preco">{{ product.price }}</td>
-                        <td data-label="categoria">{{ product.category?.name }}</td>
-                        <td data-label="quantidade">{{ product.quantity }}</td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div *ngIf="openProducts.length > 0; else noProductsAlert">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>categoria</mat-label>
+                    <mat-select [formControl]="categoryFilterField">
+                        <mat-option *ngFor="let category of categories" [value]="category">{{ category.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>nome</th>
+                            <th>fornecedor</th>
+                            <th>preco</th>
+                            <th>quantidade</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let product of productsFilteredByCategory">
+                            <td data-label="nome">{{ product.name }}</td>
+                            <td data-label="fornecedor">{{ product.supplier?.name }}</td>
+                            <td data-label="preco">{{ product.price }}</td>
+                            <td data-label="quantidade">{{ product.quantity }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </mat-tab>
 
-    <mat-tab label="fornecedores">Content 2</mat-tab>
+    <mat-tab label="facturas">
+        <div class="p-5" [formGroup]="supplierFormGroup">
+            <ng-template #noInvoiceAlert>
+                <p class="text-center">nao ha facturas</p>
+            </ng-template>
+            
+            <mat-accordion formArrayName="invoiceFormArray" *ngIf="invoiceFormArray.length > 0; else noInvoiceAlert">
+                <mat-expansion-panel
+                    *ngFor="let invoice of invoiceFormArray.controls; let i = index"
+                    [formGroupName]="i" [expanded]="step === i" (opened)="setStep(i)"
+                >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{ invoice.value.supplier.name }}
+                        </mat-panel-title>
+
+                        <mat-panel-description>
+                            {{ invoice.value.category.name }}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="pt-5">
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>codigo da fatura</mat-label>
+                            <input matInput type="text" formControlName="invoiceCode">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>valor a pagar</mat-label>
+                            <input matInput type="number" formControlName="totalToPay">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>valor pago</mat-label>
+                            <input matInput type="number" formControlName="totalPaid">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>valor em divida</mat-label>
+                            <input matInput type="number" formControlName="remainigAmmount">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-label>custos adicionais</mat-label>
+                            <input matInput type="number" formControlName="additionalCosts">
+                        </mat-form-field>
+
+                        <div class="mb-5">
+                            <input type="file" (change)="selectProofImage($event)">
+                            <img [src]="proofPreviewImage" *ngIf="proofPreviewImage" class="mt-5" width="350px">
+                        </div>
+
+                        <button mat-raised-button color="primary">pagar</button>
+                    </div>
+
+                    <mat-action-row *ngIf="invoiceFormArray.length > 1">
+                        <button mat-button color="primary" (click)="prevStep()" *ngIf="step > 0">voltar</button>
+                        <button mat-button color="primary" (click)="nextStep()" *ngIf="step >= 0 && step < invoiceFormArray.length - 1">
+                            avancar
+                        </button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </mat-tab>
 </mat-tab-group>

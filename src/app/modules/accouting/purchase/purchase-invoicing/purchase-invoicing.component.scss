@@ -3,16 +3,17 @@
 	border-collapse: collapse;
 }
 
-.table td,.table th {
-  padding:12px 15px;
-  border:1px solid #ddd;
-  text-align: center;
-  font-size:16px;
+.table td,
+.table th {
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	text-align: center;
+	font-size: 16px;
 }
 
 .table th {
 	background-color: #3f51b5;
-	color:#ffffff;
+	color: #ffffff;
 }
 
 .table tbody tr:nth-child(even) {
@@ -24,13 +25,16 @@
 		display: none;
 	}
 
-	.table, .table tbody, .table tr, .table td {
+	.table,
+	.table tbody,
+	.table tr,
+	.table td {
 		display: block;
 		width: 100%;
 	}
 
 	.table tr {
-		margin-bottom:15px;
+		margin-bottom: 15px;
 	}
 
 	.table td {
@@ -43,10 +47,10 @@
 	.table td::before {
 		content: attr(data-label);
 		position: absolute;
-		left:0;
+		left: 0;
 		width: 50%;
-		padding-left:15px;
-		font-size:16px;
+		padding-left: 15px;
+		font-size: 16px;
 		text-align: left;
 	}
 }
