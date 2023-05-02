@@ -152,7 +152,17 @@ export class AccountingService {
     // create category logic
     return this.categories$.pipe(
       take(1),
-      switchMap((categories) => {
+  createTax(tax: Tax): Observable<Tax> {
+    return this.taxes$.pipe(
+      take(1),
+      map(taxes => {
+        tax.id = uuid();
+        
+        this.taxesSubject.next([...taxes, tax]);
+        return tax;
+      }),
+    );
+  }
 
   createExpense(expense: Expense): Observable<Expense> {
     return this.expenses$.pipe(
