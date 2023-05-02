@@ -17,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AuthModule.forRoot(environment.auth0.config)
   ],
   bootstrap: [AppComponent]
 })
