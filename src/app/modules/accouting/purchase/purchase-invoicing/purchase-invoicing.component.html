@@ -63,6 +63,7 @@
                         <mat-form-field appearance="outline" class="w-full">
                             <mat-label>codigo da fatura</mat-label>
                             <input matInput type="text" formControlName="invoiceCode">
+                            <mat-error *ngIf="(invoice.get('invoiceCode')?.errors ?? {})['required']">o codigo é obrigatorio</mat-error>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="w-full">

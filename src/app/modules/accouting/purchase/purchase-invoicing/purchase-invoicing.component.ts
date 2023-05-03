@@ -1,4 +1,4 @@
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category, Product, Supplier } from '../../shared/accouting.types';
 import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnInit } from '@angular/core';
@@ -43,13 +43,12 @@ export class PurchaseInvoicingComponent implements OnInit {
     this.accountingService.invoices$.subscribe(invoices => {
       invoices.forEach(invoice => {
         this.invoiceFormArray.push(new FormGroup({
-          invoiceCode: new FormControl<string | null>(null),
-          totalToPay: new FormControl<number | null>({ value: invoice.toPay as number, disabled: true}),
-          totalPaid: new FormControl<number | null>(null),
-          remainigAmmount: new FormControl<number | null>({ value: invoice.remaining as number, disabled: true }),
+          id: new FormControl<string | null>(invoice.id as string, Validators.required),
+          invoiceCode: new FormControl<string | null>(null, Validators.required),
+          totalToPay: new FormControl<number | null>({ value: invoice.toPay as number, disabled: true}, Validators.required),
           additionalCosts: new FormControl<number | null>(null),
-          supplier: new FormControl<Supplier | null>(invoice.supplier as Supplier),
-          category: new FormControl<Category | null>(invoice.category as Category),
+          supplier: new FormControl<Supplier | null>(invoice.supplier as Supplier, Validators.required),
+          category: new FormControl<Category | null>(invoice.category as Category, Validators.required),
         }));
       });
     });
