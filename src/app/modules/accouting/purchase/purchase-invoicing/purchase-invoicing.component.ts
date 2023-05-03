@@ -86,4 +86,9 @@ export class PurchaseInvoicingComponent implements OnInit {
       this.proofPreviewImage = fileReader.result as string;
     };
   }
+
+  closeCategory(): void {
+    console.log(this.categoryFilterField.value);
+  }
+
 }
