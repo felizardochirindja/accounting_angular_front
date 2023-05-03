@@ -41,7 +41,7 @@
     <mat-tab label="facturas">
         <div class="p-5" [formGroup]="supplierFormGroup">
             <ng-template #noInvoiceAlert>
-                <p class="text-center">nao ha facturas</p>
+                <p class="text-center">sem facturas</p>
             </ng-template>
             
             <mat-accordion formArrayName="invoiceFormArray" *ngIf="invoiceFormArray.length > 0; else noInvoiceAlert">
@@ -68,16 +68,6 @@
                         <mat-form-field appearance="outline" class="w-full">
                             <mat-label>valor a pagar</mat-label>
                             <input matInput type="number" formControlName="totalToPay">
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline" class="w-full">
-                            <mat-label>valor pago</mat-label>
-                            <input matInput type="number" formControlName="totalPaid">
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline" class="w-full">
-                            <mat-label>valor em divida</mat-label>
-                            <input matInput type="number" formControlName="remainigAmmount">
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="w-full">
