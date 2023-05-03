@@ -91,4 +91,7 @@ export class PurchaseInvoicingComponent implements OnInit {
     console.log(this.categoryFilterField.value);
   }
 
+  finishInvoice(invoice: Invoice): void {
+    console.log(invoice);
+  }
 }
