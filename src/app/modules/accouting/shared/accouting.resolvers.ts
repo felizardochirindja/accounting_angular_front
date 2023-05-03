@@ -95,3 +95,16 @@ export class AccountingProductsResolver implements Resolve<Product[]> {
     return this.accountingService.getProducts();
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountingProductsForSaleResolver implements Resolve<Product[]> {
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
+  resolve(): Observable<Product[]> {
+    return this.accountingService.getProducts();
+  }
+}
