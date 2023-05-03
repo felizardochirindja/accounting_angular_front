@@ -80,7 +80,7 @@
                             <img [src]="proofPreviewImage" *ngIf="proofPreviewImage" class="mt-5" width="350px">
                         </div>
 
-                        <button mat-raised-button color="primary">pagar</button>
+                        <button mat-raised-button color="primary" (click)="finishInvoice(invoice.value)" [disabled]="invoice.invalid">finalizar</button>
                     </div>
 
                     <mat-action-row *ngIf="invoiceFormArray.length > 1">
