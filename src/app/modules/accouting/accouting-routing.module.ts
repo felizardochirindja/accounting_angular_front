@@ -7,7 +7,8 @@ import {
   AccountingLastCreatedCategoryResolver,
   AccountingProductsResolver,
   AccountingOpenInvoices,
-  AccountingOpenCategories
+  AccountingOpenCategories,
+  AccountingProductsForSaleResolver,
 } from './shared/accouting.resolvers';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -34,6 +35,9 @@ const routes: Routes = [
       },
       {
         path: 'venda', component: SaleComponent,
+        resolve: {
+          productsForSale: AccountingProductsForSaleResolver
+        },
         children: [
           { path: 'fatura', component: SaleInvoicingComponent }
         ]
