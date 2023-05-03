@@ -5,19 +5,17 @@
 <footer>
     <mat-toolbar class="fixed bottom-0" color="primary">
         <mat-toolbar-row class="flex justify-center">
-            <button mat-icon-button><mat-icon>circle</mat-icon></button>
-            <button mat-icon-button><mat-icon>contacts</mat-icon></button>
             <div>
                 <button mat-icon-button [mat-menu-trigger-for]="addMenu"><mat-icon>add</mat-icon></button>
 
                 <mat-menu #addMenu="matMenu">
-                    <button mat-menu-item routerLink="./productos-servicos/criar">Criar Producto</button>
-                    <button mat-menu-item routerLink="./contabilidade/criar-taxa">Criar Taxa</button>
-                    <button mat-menu-item routerLink="./contabilidade/criar-conta">Criar Conta</button>
+                    <button mat-menu-item routerLink="/contabilidade/faturar">faturar</button>
+                    <button mat-menu-item routerLink="/contabilidade/criar-taxa">Criar Taxa</button>
+                    <button mat-menu-item routerLink="/contabilidade/venda/fatura">vender</button>
+                    <button mat-menu-item routerLink="/contabilidade/comprar">Comprar</button>
+                    <button mat-menu-item routerLink="/contabilidade/despesa">despesa</button>
                 </mat-menu>
             </div>
-            <button mat-icon-button><mat-icon>insert_drive_file</mat-icon></button>
-            <button mat-icon-button><mat-icon>bar_chart</mat-icon></button>
         </mat-toolbar-row>
     </mat-toolbar>
 </footer>
