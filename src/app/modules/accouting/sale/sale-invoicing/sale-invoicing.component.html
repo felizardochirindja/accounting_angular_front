@@ -8,7 +8,7 @@
             <div *ngIf="true; else noProductsAlert">
                 <mat-form-field appearance="outline" class="w-full">
                     <mat-label>pesquisar</mat-label>
-                    <input matInput type="text">
+                    <input matInput type="text" [formControl]="searchProductField">
                 </mat-form-field>
 
                 <table class="table">
@@ -17,16 +17,27 @@
                             <th>nome</th>
                             <th>preco de venda</th>
                             <th>quantidade disponivel</th>
-                            <th>accoes</th>
+                            <th>adicionar</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td data-label="nome">ff</td>
-                            <td data-label="preco de venda">gg</td>
-                            <td data-label="quantidade disponivel">gg</td>
-                            <td data-label="accoes">adicionar</td>
+                        <tr *ngFor="let product of filteredProducts">
+                            <td data-label="nome">{{ product.name }}</td>
+                            <td data-label="preco de venda">{{ product.sellingPrice }}</td>
+                            <td data-label="quantidade disponivel">{{ product.quantity }}</td>
+                            <td data-label="adicionar">
+                                <mat-form-field appearance="outline" class="w-full">
+                                    <mat-label>quantidade</mat-label>
+                                    <input type="number" matInput [matAutocomplete]="quantityAutoComplete" ngModel #quantityControl="ngModel">
+
+                                    <mat-autocomplete #quantityAutoComplete="matAutocomplete">
+                                        <mat-option>
+                                            <button type="button" mat-raised-button color="primary" (click)="addProduct(product, quantityControl.value)">adicionar</button>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
