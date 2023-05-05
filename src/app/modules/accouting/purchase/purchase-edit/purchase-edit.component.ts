@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage, Supplier, Category } from '../../shared/accouting.types';
 import { map, startWith, tap } from 'rxjs';
 import { Purchase } from '../purchase.type';
+import { MatDialog } from '@angular/material/dialog';
+import { PurchaseOptionsDialogComponent } from '../../shared/ui/purchase-options-dialog/purchase-options-dialog.component';
 
 @Component({
   selector: 'app-purchase-edit',
@@ -32,10 +34,13 @@ export class PurchaseEditComponent implements OnInit {
   canDisplayCreateCategoryButton: boolean = false;
 
   constructor(
-    private accountingService: AccountingService
+    private accountingService: AccountingService,
+    private dialog: MatDialog,
   ) {}
 
   public ngOnInit(): void {
+    this.openPurchaseOptionsDialog();
+
     this.accountingService.suppliers$.subscribe(suppliers => {
       this.supliers = suppliers;
     });
@@ -79,6 +84,17 @@ export class PurchaseEditComponent implements OnInit {
 
     this.accountingService.storages$.subscribe(storages => {
       this.storages = storages;
+    });
+  }
+
+  openPurchaseOptionsDialog(): void {
+    const dialogRef = this.dialog.open(PurchaseOptionsDialogComponent, { 
+      disableClose: true,
+      width: '400px' 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result[0]);
     });
   }
 
