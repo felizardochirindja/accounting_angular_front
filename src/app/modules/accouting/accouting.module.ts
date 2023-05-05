@@ -16,6 +16,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SaleInvoicingComponent } from './sale/sale-invoicing/sale-invoicing.component';
 import { SaleComponent } from './sale/sale.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatListModule } from "@angular/material/list";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   imports: [
@@ -30,6 +33,9 @@ import { SaleComponent } from './sale/sale.component';
     MatAutocompleteModule,
     MatTabsModule,
     MatExpansionModule,
+    MatDialogModule,
+    MatListModule,
+    MatIconModule,
   ],
   declarations: [
     AccoutingComponent,
