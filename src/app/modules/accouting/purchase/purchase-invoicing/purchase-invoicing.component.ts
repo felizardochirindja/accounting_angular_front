@@ -19,6 +19,7 @@ export class PurchaseInvoicingComponent implements OnInit {
   proofPreviewImage!: string;
   
   categoryFilterField = new FormControl<Category | null>(null);
+
   supplierFormGroup = new FormGroup({
     invoiceFormArray: new FormArray([]),
   });
