@@ -41,6 +41,15 @@ export interface Expense {
     taxValue?: number;
 }
 
+export interface ExpenseApiPayload {
+    id?: string;
+    name?: string;
+    supplier?: string;
+    total_amount?: number;
+    tax?: string;
+    tax_value?: number;
+}
+
 export interface Product {
     id?: string;
     name?: string;
