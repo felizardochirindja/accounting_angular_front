@@ -1,5 +1,15 @@
 <app-header [title]="'comprar'"></app-header>
 
+<mat-list>
+    <div mat-subheader>{{ purchases.length > 0 ? 'productos selecionados' : 'nenhum produto selecionado' }}</div>
+    <mat-list-item *ngFor="let purchase of purchases">
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <div matListItemTitle>{{ purchase.name }}</div>
+    </mat-list-item>
+</mat-list>
+
+<mat-divider></mat-divider>
+
 <form class="p-5" [formGroup]="purchaseFormGroup">
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>Nome</mat-label>
