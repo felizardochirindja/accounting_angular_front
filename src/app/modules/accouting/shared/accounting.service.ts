@@ -183,14 +183,36 @@ export class AccountingService {
   }
 
   createExpense(expense: Expense): Observable<Expense> {
+    const createExpesePayload: ExpenseApiPayload = {
+      name: expense.name,
+      supplier: expense.supplier?.id,
+      tax: expense.tax?.id,
+      tax_value: expense.taxValue,
+      total_amount: expense.price,
+    }
+
     return this.expenses$.pipe(
       take(1),
-      map(expenses => {
-        expense.id = uuid();
+      switchMap(expenses => this.httpClient.post<ExpenseApiPayload>(`${environment.apiURL.root}/${this.baseUrlPath}/expenses/`, createExpesePayload).pipe(
+        map(expenseResponse => {
+          const expense: Expense = {
+            id: expenseResponse.id,
+            name: expenseResponse.name,
+            price: expenseResponse.total_amount,
+            tax: {
+              id: expenseResponse.tax
+            },
+            supplier: {
+              id: expenseResponse.supplier
+            },
+            taxValue: expenseResponse.tax_value,
+          };
+  
+          this.expensesSubject.next([...expenses, expense]);
 
-        this.expensesSubject.next([...expenses, expense]);
-        return expense;
-      })
+          return expense;
+        })
+      )),
     );
   }
 
