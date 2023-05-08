@@ -28,6 +28,7 @@ export class PurchaseEditComponent implements OnInit {
   filteredSuppliers: Supplier[] = [];
   storages: Storage[] = [];
   lastCreatedCategory!: Category;
+  purchases: Purchase[] = [];
 
   canDisplaylastCreatedCategory: boolean = false;
   canDisplayCreateSupplierButton: boolean = false;
@@ -130,7 +131,7 @@ export class PurchaseEditComponent implements OnInit {
     });
   }
 
-  purchase(): void {
+  addPurchase(): void {
     const purchase: Purchase = {
       name: this.purchaseFormGroup.value.name as string,
       category: this.purchaseFormGroup.value.category as Category,
@@ -141,6 +142,17 @@ export class PurchaseEditComponent implements OnInit {
       storage: this.purchaseFormGroup.value.storage as Storage,
     };
 
-    this.accountingService.createPurchase(purchase).subscribe(console.log);
+    this.purchases.push(purchase);
+  }
+
+  purchase(): void {
+    this.purchases.forEach(purchase => {
+      this.accountingService.createPurchase(purchase).subscribe(console.log);
+    });
+
+    this.purchaseFormGroup.reset();
+    this.purchases = [];
+  }
+
   }
 }
