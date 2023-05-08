@@ -118,7 +118,20 @@ export class AccountingService {
   }
 
   getStorages(): Observable<Storage[]> {
-    return this.storages$;
+    return this.httpClient.get<Storage[]>(
+      `${environment.apiURL.root}/${this.baseUrlPath}`, { params: { format: environment.apiURL.responseFormat } }
+    ).pipe(
+      map(storagesResponse => {
+        const storages: Storage[] = storagesResponse.map(storage => ({
+          id: storage.id,
+          name: storage.name,
+        }));
+
+        this.storagesSubject.next(storages);
+
+        return storages;
+      }),
+    );
   }
 
   getProducts(): Observable<Product[]> {
