@@ -157,14 +157,28 @@ export class AccountingService {
   }
 
   createTax(tax: Tax): Observable<Tax> {
+    const createTaxPayload: TaxApiPayload = {
+      sail: tax.name,
+      description: tax.description,
+      porcentage_value: tax.value,
+    }
+
     return this.taxes$.pipe(
       take(1),
-      map(taxes => {
-        tax.id = uuid();
-        
-        this.taxesSubject.next([...taxes, tax]);
-        return tax;
-      }),
+      switchMap(taxes => this.httpClient.post<TaxApiPayload>(`${environment.apiURL.root}/${this.baseUrlPath}/tax/`, createTaxPayload).pipe(
+        map(taxeResponse => {
+          const tax: Tax = {
+            id: taxeResponse.id,
+            name: taxeResponse.sail,
+            description: taxeResponse.description,
+            value: taxeResponse.porcentage_value,
+          };
+
+          this.taxesSubject.next([...taxes, tax]);
+
+          return taxeResponse;
+        }),
+      )),
     );
   }
 
