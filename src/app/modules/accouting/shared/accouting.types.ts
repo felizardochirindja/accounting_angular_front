@@ -7,6 +7,13 @@ export interface Tax {
     description?: string;
 }
 
+export interface TaxApiPayload {
+    id?: string;
+    sail?: string;
+    porcentage_value?: number;
+    description?: string;
+}
+
 export interface Supplier {
     id?: string;
     name?: string;
