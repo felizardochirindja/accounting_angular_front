@@ -77,25 +77,23 @@ export class AccountingService {
   }
 
   getSuppliers(): Observable<Supplier[]> {
-    // return this.httpClient.get<Supplier[]>(
-    //   `${environment.apiURL.root}/${this.baseUrlPath}/supplier`, { params: { format:  environment.apiURL.responseFormat } }
-    // ).pipe(
-    //   map(suppliersFromHttpResponse => {
-    //     const suppliers: Supplier[] = suppliersFromHttpResponse.map(supplier => ({
-    //       id: supplier.id,
-    //       name: supplier.name,
-    //       address: supplier.address,
-    //       contact: supplier.contact,
-    //       nuit: supplier.nuit
-    //     }));
+    return this.httpClient.get<Supplier[]>(
+      `${environment.apiURL.root}/${this.baseUrlPath}/supplier`, { params: { format:  environment.apiURL.responseFormat } }
+    ).pipe(
+      map(suppliersFromHttpResponse => {
+        const suppliers: Supplier[] = suppliersFromHttpResponse.map(supplier => ({
+          id: supplier.id,
+          name: supplier.name,
+          address: supplier.address,
+          contact: supplier.contact,
+          nuit: supplier.nuit
+        }));
 
-    //     this.suppliersSubject.next(suppliers);
+        this.suppliersSubject.next(suppliers);
 
-    //     return suppliers;
-    //   }),
-    // );
-    
-    return this.suppliers$;
+        return suppliers;
+      }),
+    );
   }
 
   getOpenCategories(): Observable<Category[]> {
