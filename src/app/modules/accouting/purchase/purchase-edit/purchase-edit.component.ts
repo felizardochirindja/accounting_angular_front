@@ -1,8 +1,8 @@
 import { AccountingService } from './../../shared/accounting.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage, Supplier, Category } from '../../shared/accouting.types';
-import { map, startWith, tap } from 'rxjs';
+import { Subject, map, startWith, tap } from 'rxjs';
 import { Purchase } from '../purchase.type';
 import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOptionsDialogComponent } from '../../shared/ui/purchase-options-dialog/purchase-options-dialog.component';
@@ -13,7 +13,7 @@ import { PurchaseOptionsDialogComponent } from '../../shared/ui/purchase-options
   styles: [
   ]
 })
-export class PurchaseEditComponent implements OnInit {
+export class PurchaseEditComponent implements OnInit, OnDestroy {
   purchaseFormGroup = new FormGroup({
     name: new FormControl<string | null>(null, Validators.required),
     purchasePrice: new FormControl<number | null>(null, Validators.required),
@@ -33,6 +33,8 @@ export class PurchaseEditComponent implements OnInit {
   canDisplaylastCreatedCategory: boolean = false;
   canDisplayCreateSupplierButton: boolean = false;
   canDisplayCreateCategoryButton: boolean = false;
+
+  private unsubscriber: Subject<any> = new Subject();
 
   constructor(
     private accountingService: AccountingService,
@@ -95,7 +97,7 @@ export class PurchaseEditComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result[0]);
+      console.log(result);
     });
   }
 
@@ -154,5 +156,8 @@ export class PurchaseEditComponent implements OnInit {
     this.purchases = [];
   }
 
+  public ngOnDestroy(): void {
+    this.unsubscriber.next(null);
+    this.unsubscriber.complete();
   }
 }
