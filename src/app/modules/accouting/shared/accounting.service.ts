@@ -73,7 +73,20 @@ export class AccountingService {
   }
 
   getTaxes(): Observable<Tax[]> {
-    return this.taxes$;
+    return this.httpClient.get<TaxApiPayload[]>(`${environment.apiURL.root}/${this.baseUrlPath}/tax/`).pipe(
+      map(taxesResponse => {
+        const taxes: Tax[] = taxesResponse.map(tax => ({
+          id: tax.id,
+          name: tax.sail,
+          description: tax.description,
+          value: tax.porcentage_value,
+        }));
+        
+        this.taxesSubject.next(taxes);
+
+        return taxes;
+      }),
+    );
   }
 
   getSuppliers(): Observable<Supplier[]> {
