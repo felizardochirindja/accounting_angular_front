@@ -140,14 +140,19 @@ export class AccountingService {
   }
 
   createSupplier(supplier: Supplier): Observable<Supplier> {
+    const createSupplierpayload: Supplier = {
+      name: supplier.name
+    };
+    
     return this.suppliers$.pipe(
       take(1),
-      map(suppliers => {
-        supplier.id = uuid();
+      switchMap(suppliers => this.httpClient.post<Supplier>(`${environment.apiURL.root}/${this.baseUrlPath}/supplier/`, createSupplierpayload).pipe(
+        map(supplierResponse => {
+          this.suppliersSubject.next([...suppliers, supplierResponse]);
 
-        this.suppliersSubject.next([...suppliers, supplier]);
-        return supplier;
-      }),
+          return supplierResponse;
+        })
+      )),
     );
   }
 
