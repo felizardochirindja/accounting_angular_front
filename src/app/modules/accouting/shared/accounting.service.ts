@@ -13,20 +13,9 @@ export class AccountingService {
   private taxesSubject: BehaviorSubject<Tax[]> = new BehaviorSubject<Tax[]>([]);
   private suppliersSubject: BehaviorSubject<Supplier[]> = new BehaviorSubject<Supplier[]>([]);
   private invoicesSubject: BehaviorSubject<Invoice[]> = new BehaviorSubject<Invoice[]>([]);
-  
-  private storagesSubject: BehaviorSubject<Storage[]> = new BehaviorSubject<Storage[]>([
-    {
-      id: uuid(),
-      name: "storage 1",
-    },
-    {
-      id: uuid(),
-      name: "storage 2",
-    },
-  ]);
-
-  private categorySubject: BehaviorSubject<Category | any> = new BehaviorSubject<Category | null>(null);
-  private categoriesSubject: BehaviorSubject<Category[] | any> = new BehaviorSubject([]);
+  private storagesSubject: BehaviorSubject<Storage[]> = new BehaviorSubject<Storage[]>([]);
+  private categorySubject: BehaviorSubject<Category | any> = new BehaviorSubject<Category | any>(null);
+  private categoriesSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
   private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   private expensesSubject: BehaviorSubject<Expense[]> = new BehaviorSubject<Expense[]>([]);
 
@@ -113,7 +102,7 @@ export class AccountingService {
     return this.categories$;
   }
 
-  getOpenInvoices(): Observable<Invoice[]> {    
+  getOpenInvoices(): Observable<Invoice[]> {
     return this.invoices$;
   }
 
