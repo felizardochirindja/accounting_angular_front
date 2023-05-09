@@ -20,6 +20,7 @@ import { PurchaseOptionsDialogComponent } from './shared/ui/purchase-options-dia
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
+import { SupplierFormControlComponent } from './shared/components/supplier-form-control/supplier-form-control.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { MatIconModule } from "@angular/material/icon";
     PurchaseInvoicingComponent,
     SaleInvoicingComponent,
     SaleComponent,
-    PurchaseOptionsDialogComponent
+    PurchaseOptionsDialogComponent,
+    SupplierFormControlComponent
   ]
 })
 export class AccoutingModule {}
