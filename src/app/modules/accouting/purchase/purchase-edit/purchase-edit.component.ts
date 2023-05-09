@@ -5,7 +5,7 @@ import { Storage, Supplier, Category } from '../../shared/accouting.types';
 import { Subject, map, startWith, tap } from 'rxjs';
 import { Purchase } from '../purchase.type';
 import { MatDialog } from '@angular/material/dialog';
-import { PurchaseOptionsDialogComponent } from '../../shared/ui/purchase-options-dialog/purchase-options-dialog.component';
+import { PurchaseOptionsDialogComponent } from '../../shared/components/purchase-options-dialog/purchase-options-dialog.component';
 
 @Component({
   selector: 'app-purchase-edit',
@@ -108,15 +108,13 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     this.purchases.push(purchase);
   }
 
-  purchase(): void {
-    console.log(this.purchases);
-    
-    // this.purchases.forEach(purchase => {
-    //   this.accountingService.createPurchase(purchase).subscribe(console.log);
-    // });
+  purchase(): void {    
+    this.purchases.forEach(purchase => {
+      this.accountingService.createPurchase(purchase).subscribe(console.log);
+    });
 
-    // this.purchaseFormGroup.reset();
-    // this.purchases = [];
+    this.purchaseFormGroup.reset();
+    this.purchases = [];
   }
 
   public ngOnDestroy(): void {
