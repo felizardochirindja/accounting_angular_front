@@ -24,14 +24,11 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     storage: new FormControl<Storage | null>(null, Validators.required),
   });
 
-  private supliers: Supplier[] = [];
-  filteredSuppliers: Supplier[] = [];
   storages: Storage[] = [];
   lastCreatedCategory!: Category;
   purchases: Purchase[] = [];
 
   canDisplaylastCreatedCategory: boolean = false;
-  canDisplayCreateSupplierButton: boolean = false;
   canDisplayCreateCategoryButton: boolean = false;
 
   private unsubscriber: Subject<any> = new Subject();
@@ -43,26 +40,6 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.openPurchaseOptionsDialog();
-
-    this.accountingService.suppliers$.subscribe(suppliers => {
-      this.supliers = suppliers;
-    });
-
-    this.purchaseFormGroup.controls.supplier.valueChanges.pipe(
-      startWith(''),
-      map(supplier => typeof supplier === 'string' ? supplier : supplier?.name),
-      map((supplierName) => {
-        const filteredSuppliers: Supplier[] = this.supliers.filter(
-          supplier => supplier.name?.toLocaleLowerCase().includes(supplierName?.toLocaleLowerCase() as string)
-        );
-
-        this.canDisplayCreateSupplierButton = filteredSuppliers.some(supplier => supplier.name !== supplierName) && supplierName !== '';
-
-        return filteredSuppliers;
-      }),
-    ).subscribe(filteredSuppliers => {
-      this.filteredSuppliers = filteredSuppliers;
-    });
 
     this.accountingService.category$.subscribe(category => {
       this.lastCreatedCategory = category;
@@ -117,22 +94,6 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     })
   }
 
-  displaySupplierName(supplier: Supplier): string {
-    return supplier ? supplier.name as string : '';
-  }
-
-  public createSupplier(): void {
-    const supplier: Supplier = {
-      name: this.purchaseFormGroup.value.supplier as string
-    };
-
-    this.accountingService.createSupplier(supplier).subscribe((supplier) => {
-      this.purchaseFormGroup.patchValue({
-        supplier: supplier
-      });
-    });
-  }
-
   addPurchase(): void {
     const purchase: Purchase = {
       name: this.purchaseFormGroup.value.name as string,
@@ -148,12 +109,14 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
   }
 
   purchase(): void {
-    this.purchases.forEach(purchase => {
-      this.accountingService.createPurchase(purchase).subscribe(console.log);
-    });
+    console.log(this.purchases);
+    
+    // this.purchases.forEach(purchase => {
+    //   this.accountingService.createPurchase(purchase).subscribe(console.log);
+    // });
 
-    this.purchaseFormGroup.reset();
-    this.purchases = [];
+    // this.purchaseFormGroup.reset();
+    // this.purchases = [];
   }
 
   public ngOnDestroy(): void {

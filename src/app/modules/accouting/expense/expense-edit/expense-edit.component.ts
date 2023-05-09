@@ -2,7 +2,6 @@ import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Expense, Supplier, Tax } from '../../shared/accouting.types';
-import { map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-expense-edit',
@@ -23,10 +22,7 @@ export class ExpenseEditComponent implements OnInit {
 
   proofPreviewImage!: string;
 
-  suppliers: Supplier[] = [];
   taxes: Tax[] = [];
-  canDisplayCreateSupplierButton: boolean = false;
-  filteredSuppliers: Supplier[] = [];
   
   constructor(
     private accountingService: AccountingService
@@ -35,26 +31,6 @@ export class ExpenseEditComponent implements OnInit {
   public ngOnInit(): void {
     this.accountingService.taxes$.subscribe(taxes => {
       this.taxes = taxes;
-    });
-
-    this.accountingService.suppliers$.subscribe(suppliers => {
-      this.suppliers = suppliers;
-    });
-
-    this.expenseFormGroup.controls.supplier.valueChanges.pipe(
-      startWith(''),
-      map(supplier => typeof supplier === 'string' ? supplier : supplier?.name),
-      map((supplierName) => {
-        const filteredSuppliers: Supplier[] = this.suppliers.filter(
-          supplier => supplier.name?.toLocaleLowerCase().includes(supplierName?.toLocaleLowerCase() as string)
-        );
-
-        this.canDisplayCreateSupplierButton = filteredSuppliers.some(supplier => supplier.name !== supplierName) && supplierName !== '';
-
-        return filteredSuppliers;
-      }),
-    ).subscribe(filteredSuppliers => {
-      this.filteredSuppliers = filteredSuppliers;
     });
   }
 
@@ -69,22 +45,6 @@ export class ExpenseEditComponent implements OnInit {
     fileReader.onload = () => {
       this.proofPreviewImage = fileReader.result as string;
     };
-  }
-
-  public displaySupplierName(supplier: Supplier): string|any {
-    return supplier ? supplier.name as string : '';
-  }
-
-  public createSupplier(): void {
-    const supplier: Supplier = {
-      name: this.expenseFormGroup.value.supplier as string
-    };    
-
-    this.accountingService.createSupplier(supplier).subscribe((supplier) => {
-      this.expenseFormGroup.patchValue({
-        supplier: supplier
-      });
-    })
   }
 
   submitExpense(): void {
