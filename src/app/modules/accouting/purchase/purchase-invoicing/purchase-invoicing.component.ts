@@ -3,6 +3,7 @@ import { Category, Product, Supplier } from '../../shared/accouting.types';
 import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from '../purchase.type';
+import { map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-purchase-invoicing',
@@ -10,8 +11,7 @@ import { Invoice } from '../purchase.type';
   styleUrls: ['./purchase-invoicing.component.scss']
 })
 export class PurchaseInvoicingComponent implements OnInit {
-  openProducts: Product[] = [];
-  productsFilteredByCategory: Product[] = [];
+  products: Product[] = [];
   invoices: Invoice[] = [];
   categories: Category[] = [];
   
@@ -33,10 +33,6 @@ export class PurchaseInvoicingComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.accountingService.products$.subscribe(products => {
-      this.openProducts = this.productsFilteredByCategory = products;
-    });
-
     this.accountingService.categories$.subscribe(categories => {
       this.categories = categories;      
     });
@@ -54,8 +50,12 @@ export class PurchaseInvoicingComponent implements OnInit {
       });
     });
 
-    this.categoryFilterField.valueChanges.subscribe(category => {      
-      this.productsFilteredByCategory = this.openProducts.filter(product => product.category?.id === category?.id);
+    this.categoryFilterField.valueChanges.pipe(
+      switchMap(category => this.accountingService.products$.pipe(
+        map(products => products.filter(product => product.category?.id === category?.id)),
+      )),
+    ).subscribe(products => {
+      this.products = products;
     });
 
     this.accountingService.category$.subscribe(category => {
