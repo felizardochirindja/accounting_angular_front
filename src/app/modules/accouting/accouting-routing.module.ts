@@ -39,7 +39,9 @@ const routes: Routes = [
           productsForSale: AccountingProductsForSaleResolver
         },
         children: [
-          { path: 'fatura', component: SaleInvoicingComponent }
+          { 
+            path: 'fatura', component: SaleInvoicingComponent,
+          }
         ]
       },
       {
@@ -48,7 +50,7 @@ const routes: Routes = [
           products: AccountingProductsResolver,
           openInvoices: AccountingOpenInvoices,
           openCategories: AccountingOpenCategories,
-          lastUsedCategory: AccountingLastCreatedCategoryResolver
+          lastUsedCategory: AccountingLastCreatedCategoryResolver,
         }
       },
       {
