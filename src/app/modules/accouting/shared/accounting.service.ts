@@ -128,16 +128,25 @@ export class AccountingService {
   }
 
   createCategory(category: Category): Observable<Category> {
+    const categoryPayload: any = {
+      title: category.name,
+    };
+
     return this.categories$.pipe(
       take(1),
-      map(categories => {
-        category.id = uuid();
-        
-        this.categoriesSubject.next([...categories, category]);
-        this.categorySubject.next(category);
-        
-        return category;
-      }),
+      switchMap(categories => this.httpClient.post<{ id: string; title: string; }>(`${environment.apiURL.root}/${this.baseUrlPath}/order-group/`, categoryPayload).pipe(
+        map(categoryResponse => {
+          const category: Category = {
+            id: categoryResponse.id,
+            name: categoryResponse.title,
+          };
+
+          this.categoriesSubject.next([...categories, category]);
+          this.categorySubject.next(category);
+          
+          return category;
+        }),
+      )),
     );
   }
 
