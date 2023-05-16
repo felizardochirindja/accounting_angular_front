@@ -2,8 +2,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category, Product, Supplier } from '../../shared/accouting.types';
 import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnInit } from '@angular/core';
-import { Invoice } from '../purchase.type';
-import { map, switchMap } from 'rxjs';
+import { Invoice, PurchasePaymentMethod } from '../purchase.type';
 
 @Component({
   selector: 'app-purchase-invoicing',
@@ -13,7 +12,7 @@ import { map, switchMap } from 'rxjs';
 export class PurchaseInvoicingComponent implements OnInit {
   products: Product[] = [];
   invoices: Invoice[] = [];
-  categories: Category[] = [];
+  paymentMethods: PurchasePaymentMethod[] = [];
   
   step!: number;
   proofPreviewImage!: string;
@@ -33,8 +32,8 @@ export class PurchaseInvoicingComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.accountingService.categories$.subscribe(categories => {
-      this.categories = categories;      
+    this.accountingService.purchasePaymentMethods$.subscribe(paymentMethods => {
+      this.paymentMethods = paymentMethods;      
     });
 
     this.accountingService.invoices$.subscribe(invoices => {
