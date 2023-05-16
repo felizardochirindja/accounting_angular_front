@@ -1,5 +1,5 @@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Category, Product, Supplier } from '../../shared/accouting.types';
+import { Category, Supplier } from '../../shared/accouting.types';
 import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnInit } from '@angular/core';
 import { Invoice, PurchasePaymentMethod } from '../purchase.type';
@@ -10,15 +10,12 @@ import { Invoice, PurchasePaymentMethod } from '../purchase.type';
   styleUrls: ['./purchase-invoicing.component.scss']
 })
 export class PurchaseInvoicingComponent implements OnInit {
-  products: Product[] = [];
   invoices: Invoice[] = [];
   paymentMethods: PurchasePaymentMethod[] = [];
   
   step!: number;
   proofPreviewImage!: string;
   
-  categoryFilterField = new FormControl<Category | null>(null);
-
   supplierFormGroup = new FormGroup({
     invoiceFormArray: new FormArray([]),
   });
@@ -49,18 +46,6 @@ export class PurchaseInvoicingComponent implements OnInit {
         }));
       });
     });
-
-    this.categoryFilterField.valueChanges.pipe(
-      switchMap(category => this.accountingService.products$.pipe(
-        map(products => products.filter(product => product.category?.id === category?.id)),
-      )),
-    ).subscribe(products => {
-      this.products = products;
-    });
-
-    this.accountingService.category$.subscribe(category => {
-      this.categoryFilterField.setValue(category);
-    });
   }
 
   nextStep() {
@@ -86,10 +71,6 @@ export class PurchaseInvoicingComponent implements OnInit {
     fileReader.onload = () => {
       this.proofPreviewImage = fileReader.result as string;
     };
-  }
-
-  closeCategory(): void {
-    console.log(this.categoryFilterField.value);
   }
 
   finishInvoice(invoice: Invoice): void {
