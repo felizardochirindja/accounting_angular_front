@@ -3,6 +3,9 @@ name: Deploy to Firebase Hosting
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   firebase-build-and-deploy:
