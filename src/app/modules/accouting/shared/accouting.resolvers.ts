@@ -105,7 +105,7 @@ export class AccountingProductsForSaleResolver implements Resolve<Product[]> {
   ) {}
 
   resolve(): Observable<Product[]> {
-    return this.accountingService.getProducts();
+    return this.accountingService.getSellingProducts();
   }
 }
 
