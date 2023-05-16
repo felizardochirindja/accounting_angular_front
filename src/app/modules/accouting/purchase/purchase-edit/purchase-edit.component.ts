@@ -110,13 +110,18 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     this.products?.push(product);
   }
 
-  purchase(): void {    
-    this.purchases.forEach(purchase => {
-      this.accountingService.createPurchase(purchase).subscribe(console.log);
-    });
+  doPurchase(): void {
+    const purchase: Purchase = {
+      type: this.purchaseType,
+      category: this.purchaseFormGroup.value.category as Category,
+      supplier: this.purchaseFormGroup.value.supplier as Supplier,
+      products: this.products,
+    }
+    
+    this.accountingService.createPurchase(purchase).subscribe(console.log);
 
     this.purchaseFormGroup.reset();
-    this.purchases = [];
+    this.products = [];
   }
 
   public ngOnDestroy(): void {
