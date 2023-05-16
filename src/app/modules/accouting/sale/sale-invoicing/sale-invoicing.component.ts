@@ -20,7 +20,7 @@ export class SaleInvoicingComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountingService.products$.subscribe(products => {
-      this.products = this.filteredProducts = products;      
+      this.products = this.filteredProducts = products;
     });
 
     this.searchProductField.valueChanges.subscribe(searchTerm => {
