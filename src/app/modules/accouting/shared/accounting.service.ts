@@ -18,6 +18,10 @@ export class AccountingService {
   private categoriesSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
   private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   private expensesSubject: BehaviorSubject<Expense[]> = new BehaviorSubject<Expense[]>([]);
+  private paymentMethodsSubject: BehaviorSubject<PurchasePaymentMethod[]> = new BehaviorSubject<PurchasePaymentMethod[]>([
+    { name: "metodo 2" },
+    { name: "metodo 1" },
+  ]);
 
   private readonly baseUrlPath = 'accounts';
 
@@ -55,6 +59,14 @@ export class AccountingService {
 
   get expenses$(): Observable<Expense[]> {
     return this.expensesSubject.asObservable();
+  }
+
+  get purchasePaymentMethods$(): Observable<PurchasePaymentMethod[]> {
+    return this.paymentMethodsSubject.asObservable();
+  }
+
+  getPurchasePaymentMethods(): Observable<PurchasePaymentMethod[]> {
+    return this.purchasePaymentMethods$;
   }
 
   getLastCreatedCategory(): Observable<Category> {
