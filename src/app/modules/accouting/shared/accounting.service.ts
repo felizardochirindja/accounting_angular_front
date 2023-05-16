@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Category, Expense, ExpenseApiPayload, Product, Storage, Supplier, Tax, TaxApiPayload } from './accouting.types';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, switchMap, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, switchMap, take, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { v4 as uuid } from 'uuid';
-import { Invoice, Purchase } from '../purchase/purchase.type';
+import { Invoice, Purchase, PurchasePaymentMethod } from '../purchase/purchase.type';
 
 @Injectable({
   providedIn: 'root'
@@ -199,7 +198,7 @@ export class AccountingService {
 
           this.taxesSubject.next([...taxes, tax]);
 
-          return taxeResponse;
+          return tax;
         }),
       )),
     );
