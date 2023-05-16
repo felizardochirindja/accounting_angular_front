@@ -1,8 +1,8 @@
 <app-header [title]="'comprar'"></app-header>
 
 <mat-list>
-    <div mat-subheader>{{ purchases.length > 0 ? 'productos selecionados' : 'nenhum produto selecionado' }}</div>
-    <mat-list-item *ngFor="let purchase of purchases">
+    <div mat-subheader>{{ products.length > 0 ? 'productos selecionados' : 'nenhum produto selecionado' }}</div>
+    <mat-list-item *ngFor="let purchase of products">
         <mat-icon matListItemIcon>folder</mat-icon>
         <div matListItemTitle>{{ purchase.name }}</div>
     </mat-list-item>
