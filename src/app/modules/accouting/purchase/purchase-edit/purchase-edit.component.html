@@ -56,6 +56,6 @@
         <mat-error *ngIf="(purchaseFormGroup.controls.storage.errors ?? {})['required']">o armazém é obrigatório</mat-error>
     </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary" (click)="addPurchase()" [disabled]="purchaseFormGroup.invalid" class="mr-5">adicionar</button>
-    <button type="submit" mat-raised-button color="primary" (click)="purchase()" [disabled]="purchaseFormGroup.invalid">comprar</button>
+    <button type="submit" mat-raised-button color="primary" (click)="addProduct()" [disabled]="purchaseFormGroup.invalid" class="mr-5">adicionar</button>
+    <button type="submit" mat-raised-button color="primary" (click)="doPurchase()" [disabled]="purchaseFormGroup.invalid">comprar</button>
 </form>
