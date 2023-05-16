@@ -9,7 +9,7 @@ import { AccountingService } from '../../accounting.service';
   template: `
     <mat-form-field appearance="outline" class="w-full">
       <mat-label>fornecedor</mat-label>
-      <input type="text" matInput [matAutocomplete]="supplierAutoComplete" [formControl]="supplierControl">
+      <input type="text" matInput [matAutocomplete]="supplierAutoComplete" [formControl]="supplierControl" [disabled]="disabled">
       <mat-autocomplete #supplierAutoComplete="matAutocomplete" [displayWith]="displaySupplierName">
         <mat-option *ngFor="let supplier of suppliers" [value]="supplier">{{ supplier.name }}</mat-option>
         <mat-option *ngIf="suppliers.length === 0 || canDisplayCreateSupplierButton">
@@ -22,6 +22,7 @@ import { AccountingService } from '../../accounting.service';
 })
 export class SupplierFormControlComponent implements OnInit {
   @Input() supplierControl!: FormControl<Supplier | null>;
+  @Input() disabled: boolean = false;
 
   suppliers: Supplier[] = [];
 
