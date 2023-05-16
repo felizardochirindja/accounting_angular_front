@@ -36,7 +36,7 @@
 
     <mat-form-field appearance="outline" class="w-full">
         <mat-label>categoria</mat-label>
-        <input type="text" matInput [matAutocomplete]="categoryAutocomplete" formControlName="category" [disabled]="products.length > 0">
+        <input type="text" matInput [matAutocomplete]="categoryAutocomplete" formControlName="category">
         <mat-autocomplete #categoryAutocomplete="matAutocomplete" autoActiveFirstOption [displayWith]="displayCategoryName">
             <mat-option [value]="lastCreatedCategory" *ngIf="canDisplaylastCreatedCategory">{{ lastCreatedCategory.name }}</mat-option>
             <mat-option *ngIf="canDisplayCreateCategoryButton">
