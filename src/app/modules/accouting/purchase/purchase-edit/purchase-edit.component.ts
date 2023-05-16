@@ -1,7 +1,7 @@
 import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Storage, Supplier, Category } from '../../shared/accouting.types';
+import { Storage, Supplier, Category, Product } from '../../shared/accouting.types';
 import { Subject, map, startWith, tap } from 'rxjs';
 import { Purchase } from '../purchase.type';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,7 +26,7 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
 
   storages: Storage[] = [];
   lastCreatedCategory!: Category;
-  purchases: Purchase[] = [];
+  products: Product[] = [];
 
   canDisplaylastCreatedCategory: boolean = false;
   canDisplayCreateCategoryButton: boolean = false;
@@ -94,8 +94,8 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     })
   }
 
-  addPurchase(): void {
-    const purchase: Purchase = {
+  addProduct(): void {
+    const product: Product = {
       name: this.purchaseFormGroup.value.name as string,
       category: this.purchaseFormGroup.value.category as Category,
       quantity: this.purchaseFormGroup.value.quantity as number,
@@ -105,7 +105,7 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
       storage: this.purchaseFormGroup.value.storage as Storage,
     };
 
-    this.purchases.push(purchase);
+    this.products?.push(product);
   }
 
   purchase(): void {    
