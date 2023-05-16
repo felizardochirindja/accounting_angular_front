@@ -7,6 +7,16 @@
 
             <div *ngIf="filteredProducts.length > 0; else noProductsAlert">
                 <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>cliente</mat-label>
+                    <input type="text" matInput [matAutocomplete]="categoryAutocomplete">
+                    <mat-autocomplete #categoryAutocomplete="matAutocomplete" autoActiveFirstOption>
+                        <mat-option>
+                            <button mat-raised-button>Criar</button>
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-full">
                     <mat-label>pesquisar</mat-label>
                     <input matInput type="text" [formControl]="searchProductField">
                 </mat-form-field>
