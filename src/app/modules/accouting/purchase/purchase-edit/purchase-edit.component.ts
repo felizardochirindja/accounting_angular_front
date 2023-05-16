@@ -2,7 +2,7 @@ import { AccountingService } from './../../shared/accounting.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage, Supplier, Category, Product } from '../../shared/accouting.types';
-import { Subject, map, startWith, tap } from 'rxjs';
+import { Subject, map, startWith, tap, takeUntil } from 'rxjs';
 import { Purchase, PurchaseType } from '../purchase.type';
 import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOptionsDialogComponent } from '../../shared/components/purchase-options-dialog/purchase-options-dialog.component';
@@ -47,6 +47,7 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     });
 
     this.purchaseFormGroup.controls.category.valueChanges.pipe(
+      takeUntil(this.unsubscriber),
       startWith(''),
       map(category => typeof category === 'string' ? category : category?.name),
       tap((categoryName) => {
