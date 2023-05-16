@@ -9,6 +9,7 @@ import {
   AccountingOpenInvoices,
   AccountingOpenCategories,
   AccountingProductsForSaleResolver,
+  AccountingPurchasePaymentMethodsResolver,
 } from './shared/accouting.resolvers';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,6 +18,7 @@ import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.compon
 import { PurchaseInvoicingComponent } from './purchase/purchase-invoicing/purchase-invoicing.component';
 import { SaleComponent } from './sale/sale.component';
 import { SaleInvoicingComponent } from './sale/sale-invoicing/sale-invoicing.component';
+import { DiarioComponent } from './diario/diario.component';
 
 const routes: Routes = [
   {
@@ -26,11 +28,28 @@ const routes: Routes = [
         path: 'criar-taxa', component: TaxEditComponent,
       },
       {
-        path: 'comprar', component: PurchaseEditComponent,
+        path: 'despesa', component: ExpenseEditComponent,
+        resolve: {
+          suppliers: AccountingSuppliersResolver,
+          taxes: AccountingTaxesResolver,
+        }
+      },
+
+      {
+        path: 'compra', component: PurchaseEditComponent,
         resolve: {
           suppliers: AccountingSuppliersResolver,
           storages: AccountingStoragesResolver,
           lastCreatedCategory: AccountingLastCreatedCategoryResolver,
+        }
+      },
+      {
+        path: 'compra/faturas', component: PurchaseInvoicingComponent,
+        resolve: {
+          products: AccountingProductsResolver,
+          openInvoices: AccountingOpenInvoices,
+          openCategories: AccountingOpenCategories,
+          lastUsedCategory: AccountingLastCreatedCategoryResolver,
         }
       },
       {
@@ -41,24 +60,14 @@ const routes: Routes = [
         children: [
           { 
             path: 'fatura', component: SaleInvoicingComponent,
+            resolve: {
+              paymentMethods: AccountingPurchasePaymentMethodsResolver,
+            }
           }
         ]
       },
       {
-        path: 'faturar', component: PurchaseInvoicingComponent,
-        resolve: {
-          products: AccountingProductsResolver,
-          openInvoices: AccountingOpenInvoices,
-          openCategories: AccountingOpenCategories,
-          lastUsedCategory: AccountingLastCreatedCategoryResolver,
-        }
-      },
-      {
-        path: 'despesa', component: ExpenseEditComponent,
-        resolve: {
-          suppliers: AccountingSuppliersResolver,
-          taxes: AccountingTaxesResolver,
-        }
+        path: "diario", component: DiarioComponent,
       },
 
       {
