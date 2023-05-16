@@ -3,7 +3,7 @@ import { AccountingService } from './accounting.service';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Invoice } from '../purchase/purchase.type';
+import { Invoice, PurchasePaymentMethod } from '../purchase/purchase.type';
 
 @Injectable({
   providedIn: 'root'
@@ -106,5 +106,18 @@ export class AccountingProductsForSaleResolver implements Resolve<Product[]> {
 
   resolve(): Observable<Product[]> {
     return this.accountingService.getProducts();
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountingPurchasePaymentMethodsResolver implements Resolve<PurchasePaymentMethod[]> {
+  constructor(
+    private accountingService: AccountingService
+  ) {}
+
+  resolve(): Observable<PurchasePaymentMethod[]> {
+    return this.accountingService.getPurchasePaymentMethods();
   }
 }
