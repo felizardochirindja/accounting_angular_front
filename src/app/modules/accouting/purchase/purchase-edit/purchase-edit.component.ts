@@ -108,6 +108,10 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     };
 
     this.products?.push(product);
+
+    const { category, supplier } = this.purchaseFormGroup.value;
+
+    this.purchaseFormGroup.reset({ category, supplier });
   }
 
   doPurchase(): void {
