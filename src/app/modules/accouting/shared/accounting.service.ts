@@ -240,37 +240,6 @@ export class AccountingService {
   }
 
   createPurchase(purchase: Purchase): Observable<Purchase> {
-    return this.products$.pipe(
-      take(1),
-      map(products => {
-        const product: Product = {
-          id: uuid(),
-          name: purchase.name,
-          quantity: purchase.quantity,
-          category: purchase.category,
-          price: purchase.price,
-          sellingPrice: purchase.sellingPrice,
-          storage: purchase.storage,
-          supplier: purchase.supplier
-        }
-        
-        this.productsSubject.next([...products, product]);
-
-        const supplierExists =  this.invoicesSubject.value.some(invoice => invoice.supplier?.name === product.supplier?.name);
-        
-        if (!supplierExists) {
-          const invoice: Invoice = {
-            id: uuid(),
-            complete: false,
-            category: product.category,
-            supplier: product.supplier,
-          }
-
-          this.invoicesSubject.next([...this.invoicesSubject.value, invoice]);
-        }
-
-        return purchase;
-      }),
-    );
+    return of(purchase);
   }
 }
