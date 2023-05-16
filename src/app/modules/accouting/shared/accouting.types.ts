@@ -60,3 +60,11 @@ export interface Product {
     supplier?: Supplier;
     storage?: Storage;
 }
+
+export interface ProductAPI {
+    id?: string;
+    name?: string;
+    price?: number;
+    selling_price?: number;
+    quantity?: number;
+}
