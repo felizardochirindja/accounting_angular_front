@@ -21,6 +21,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
 import { SupplierFormControlComponent } from './shared/components/supplier-form-control/supplier-form-control.component';
+import { DiarioComponent } from './diario/diario.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { SupplierFormControlComponent } from './shared/components/supplier-form-
     SaleInvoicingComponent,
     SaleComponent,
     PurchaseOptionsDialogComponent,
-    SupplierFormControlComponent
+    SupplierFormControlComponent,
+    DiarioComponent
   ]
 })
 export class AccoutingModule {}
