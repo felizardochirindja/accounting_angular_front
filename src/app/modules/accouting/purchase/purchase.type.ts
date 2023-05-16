@@ -1,23 +1,28 @@
-import { Category, Storage, Supplier } from "../shared/accouting.types";
+import { Product } from './../shared/accouting.types';
+import { Category, Supplier } from "../shared/accouting.types";
 
 export interface Purchase {
-    name?: string;
-    price?: number;
-    sellingPrice?: number;
-    quantity?: number;
     category?: Category;
     supplier?: Supplier;
-    storage?: Storage;
+    type?: PurchaseType;
+    products: Product[];
 }
 
+export type PurchaseType = "mercadorias" | "bens" | "consumiveis";
+
 export interface Invoice {
-    id?: string
-    code?: string
-    toPay?: number
-    totalPaid?: number
-    remaining?: number
-    additionalCost?: number
-    complete?: boolean,
-    supplier?: Supplier,
-    category?: Category,
+    id?: string;
+    code?: string;
+    toPay?: number;
+    totalPaid?: number;
+    remaining?: number;
+    additionalCost?: number;
+    complete?: boolean;
+    supplier?: Supplier;
+    category?: Category;
+    paymentMethod?: PurchasePaymentMethod;
+}
+
+export type PurchasePaymentMethod = {
+    name: string;
 }
