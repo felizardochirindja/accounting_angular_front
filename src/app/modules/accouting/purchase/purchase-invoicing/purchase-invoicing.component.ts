@@ -45,6 +45,7 @@ export class PurchaseInvoicingComponent implements OnInit {
           additionalCosts: new FormControl<number | null>(null),
           supplier: new FormControl<Supplier | null>(invoice.supplier as Supplier, Validators.required),
           category: new FormControl<Category | null>(invoice.category as Category, Validators.required),
+          paymentMethod: new FormControl<PurchasePaymentMethod | null>(null, Validators.required),
         }));
       });
     });
