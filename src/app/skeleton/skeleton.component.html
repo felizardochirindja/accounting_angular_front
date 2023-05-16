@@ -9,11 +9,12 @@
                 <button mat-icon-button [mat-menu-trigger-for]="addMenu"><mat-icon>add</mat-icon></button>
 
                 <mat-menu #addMenu="matMenu">
-                    <button mat-menu-item routerLink="/contabilidade/faturar">faturar</button>
                     <button mat-menu-item routerLink="/contabilidade/criar-taxa">Criar Taxa</button>
-                    <button mat-menu-item routerLink="/contabilidade/venda/fatura">vender</button>
-                    <button mat-menu-item routerLink="/contabilidade/comprar">Comprar</button>
                     <button mat-menu-item routerLink="/contabilidade/despesa">despesa</button>
+                    <button mat-menu-item routerLink="/contabilidade/compra">Comprar</button>
+                    <button mat-menu-item routerLink="/contabilidade/compra/faturas">faturar</button>
+                    <button mat-menu-item routerLink="/contabilidade/venda/fatura">vender</button>
+                    <button mat-menu-item routerLink="/contabilidade/diario">diario</button>
                 </mat-menu>
             </div>
         </mat-toolbar-row>
