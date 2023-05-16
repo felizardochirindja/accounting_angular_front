@@ -8,7 +8,8 @@ export class PurchaseOptionsDialogComponent {
   selectedOption!: { name: string };
 
   purchaseOptions: { name: string }[] = [
-    { name: 'mercadoria' },
-    { name: 'consumibeis' },
+    { name: 'mercadorias' },
+    { name: 'consumiveis' },
+    { name: 'bens' },
   ];
 }
