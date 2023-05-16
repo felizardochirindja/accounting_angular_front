@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Category, Expense, ExpenseApiPayload, Product, Storage, Supplier, Tax, TaxApiPayload } from './accouting.types';
+import { Category, Expense, ExpenseApiPayload, Product, ProductAPI, Storage, Supplier, Tax, TaxApiPayload } from './accouting.types';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, switchMap, take, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -136,6 +136,26 @@ export class AccountingService {
 
   getProducts(): Observable<Product[]> {
     return this.products$;
+  }
+
+  getSellingProducts(): Observable<Product[]> {    
+    return this.httpClient.get<ProductAPI[]>(
+      `${environment.apiURL.root}/${this.baseUrlPath}/product/`
+    ).pipe(
+      map(productsResponse => {
+        const products: Product[] = productsResponse.map(product => ({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          sellingPrice: product.selling_price,
+          quantity: product.quantity,
+        }));
+
+        this.productsSubject.next(products);
+
+        return products;
+      }),
+    );
   }
 
   createCategory(category: Category): Observable<Category> {
