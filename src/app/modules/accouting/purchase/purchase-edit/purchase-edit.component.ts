@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage, Supplier, Category, Product } from '../../shared/accouting.types';
 import { Subject, map, startWith, tap } from 'rxjs';
-import { Purchase } from '../purchase.type';
+import { Purchase, PurchaseType } from '../purchase.type';
 import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOptionsDialogComponent } from '../../shared/components/purchase-options-dialog/purchase-options-dialog.component';
 
@@ -27,6 +27,7 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
   storages: Storage[] = [];
   lastCreatedCategory!: Category;
   products: Product[] = [];
+  purchaseType!: PurchaseType;
 
   canDisplaylastCreatedCategory: boolean = false;
   canDisplayCreateCategoryButton: boolean = false;
@@ -74,7 +75,7 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      this.purchaseType = result[0];
     });
   }
 
