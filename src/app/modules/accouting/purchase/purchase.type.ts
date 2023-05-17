@@ -29,6 +29,7 @@ export interface Invoice {
     category?: Category;
     paymentMethod?: PurchasePaymentMethod;
     type?: PurchaseType,
+    paidAt?: Date,
 }
 
 export interface InvoiceAPI {
