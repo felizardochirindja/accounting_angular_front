@@ -10,6 +10,7 @@ import {
   AccountingOpenCategories,
   AccountingProductsForSaleResolver,
   AccountingPurchasePaymentMethodsResolver,
+  AccountingAccountingBookResolver,
 } from './shared/accouting.resolvers';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -68,6 +69,9 @@ const routes: Routes = [
       },
       {
         path: "diario", component: DiarioComponent,
+        resolve: {
+          accountingBook: AccountingAccountingBookResolver,
+        }
       },
 
       {
