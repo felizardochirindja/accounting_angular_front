@@ -1,4 +1,4 @@
-import { Product } from './../shared/accouting.types';
+import { Product, ProductAPI } from './../shared/accouting.types';
 import { Category, Supplier } from "../shared/accouting.types";
 
 export interface Purchase {
@@ -6,6 +6,13 @@ export interface Purchase {
     supplier?: Supplier;
     type?: PurchaseType;
     products: Product[];
+}
+
+export interface PurchaseAPI {
+    order_group?: number;
+    supplier?: number;
+    type?: PurchaseType;
+    products: ProductAPI[];
 }
 
 export type PurchaseType = "mercadorias" | "bens" | "consumiveis";
