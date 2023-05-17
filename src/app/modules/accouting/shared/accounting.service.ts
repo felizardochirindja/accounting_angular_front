@@ -114,7 +114,34 @@ export class AccountingService {
   }
 
   getOpenInvoices(): Observable<Invoice[]> {
-    return this.invoices$;
+    return this.httpClient.get<InvoiceAPI[]>(
+      `${environment.apiURL.root}/${this.baseUrlPath}/transaction`, { params: { format: environment.apiURL.responseFormat } }
+    ).pipe(
+      map(invoicesResponse => {
+        const invoices: Invoice[] = invoicesResponse.map(invoice => ({
+          id: invoice.id?.toString(),
+          toPay: invoice.to_pay,
+          category: {
+            id: invoice.id?.toString(),
+          },
+          supplier: {
+            name: invoice.supplier_name,
+          },
+          remaining: invoice.remaining,
+          code: invoice.code,
+          additionalCost: invoice.additional_cost,
+          complete: invoice.complete,
+          totalPaid: invoice.total_paid,
+          paymentMethod: {
+            name: invoice.payment_method,
+          },
+        }));
+
+        this.invoicesSubject.next(invoices);
+
+        return invoices;
+      }),
+    );
   }
 
   getStorages(): Observable<Storage[]> {
