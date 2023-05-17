@@ -286,10 +286,7 @@ export class AccountingService {
   }
 
   createPurchase(purchase: Purchase): Observable<Purchase> {
-    this.products$.pipe(
-      tap(products => {
-        this.productsSubject.next([...products, ...purchase.products]);
-      }),
+    return of(purchase);
     );
 
     return of(purchase);
