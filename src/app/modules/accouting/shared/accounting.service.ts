@@ -165,7 +165,7 @@ export class AccountingService {
     return this.products$;
   }
 
-  getSellingProducts(): Observable<Product[]> {    
+  getSellingProducts(): Observable<Product[]> {
     return this.httpClient.get<ProductAPI[]>(
       `${environment.apiURL.root}/${this.baseUrlPath}/product/`
     ).pipe(
