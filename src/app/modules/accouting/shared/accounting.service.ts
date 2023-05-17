@@ -287,8 +287,30 @@ export class AccountingService {
 
   createPurchase(purchase: Purchase): Observable<Purchase> {
     return of(purchase);
-    );
 
-    return of(purchase);
+    const purchasePayload: PurchaseAPI = {
+      order_group: purchase.category?.id as unknown as number,
+      supplier: purchase.category?.id as unknown as number,
+      type: purchase.type,
+      products: purchase.products.map(product => ({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: product.quantity,
+        selling_price: product.sellingPrice,
+      })),
+    };
+
+    return this.invoices$.pipe(
+      take(1),
+      switchMap(invoices => this.httpClient.post<PurchaseAPI>(`${environment.apiURL.root}/${this.baseUrlPath}/buy-order/`, purchasePayload).pipe(
+        map(invoicesResponse => {
+          console.log(invoicesResponse);
+          
+
+          return purchase;
+        }),
+      )),
+    );
   }
 }
