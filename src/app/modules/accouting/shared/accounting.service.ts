@@ -81,7 +81,7 @@ export class AccountingService {
           description: tax.description,
           value: tax.porcentage_value,
         }));
-        
+
         this.taxesSubject.next(taxes);
 
         return taxes;
@@ -91,7 +91,7 @@ export class AccountingService {
 
   getSuppliers(): Observable<Supplier[]> {
     return this.httpClient.get<Supplier[]>(
-      `${environment.apiURL.root}/${this.baseUrlPath}/supplier`, { params: { format:  environment.apiURL.responseFormat } }
+      `${environment.apiURL.root}/${this.baseUrlPath}/supplier`, { params: { format: environment.apiURL.responseFormat } }
     ).pipe(
       map(suppliersFromHttpResponse => {
         const suppliers: Supplier[] = suppliersFromHttpResponse.map(supplier => ({
@@ -201,7 +201,7 @@ export class AccountingService {
 
           this.categoriesSubject.next([...categories, category]);
           this.categorySubject.next(category);
-          
+
           return category;
         }),
       )),
@@ -212,7 +212,7 @@ export class AccountingService {
     const createSupplierpayload: Supplier = {
       name: supplier.name
     };
-    
+
     return this.suppliers$.pipe(
       take(1),
       switchMap(suppliers => this.httpClient.post<Supplier>(`${environment.apiURL.root}/${this.baseUrlPath}/supplier/`, createSupplierpayload).pipe(
@@ -276,7 +276,7 @@ export class AccountingService {
             },
             taxValue: expenseResponse.tax_value,
           };
-  
+
           this.expensesSubject.next([...expenses, expense]);
 
           return expense;
