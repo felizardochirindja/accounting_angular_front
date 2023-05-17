@@ -28,6 +28,9 @@ export interface Invoice {
     supplier?: Supplier;
     category?: Category;
     paymentMethod?: PurchasePaymentMethod;
+    type?: PurchaseType,
+}
+
 export interface InvoiceAPI {
     id: number
     order_title: string
