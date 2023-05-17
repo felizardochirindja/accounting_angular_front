@@ -3,7 +3,7 @@ import { Category, Expense, ExpenseApiPayload, Product, ProductAPI, Storage, Sup
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, switchMap, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Invoice, Purchase, PurchasePaymentMethod } from '../purchase/purchase.type';
+import { Invoice, InvoiceAPI, Purchase, PurchaseAPI, PurchasePaymentMethod } from '../purchase/purchase.type';
 
 @Injectable({
   providedIn: 'root'
