@@ -2,21 +2,24 @@
     <table class="table">
         <thead>
             <tr>
-                <th>nome</th>
-                <th>fornecedor</th>
-                <th>preco</th>
-                <th>quantidade</th>
+                <th>numero</th>
+                <th>data</th>
+                <th>descricao</th>
+                <th>conta</th>
+                <th>debito</th>
+                <th>credito</th>
             </tr>
         </thead>
 
         <tbody>
-            <tr *ngFor="let product of []">
-                <td data-label="nome">{{ "nome" }}</td>
-                <td data-label="fornecedor">{{ "fornececor" }}</td>
-                <td data-label="preco">{{ "preco" }}</td>
-                <td data-label="quantidade">{{ "quantidade" }}</td>
+            <tr *ngFor="let operation of accountingBook$ | async">
+                <td data-label="numero">{{ operation.id }}</td>
+                <td data-label="data">{{ operation.supplier?.name }}</td>
+                <td data-label="descricao">{{ operation.category?.name }}</td>
+                <td data-label="conta">{{ operation.type }}</td>
+                <td data-label="debito">{{ 0 }}</td>
+                <td data-label="credito">{{ 0 }}</td>
             </tr>
         </tbody>
     </table>
 </div>
-e
