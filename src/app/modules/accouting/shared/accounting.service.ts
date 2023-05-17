@@ -3,7 +3,7 @@ import { Category, Expense, ExpenseApiPayload, Product, ProductAPI, Storage, Sup
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, switchMap, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Invoice, InvoiceAPI, Purchase, PurchaseAPI, PurchasePaymentMethod } from '../purchase/purchase.type';
+import { Invoice, InvoiceAPI, Purchase, PurchaseAPI, PurchasePaymentMethod, PurchaseType } from '../purchase/purchase.type';
 
 @Injectable({
   providedIn: 'root'
@@ -122,7 +122,7 @@ export class AccountingService {
           id: invoice.id?.toString(),
           toPay: invoice.to_pay,
           category: {
-            id: invoice.id?.toString(),
+            name: invoice.order_title,
           },
           supplier: {
             name: invoice.supplier_name,
@@ -135,6 +135,39 @@ export class AccountingService {
           paymentMethod: {
             name: invoice.payment_method,
           },
+          type: invoice.transaction_type as PurchaseType,
+        }));
+
+        this.invoicesSubject.next(invoices);
+
+        return invoices;
+      }),
+    );
+  }
+
+  getAccountingBook(): Observable<Invoice[]> {
+    return this.httpClient.get<InvoiceAPI[]>(
+      `${environment.apiURL.root}/${this.baseUrlPath}/transaction`, { params: { format: environment.apiURL.responseFormat } }
+    ).pipe(
+      map(invoicesResponse => {
+        const invoices: Invoice[] = invoicesResponse.map(invoice => ({
+          id: invoice.id?.toString(),
+          toPay: invoice.to_pay,
+          category: {
+            name: invoice.order_title,
+          },
+          supplier: {
+            name: invoice.supplier_name,
+          },
+          remaining: invoice.remaining,
+          code: invoice.code,
+          additionalCost: invoice.additional_cost,
+          complete: invoice.complete,
+          totalPaid: invoice.total_paid,
+          paymentMethod: {
+            name: invoice.payment_method,
+          },
+          type: invoice.transaction_type as PurchaseType,
         }));
 
         this.invoicesSubject.next(invoices);
