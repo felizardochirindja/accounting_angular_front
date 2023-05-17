@@ -28,6 +28,31 @@ export interface Invoice {
     supplier?: Supplier;
     category?: Category;
     paymentMethod?: PurchasePaymentMethod;
+export interface InvoiceAPI {
+    id: number
+    order_title: string
+    supplier_name: string
+    uploaded_files: UploadedFile[]
+    payment_method: string
+    transaction_type: string
+    code: string
+    paid_at: any
+    paid_on: any
+    total_liquid: number
+    iva: number
+    gross_value: number
+    to_pay: number
+    total_paid: number
+    remaining: number
+    additional_cost: number
+    complete: boolean
+    completed_at: any
+}
+
+export interface UploadedFile {
+    id: number
+    file: string
+    transaction: number
 }
 
 export type PurchasePaymentMethod = {
