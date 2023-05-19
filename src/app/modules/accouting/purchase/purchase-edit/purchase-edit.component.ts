@@ -77,7 +77,7 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.purchaseType = result[0];
+      this.purchaseType = result as PurchaseType
     });
   }
 
