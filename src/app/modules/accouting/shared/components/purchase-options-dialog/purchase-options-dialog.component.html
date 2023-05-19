@@ -2,9 +2,9 @@
 
 <div mat-dialog-content>
     <mat-selection-list [multiple]="false" [(ngModel)]="selectedOption">
-        <mat-list-option *ngFor="let option of purchaseOptions" [value]="option">
+        <mat-list-option *ngFor="let purchaseType of purchaseTypes" [value]="purchaseType">
             <mat-icon matListItemIcon>folder</mat-icon>
-            <div matListItemTitle>{{ option.name }}</div>
+            <div matListItemTitle>{{ purchaseType }}</div>
             <div matListItemLine>descricao</div>
         </mat-list-option>
     </mat-selection-list>
