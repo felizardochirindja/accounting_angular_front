@@ -71,7 +71,7 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
   }
 
   openPurchaseOptionsDialog(): void {
-    const dialogRef = this.dialog.open(PurchaseOptionsDialogComponent, { 
+    const dialogRef: MatDialogRef<PurchaseOptionsDialogComponent, PurchaseType> = this.dialog.open(PurchaseOptionsDialogComponent, { 
       disableClose: true,
       width: '400px' 
     });
