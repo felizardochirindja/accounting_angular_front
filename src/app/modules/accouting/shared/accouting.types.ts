@@ -67,4 +67,5 @@ export interface ProductAPI {
     price?: number;
     selling_price?: number;
     quantity?: number;
+    storage?: number;
 }
