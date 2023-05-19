@@ -324,7 +324,7 @@ export class AccountingService {
     const purchasePayload: PurchaseAPI = {
       order_group: purchase.category?.id as unknown as number,
       supplier: purchase.category?.id as unknown as number,
-      type: purchase.type,
+      prod_type: purchase.type,
       products: purchase.products.map(product => ({
         id: product.id,
         name: product.name,
