@@ -328,6 +328,7 @@ export class AccountingService {
         price: product.price,
         quantity: product.quantity,
         selling_price: product.sellingPrice,
+        storage: product.storage?.id as unknown as number,
       })),
     };
 
