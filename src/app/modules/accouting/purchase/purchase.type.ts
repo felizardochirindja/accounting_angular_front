@@ -11,7 +11,7 @@ export interface Purchase {
 export interface PurchaseAPI {
     order_group?: number;
     supplier?: number;
-    type?: PurchaseType;
+    prod_type?: PurchaseType;
     products: ProductAPI[];
 }
 
