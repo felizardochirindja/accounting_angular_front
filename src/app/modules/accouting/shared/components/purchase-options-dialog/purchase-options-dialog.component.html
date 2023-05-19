@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>categoria</h1>
 
 <div mat-dialog-content>
-    <mat-selection-list [multiple]="false" [(ngModel)]="selectedOption">
+    <mat-selection-list [multiple]="false" #purchaseTypeList [(ngModel)]="selectedPurchaseType">
         <mat-list-option *ngFor="let purchaseType of purchaseTypes" [value]="purchaseType">
             <mat-icon matListItemIcon>folder</mat-icon>
             <div matListItemTitle>{{ purchaseType }}</div>
