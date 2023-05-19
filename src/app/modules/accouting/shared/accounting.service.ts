@@ -319,14 +319,11 @@ export class AccountingService {
   }
 
   createPurchase(purchase: Purchase): Observable<Purchase> {
-    return of(purchase);
-
     const purchasePayload: PurchaseAPI = {
       order_group: purchase.category?.id as unknown as number,
       supplier: purchase.category?.id as unknown as number,
       prod_type: purchase.type,
       products: purchase.products.map(product => ({
-        id: product.id,
         name: product.name,
         price: product.price,
         quantity: product.quantity,
