@@ -6,6 +6,7 @@ import { Subject, map, startWith, tap, takeUntil } from 'rxjs';
 import { Purchase, PurchaseType } from '../purchase.type';
 import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOptionsDialogComponent } from '../../shared/components/purchase-options-dialog/purchase-options-dialog.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-purchase-edit',
