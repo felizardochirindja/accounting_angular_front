@@ -57,5 +57,5 @@
     </mat-form-field>
 
     <button type="submit" mat-raised-button color="primary" (click)="addProduct()" [disabled]="purchaseFormGroup.invalid" class="mr-5">adicionar</button>
-    <button type="submit" mat-raised-button color="primary" (click)="doPurchase()" [disabled]="products.length === 0">comprar</button>
+    <button type="submit" mat-raised-button color="primary" (click)="purchase()" [disabled]="products.length === 0">comprar</button>
 </form>
