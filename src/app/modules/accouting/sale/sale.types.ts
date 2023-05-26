@@ -8,7 +8,7 @@ export interface SellingInvoice {
     remaining?: number;
     additionalCost?: number;
     complete?: boolean;
-    client?: {
+    customer?: {
         name: string;
     };
     products?: Product[];
