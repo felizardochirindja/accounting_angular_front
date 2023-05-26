@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   apiURL: {
-    root: "https://contaxapi.up.railway.app/api",
+    root: "https://contax-api.vercel.app/api",
     responseFormat: "json",
   }
 };
