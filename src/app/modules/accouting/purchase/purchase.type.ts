@@ -52,6 +52,7 @@ export interface InvoiceAPI {
     additional_cost: number
     complete: boolean
     completed_at: any
+    created_on: Date;
 }
 
 export interface UploadedFile {
