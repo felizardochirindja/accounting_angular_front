@@ -74,6 +74,6 @@ export class PurchaseInvoicingComponent implements OnInit {
   }
 
   finishInvoice(invoice: Invoice): void {
-    console.log(invoice);
+    this.accountingService.finishPurchaseInvoice(invoice).subscribe(console.log);
   }
 }
