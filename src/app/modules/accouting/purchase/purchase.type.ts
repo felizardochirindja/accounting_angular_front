@@ -41,8 +41,8 @@ export interface InvoiceAPI {
     payment_method: string
     transaction_type: string
     code: string
-    paid_at: any
-    paid_on: any
+    paid_at: Date
+    paid_on: Date
     total_liquid: number
     iva: number
     gross_value: number
