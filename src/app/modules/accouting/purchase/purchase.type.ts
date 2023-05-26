@@ -5,6 +5,10 @@ export interface Purchase {
     category?: Category;
     supplier?: Supplier;
     type?: PurchaseType;
+    invoiceCode?: string,
+    totalToPay?: number,
+    additionalCosts?: number,
+    paymentMethod?: PurchasePaymentMethod,
     products: Product[];
 }
 
