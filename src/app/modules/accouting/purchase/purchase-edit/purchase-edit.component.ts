@@ -133,6 +133,10 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
       type: this.purchaseType,
       category: this.purchaseFormGroup.value.category as Category,
       supplier: this.purchaseFormGroup.value.supplier as Supplier,
+      additionalCosts: this.purchaseFormGroup.value.additionalCosts as number,
+      invoiceCode: this.purchaseFormGroup.value.invoiceCode as string,
+      paymentMethod: this.purchaseFormGroup.value.paymentMethod as PurchasePaymentMethod,
+      totalToPay: this.purchaseFormGroup.value.totalToPay as number,
       products: this.products,
     }
     
