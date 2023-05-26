@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage, Supplier, Category, Product } from '../../shared/accouting.types';
 import { Subject, map, startWith, tap, takeUntil } from 'rxjs';
-import { Purchase, PurchaseType } from '../purchase.type';
+import { Purchase, PurchasePaymentMethod, PurchaseType } from '../purchase.type';
 import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOptionsDialogComponent } from '../../shared/components/purchase-options-dialog/purchase-options-dialog.component';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -29,6 +29,7 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
   lastCreatedCategory!: Category;
   products: Product[] = [];
   purchaseType!: PurchaseType;
+  paymentMethods$: Observable<PurchasePaymentMethod[]> = this.accountingService.purchasePaymentMethods$;
 
   canDisplaylastCreatedCategory: boolean = false;
   canDisplayCreateCategoryButton: boolean = false;
