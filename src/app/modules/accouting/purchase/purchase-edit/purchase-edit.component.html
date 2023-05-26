@@ -56,6 +56,30 @@
         <mat-error *ngIf="(purchaseFormGroup.controls.storage.errors ?? {})['required']">o armazém é obrigatório</mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>codigo da fatura</mat-label>
+        <input matInput type="text" formControlName="invoiceCode">
+        <mat-error *ngIf="purchaseFormGroup.get('invoiceCode')?.hasError('required')">o codigo da fatura é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>total a pagar</mat-label>
+        <input matInput type="number" formControlName="totalToPay">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>custos adicionais</mat-label>
+        <input matInput type="number" formControlName="additionalCosts">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+        <mat-label>metodo de pagamento</mat-label>
+        <mat-select formControlName="paymentMethod">
+            <mat-option *ngFor="let paymentMethod of paymentMethods$ | async" [value]="paymentMethod">{{ paymentMethod.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="purchaseFormGroup.get('paymentMethod')?.hasError('required')">o metodo de pagamento é obrigario</mat-error>
+    </mat-form-field>
+
     <button type="submit" mat-raised-button color="primary" (click)="addProduct()" [disabled]="purchaseFormGroup.invalid" class="mr-5">adicionar</button>
     <button type="submit" mat-raised-button color="primary" (click)="purchase()" [disabled]="products.length === 0">comprar</button>
 </form>
