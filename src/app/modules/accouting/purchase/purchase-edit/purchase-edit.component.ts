@@ -23,6 +23,10 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
     category: new FormControl<Category | null>(null, Validators.required),
     supplier: new FormControl<Supplier | null>(null, Validators.required),
     storage: new FormControl<Storage | null>(null, Validators.required),
+    invoiceCode: new FormControl<string | null>(null, Validators.required),
+    totalToPay: new FormControl<number | null>({ value: 0, disabled: true }, Validators.required),
+    additionalCosts: new FormControl<number | null>(null),
+    paymentMethod: new FormControl<PurchasePaymentMethod | null>(null, Validators.required),   
   });
 
   storages: Storage[] = [];
