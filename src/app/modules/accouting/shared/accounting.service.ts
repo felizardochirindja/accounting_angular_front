@@ -337,9 +337,27 @@ export class AccountingService {
       switchMap(invoices => this.httpClient.post<PurchaseAPI>(`${environment.apiURL.root}/${this.baseUrlPath}/buy-order/`, purchasePayload).pipe(
         map(invoicesResponse => {
           console.log(invoicesResponse);
-          
 
           return purchase;
+        }),
+      )),
+    );
+  }
+
+  finishPurchaseInvoice(invoice: Invoice): Observable<Invoice> {
+    const updatePurchasePayload: Partial<InvoiceAPI> = {
+      code: invoice.code,
+      additional_cost: invoice.additionalCost,
+      payment_method: invoice.paymentMethod?.name,
+    };
+
+    return this.invoices$.pipe(
+      take(1),
+      switchMap(invoices => this.httpClient.put<InvoiceAPI>(`${environment.apiURL.root}/${this.baseUrlPath}/buy-order/`, updatePurchasePayload).pipe(
+        map(invoicesResponse => {
+          console.log(invoicesResponse);
+          
+          return invoice;
         }),
       )),
     );
