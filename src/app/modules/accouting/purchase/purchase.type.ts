@@ -28,6 +28,7 @@ export interface Invoice {
     paymentMethod?: PurchasePaymentMethod;
     type?: PurchaseType,
     paidAt?: Date,
+    createdOn?: Date;
 }
 
 export type PurchaseType = "mercadorias" | "bens" | "consumiveis";
