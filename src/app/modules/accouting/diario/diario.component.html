@@ -14,7 +14,7 @@
         <tbody>
             <tr *ngFor="let operation of accountingBook$ | async">
                 <td data-label="numero">{{ operation.id }}</td>
-                <td data-label="data">{{ operation.supplier?.name }}</td>
+                <td data-label="data">{{ operation.createdOn }}</td>
                 <td data-label="descricao">{{ operation.category?.name }}</td>
                 <td data-label="conta">{{ operation.type }}</td>
                 <td data-label="debito">{{ 0 }}</td>
