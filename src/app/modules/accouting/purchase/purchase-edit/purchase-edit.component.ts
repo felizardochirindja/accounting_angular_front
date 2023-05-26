@@ -115,7 +115,8 @@ export class PurchaseEditComponent implements OnInit, OnDestroy {
 
     this.products?.push(product);
 
-    const { category, supplier } = this.purchaseFormGroup.value;
+    const totalToPay = this.products.reduce((total, product) => total + (product.price as number) * (product.quantity as number), 0);
+    
 
     this.purchaseFormGroup.reset({ category, supplier });
   }
