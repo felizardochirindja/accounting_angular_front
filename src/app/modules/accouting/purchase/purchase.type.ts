@@ -15,8 +15,6 @@ export interface PurchaseAPI {
     products: ProductAPI[];
 }
 
-export type PurchaseType = "mercadorias" | "bens" | "consumiveis";
-
 export interface Invoice {
     id?: string;
     code?: string;
@@ -31,6 +29,8 @@ export interface Invoice {
     type?: PurchaseType,
     paidAt?: Date,
 }
+
+export type PurchaseType = "mercadorias" | "bens" | "consumiveis";
 
 export interface InvoiceAPI {
     id: number
