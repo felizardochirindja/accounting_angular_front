@@ -136,6 +136,7 @@ export class AccountingService {
             name: invoice.payment_method,
           },
           type: invoice.transaction_type as PurchaseType,
+          createdOn: invoice.created_on,
         }));
 
         this.invoicesSubject.next(invoices);
