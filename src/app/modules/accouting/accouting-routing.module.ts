@@ -42,6 +42,7 @@ const routes: Routes = [
           suppliers: AccountingSuppliersResolver,
           storages: AccountingStoragesResolver,
           lastCreatedCategory: AccountingLastCreatedCategoryResolver,
+          paymentMethods: AccountingPurchasePaymentMethodsResolver,
         }
       },
       {
